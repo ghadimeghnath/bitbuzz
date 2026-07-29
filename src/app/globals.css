@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: #0B192C;
+  --color-foreground: #FFFFFF;
+
+  /* Primary and Secondary Colors */
+  
+  --color-neon-green: #7cff4f;
+  --color-emerald: #10b981;
+  --color-charcoal: #0d0d0d;
+  --color-stone: #1a1a1a;
+  --color-light-gray: #f8fafc;
+
+  /* Accents */
+  --color-glow: rgba(124, 255, 79, 0.4);
+
+  /* ---- BitBuzz / Circuit Poster Palette ---- */
+  --color-circuit-bg: var(--circuit-bg);
+  --color-circuit-panel: var(--circuit-panel);
+  --color-circuit-panel-light: var(--circuit-panel-light);
+  --color-circuit-cyan: var(--circuit-cyan);
+  --color-circuit-cyan-dim: var(--circuit-cyan-dim);
+  --color-circuit-orange: var(--circuit-orange);
+  --color-circuit-yellow: var(--circuit-yellow);
+  --color-circuit-emerald: var(--circuit-emerald);
+  --color-circuit-slate: var(--circuit-slate);
+  --color-circuit-slate-dim: var(--circuit-slate-dim);
+
+  /* ---- BitBuzz 8.0 — Master Poster Brand Palette ---- */
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-white: var(--brand-white);
+  --color-brand-light-green: var(--brand-light-green);
+  --color-brand-coral: var(--brand-coral);
+  --color-brand-golden-yellow: var(--brand-golden-yellow);
+  --color-brand-lime-yellow: var(--brand-lime-yellow);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-bright-orange: var(--brand-bright-orange);
+  --color-brand-mustard-yellow: var(--brand-mustard-yellow);
+  --color-brand-brown: var(--brand-brown);
+
+  /* ---- Brand typography (see font table) ---- */
+  --font-montserrat: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-calibri: Calibri, Carlito, 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-montserrat);
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    @apply bg-background text-foreground;
+     cursor: none !important;
+  }
+button,
+a,
+input,
+textarea,
+select,
+label,
+[role="button"] {
+  cursor: none !important;
+}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+/* Chamfered (Cut-Corner) Clip Paths */
+  .clip-chamfer-sm {
+    clip-path: polygon(
+      10px 0, calc(100% - 10px) 0,
+      100% 10px, 100% calc(100% - 10px),
+      calc(100% - 10px) 100%, 10px 100%,
+      0 calc(100% - 10px), 0 10px
+    );
+  }
+
+  .clip-chamfer-lg {
+    clip-path: polygon(
+      24px 0, calc(100% - 24px) 0,
+      100% 24px, 100% calc(100% - 24px),
+      calc(100% - 24px) 100%, 24px 100%,
+      0 calc(100% - 24px), 0 24px
+    );
+  }
+
+  /* Neon Glow Shadows */
+  .glow-cyan {
+    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.7));
+  }
+
+  .glow-amber {
+    filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.7));
+  }
+
+  .glow-green {
+    filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.7));
+  }
+
+  /* Cyber Grid Background */
+  .bg-cyber-grid {
+    background-size: 30px 30px;
+    background-image: 
+      linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+  }
+
+
+  
+  .font-pixel-title {
+    font-family:  monospace;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+  }
+
+  .font-pixel-subheading {
+    font-family:  monospace;
+    font-weight: 700;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+  }
+
+  .font-pixel-body {
+    font-family: 'Silkscreen', 'Press Start 2P', monospace;
+    font-weight: 400;
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px var(--color-glow);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 15px var(--color-glow);
+  }
+
+  .border-pixel {
+    border: 2px solid var(--color-neon-green);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(124, 255, 79, 0.2);
+  }
+
+  /* Clip paths for cyberpunk/minecraft look */
+  .clip-corner {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+
+  .clip-corner-reverse {
+    clip-path: polygon(0 16px, 16px 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Scanline effect */
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.1) 50%,
+      rgba(0,0,0,0.1)
+    );
+    background-size: 100% 4px;
+  }
+
+  /* BitBuzz poster neon text/box glows (extends existing glow utilities) */
+  .glow-circuit-cyan {
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
+  }
+  .box-glow-circuit-cyan {
+    box-shadow: 0 0 22px rgba(34, 211, 238, 0.28), inset 0 0 0 1px rgba(34, 211, 238, 0.2);
+  }
+  .box-glow-circuit-orange {
+    box-shadow: 0 0 22px rgba(245, 158, 11, 0.24), inset 0 0 0 1px rgba(245, 158, 11, 0.2);
+  }
+
+  /* Chamfer only the two TOP corners — used for panels that read as a
+     PCB "trace" (bright line across the top, thin line down one side)
+     rather than a fully enclosed box. Matches the rule-list panel. */
+  .clip-chamfer-top {
+    clip-path: polygon(
+      16px 0, calc(100% - 16px) 0,
+      100% 16px, 100% 100%,
+      0 100%, 0 16px
+    );
+  }
+
+  /* Partial circuit-trace frame: bright chamfered line across the top
+     + a thin line down the right edge only — no left/bottom border. */
+  .frame-trace-cyan {
+    position: relative;
+    border-top: 2px solid var(--circuit-cyan);
+    border-right: 1px solid rgba(34, 211, 238, 0.35);
+    clip-path: polygon(
+      16px 0, calc(100% - 16px) 0,
+      100% 16px, 100% 100%,
+      0 100%, 0 16px
+    );
+  }
+
+  /* Dashed circuit-style divider (small ticks instead of a solid rule),
+     used between round cards. */
+  .circuit-divider {
+    height: 1px;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--circuit-cyan-dim) 0 6px,
+      transparent 6px 14px
+    );
+  }
+
+  /* Small diamond "chip" bullet used inside round-card lists. */
+  .bullet-chip {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    background: var(--circuit-cyan);
+    transform: rotate(45deg);
+    box-shadow: 0 0 6px rgba(34, 211, 238, 0.8);
+  }
+
+  /* ================================================================ */
+  /*  BitBuzz 8.0 — Master Poster Brand Utilities                     */
+  /* ================================================================ */
+
+  /* -- Typography, mapped straight from the brand font table -- */
+  .font-brand-college {
+    font-family: var(--font-calibri);
+    font-weight: 700;
+  }
+  .font-brand-affiliation {
+    font-family: var(--font-calibri);
+    font-weight: 400;
+  }
+  .font-brand-department {
+    font-family: var(--font-calibri);
+    font-weight: 700;
+  }
+  .font-brand-event-title {
+    font-family: var(--font-montserrat);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .font-brand-competition {
+    font-family: var(--font-montserrat);
+    font-weight: 700;
+  }
+  .font-brand-heading {
+    font-family: var(--font-montserrat);
+    font-weight: 600;
+  }
+  .font-brand-body {
+    font-family: var(--font-montserrat);
+    font-weight: 400;
+  }
+  .font-brand-date {
+    font-family: var(--font-montserrat);
+    font-weight: 800;
+  }
+  .font-brand-small {
+    font-family: var(--font-calibri);
+    font-weight: 400;
+  }
+
+  /* -- Navy circuit-grid background, echoes the poster's backdrop -- */
+  .bg-brand-grid {
+    background-size: 34px 34px;
+    background-image:
+      linear-gradient(to right, rgba(243, 202, 32, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(243, 202, 32, 0.05) 1px, transparent 1px);
+  }
+
+  /* -- Chevron ribbon banner, e.g. "STATE LEVEL IT FEST FOR..." -- */
+  .clip-chevron-banner {
+    clip-path: polygon(3% 0, 97% 0, 100% 50%, 97% 100%, 3% 100%, 0 50%);
+  }
+
+  /* -- Circular icon-ring glows (Tech Events / Workshops / Competitions / Networking) -- */
+  .ring-glow-brand-yellow {
+    box-shadow: 0 0 0 2px var(--brand-golden-yellow), 0 0 16px rgba(243, 202, 32, 0.5);
+  }
+  .ring-glow-brand-orange {
+    box-shadow: 0 0 0 2px var(--brand-orange), 0 0 16px rgba(239, 157, 16, 0.5);
+  }
+  .ring-glow-brand-green {
+    box-shadow: 0 0 0 2px var(--brand-light-green), 0 0 16px rgba(221, 237, 170, 0.45);
+  }
+  .ring-glow-brand-coral {
+    box-shadow: 0 0 0 2px var(--brand-coral), 0 0 16px rgba(215, 129, 106, 0.5);
+  }
+
+  /* -- Dashed "ticket" frame, e.g. the date strip -- */
+  .frame-ticket-brand {
+    border: 2px solid var(--brand-mustard-yellow);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--brand-navy) 92%, black);
+  }
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* ---- BitBuzz 8.0 poster tokens (sampled from the IQ Buster / General Rules flyers) ---- */
+  --circuit-bg: #05080f;           /* outer page background, near-black navy */
+  --circuit-panel: #0a1120;        /* card / panel fill */
+  --circuit-panel-light: #101a2e;  /* lighter inset panel (info bar, footer bar) */
+  --circuit-cyan: #22d3ee;         /* neon cyan borders / circuit lines */
+  --circuit-cyan-dim: #164e63;     /* dim cyan for hairline dividers */
+  --circuit-orange: #f59e0b;       /* orange icons, round badges, footer icons */
+  --circuit-yellow: #f7b93e;       /* highlighted keywords ("10 points", dates) */
+  --circuit-emerald: #34d399;      /* trophy / round 2 accents */
+  --circuit-slate: #cbd5e1;        /* body copy */
+  --circuit-slate-dim: #64748b;    /* secondary/meta copy (affiliation line) */
+
+  /* ---- BitBuzz 8.0 — Master Poster Brand Palette (exact hex, per brand sheet) ---- */
+  --brand-navy: #082444;           /* Primary Navy Blue (Brand Color) — page background */
+  --brand-white: #FFFFFF;          /* White — primary text/headings */
+  --brand-light-green: #DDEDAA;    /* Light Green — Competitions ring/accent */
+  --brand-coral: #D7816A;          /* Coral — Networking ring/accent */
+  --brand-golden-yellow: #F3CA20;  /* Golden Yellow — Workshops ring, primary gold accent */
+  --brand-lime-yellow: #E2D810;    /* Lime Yellow — secondary yellow accent */
+  --brand-orange: #EF9D10;         /* Orange — Workshops icon, warm accent */
+  --brand-cream: #F5F0E1;          /* Cream — soft off-white surface/text */
+  --brand-bright-orange: #FF6E40;  /* Bright Orange — Networking icon, hot accent */
+  --brand-mustard-yellow: #FFC13B; /* Mustard Yellow — date-strip border, Tech Events ring */
+  --brand-brown: #C66B3D;          /* Brown — deep warm accent / shadows */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
