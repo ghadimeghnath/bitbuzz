@@ -86,13 +86,14 @@ export default function SpeakersSection() {
   const amoghRef = useRef<HTMLDivElement>(null);
   const simranRef = useRef<HTMLDivElement>(null);
   const saniyaRef = useRef<HTMLDivElement>(null);
-  const sameerRef = useRef<HTMLDivElement>(null);
+  const samuelRef = useRef<HTMLDivElement>(null);
 
   // Level 3: Designing Team
   const designHubRef = useRef<HTMLDivElement>(null);
-  const tanushRef = useRef<HTMLDivElement>(null);
-  const rafiaRef = useRef<HTMLDivElement>(null);
   const sumitRef = useRef<HTMLDivElement>(null);
+  const rafiaRef = useRef<HTMLDivElement>(null);
+  const thanushRef = useRef<HTMLDivElement>(null);
+  const rehaanRef = useRef<HTMLDivElement>(null);
   const meghnathRef = useRef<HTMLDivElement>(null);
   const surajRef = useRef<HTMLDivElement>(null);
 
@@ -104,15 +105,16 @@ export default function SpeakersSection() {
     { from: coreHubRef, to: amoghRef },
     { from: coreHubRef, to: simranRef },
     { from: coreHubRef, to: saniyaRef },
-    { from: coreHubRef, to: sameerRef },
+    { from: coreHubRef, to: samuelRef },
 
     // Core Hub -> Designing Hub
     { from: coreHubRef, to: designHubRef },
 
     // Designing Hub -> Design Members
-    { from: designHubRef, to: tanushRef },
-    { from: designHubRef, to: rafiaRef },
     { from: designHubRef, to: sumitRef },
+    { from: designHubRef, to: rafiaRef },
+    { from: designHubRef, to: thanushRef },
+    { from: designHubRef, to: rehaanRef },
     { from: designHubRef, to: meghnathRef },
     { from: designHubRef, to: surajRef },
   ];
@@ -148,9 +150,9 @@ export default function SpeakersSection() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
             <MemberCard ref={amoghRef} name="Amogh Sir" role="Faculty Lead" />
-            <MemberCard ref={simranRef} name="Simran" role="Core Member" />
-            <MemberCard ref={saniyaRef} name="Saniya" role="Core Member" />
-            <MemberCard ref={sameerRef} name="Sameer Sir" role="Faculty Lead" />
+            <MemberCard ref={samuelRef} name="Samuel Sir" role="Faculty Lead" />
+            <MemberCard ref={simranRef} name="Simran" role="Student Co-Incharge" />
+            <MemberCard ref={saniyaRef} name="Saniya" role="Student Incharge" />
           </div>
         </div>
 
@@ -159,11 +161,12 @@ export default function SpeakersSection() {
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
-            <MemberCard ref={tanushRef} name="Tanush" role="Designer" />
-            <MemberCard ref={rafiaRef} name="Rafia" role="Designer" />
             <MemberCard ref={sumitRef} name="Sumit" role="Designer" />
-            <MemberCard ref={meghnathRef} name="Meghnath" role="Designer" />
-            <MemberCard ref={surajRef} name="Suraj" role="Designer" />
+            <MemberCard ref={rafiaRef} name="Rafia" role="Designer" />
+            <MemberCard ref={thanushRef} name="Thanush" role="Designer" />
+            <MemberCard ref={rehaanRef} name="Rehaan" role="Designer" />
+            <MemberCard ref={surajRef} name="Suraj" role="Web Developer" />
+            <MemberCard ref={meghnathRef} name="Meghnath Don" role="Web Developer" />
           </div>
         </div>
 
