@@ -47,34 +47,34 @@ export default function Navbar() {
         <div
           className={`flex items-center justify-between px-6 py-4 rounded-xl border transition-all duration-300 ${
             scrolled || isOpen
-              ? "bg-background/90 backdrop-blur-md border-neon-green/30 box-glow"
+              ? "bg-brand-navy/90 backdrop-blur-md border-brand-golden-yellow/30 shadow-brand-soft"
               : "bg-transparent border-transparent"
           }`}
         >
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-6 h-6 bg-neon-green clip-corner flex items-center justify-center">
-              <div className="w-3 h-3 bg-charcoal clip-corner-reverse" />
+            <div className="w-6 h-6 bg-brand-golden-yellow rounded flex items-center justify-center">
+              <div className="w-3 h-3 bg-brand-navy rounded" />
             </div>
-            <span className="text-xl font-heading font-bold tracking-widest text-white">
-              BITBUZZ <span className="text-neon-green">8.0</span>
+            <span className="text-xl font-brand-event-title tracking-widest text-brand-white">
+              BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
             </span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 font-mono text-xs font-bold tracking-widest uppercase">
+          <div className="hidden md:flex items-center gap-8 font-brand-heading text-xs font-bold tracking-widest uppercase">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-emerald hover:text-neon-green hover:text-glow transition-all"
+                className="text-brand-cream hover:text-brand-golden-yellow transition-all"
               >
                 {link.name}
               </a>
             ))}
             <a
               href="#register"
-              className="px-4 py-2 border border-neon-green text-neon-green hover:bg-neon-green hover:text-charcoal transition-all clip-corner box-glow"
+              className="px-4 py-2 border border-brand-golden-yellow text-brand-golden-yellow hover:bg-brand-golden-yellow hover:text-brand-navy transition-all rounded shadow-brand-yellow"
             >
               Register
             </a>
@@ -88,15 +88,15 @@ export default function Navbar() {
           >
             <motion.span
               animate={isOpen ? { rotate: 45, y: 7.5 } : { rotate: 0, y: 0 }}
-              className="w-6 h-0.5 bg-neon-green block transition-all"
+              className="w-6 h-0.5 bg-brand-golden-yellow block transition-all"
             />
             <motion.span
               animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-6 h-0.5 bg-neon-green block transition-all"
+              className="w-6 h-0.5 bg-brand-golden-yellow block transition-all"
             />
             <motion.span
               animate={isOpen ? { rotate: -45, y: -7.5 } : { rotate: 0, y: 0 }}
-              className="w-6 h-0.5 bg-neon-green block transition-all"
+              className="w-6 h-0.5 bg-brand-golden-yellow block transition-all"
             />
           </button>
         </div>
@@ -109,15 +109,15 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -10 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden mt-2 overflow-hidden rounded-xl border border-neon-green/30 bg-background/95 backdrop-blur-lg box-glow p-6"
+              className="md:hidden mt-2 overflow-hidden rounded-xl border border-brand-golden-yellow/30 bg-brand-navy/95 backdrop-blur-lg shadow-brand-soft p-6"
             >
-              <div className="flex flex-col gap-5 font-mono text-sm font-bold tracking-widest uppercase text-center">
+              <div className="flex flex-col gap-5 font-brand-heading text-sm font-bold tracking-widest uppercase text-center">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-emerald hover:text-neon-green hover:text-glow transition-all py-1"
+                    className="text-brand-cream hover:text-brand-golden-yellow transition-all py-1"
                   >
                     {link.name}
                   </a>
@@ -125,7 +125,7 @@ export default function Navbar() {
                 <a
                   href="#register"
                   onClick={() => setIsOpen(false)}
-                  className="mt-2 block w-full py-3 border border-neon-green text-neon-green hover:bg-neon-green hover:text-charcoal transition-all clip-corner box-glow text-center"
+                  className="mt-2 block w-full py-3 border border-brand-golden-yellow text-brand-golden-yellow hover:bg-brand-golden-yellow hover:text-brand-navy transition-all rounded shadow-brand-yellow text-center"
                 >
                   Register
                 </a>

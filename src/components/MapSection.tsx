@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function MapSection() {
   const mapEmbedUrl =
@@ -12,24 +13,24 @@ export default function MapSection() {
   return (
     <section
       id="map"
-      className="relative w-full bg-charcoal py-24 px-6 md:px-12 border-y border-emerald/20"
+      className="relative w-full py-24 px-6 md:px-12 border-y border-brand-golden-yellow/20 bg-brand-navy overflow-hidden"
     >
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
         {/* Left Column: Details */}
         <div className="w-full md:w-1/3">
-          <h2 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase tracking-widest mb-4">
-            LOCATE // <span className="text-emerald">NEXUS</span>
+          <h2 className="text-3xl md:text-5xl font-brand-heading font-bold text-brand-white uppercase tracking-widest mb-4">
+            LOCATE // <span className="text-brand-golden-yellow">VENUE</span>
           </h2>
-          <p className="text-emerald/80 font-mono text-sm leading-relaxed mb-8">
+          <p className="text-brand-white/80 font-brand-body text-sm leading-relaxed mb-8">
             The event will be hosted at Shree Damodar College of Commerce &amp;
-            Economics, Margao. Ensure your connection stability before
-            initiating travel.
+            Economics, Margao. Plan your route and join us at the venue.
           </p>
+     
 
-          <div className="space-y-4 font-mono text-xs text-white uppercase tracking-widest">
-            <div className="flex items-start gap-4 bg-stone/50 p-4 border border-emerald/30 clip-corner">
+          <div className="space-y-4 font-brand-small text-xs text-brand-white uppercase tracking-widest">
+            <div className="flex items-start gap-4 bg-brand-navy/50 p-4 border border-brand-golden-yellow/30 rounded shadow-sm">
               <svg
-                className="w-6 h-6 text-neon-green shrink-0 mt-1"
+                className="w-6 h-6 text-brand-golden-yellow shrink-0 mt-1"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -48,13 +49,13 @@ export default function MapSection() {
                 />
               </svg>
               <div>
-                <span className="block text-emerald mb-1">
-                  GPS Coordinates:
+                <span className="block text-brand-golden-yellow mb-1 font-bold">
+                  Coordinates:
                 </span>
-                <span className="text-white font-semibold">
+                <span className="text-brand-white font-bold">
                   15.2831° N, 73.9686° E
                 </span>
-                <span className="block text-emerald/60 text-[10px] mt-1 normal-case">
+                <span className="block text-brand-cream/60 text-[10px] mt-1 normal-case">
                   Comba, Margao, Goa
                 </span>
               </div>
@@ -64,9 +65,9 @@ export default function MapSection() {
               href={googleMapsDirectionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-emerald hover:text-neon-green transition-colors duration-200 text-xs font-mono tracking-wider pt-2"
+              className="inline-flex items-center gap-2 text-brand-golden-yellow hover:text-brand-light-green transition-colors duration-200 text-xs font-brand-small font-bold tracking-wider pt-2"
             >
-              <span>[ INITIATE_NAVIGATION ]</span>
+              <span>[ GET DIRECTIONS ]</span>
               <span className="text-sm">↗</span>
             </a>
           </div>
@@ -74,20 +75,15 @@ export default function MapSection() {
 
         {/* Right Column: Google Map Embed */}
         <div className="w-full md:w-2/3">
-          <div className="relative w-full aspect-video bg-black border-2 border-emerald/50 p-2 clip-corner box-glow group overflow-hidden">
+          <div className="relative w-full aspect-video bg-brand-navy border border-brand-golden-yellow/50 p-2 rounded shadow-brand-soft group overflow-hidden">
             <iframe
               title="Damodar College Margao Map"
               src={mapEmbedUrl}
-              className="w-full h-full border-0"
+              className="w-full h-full border-0 rounded-sm"
               allowFullScreen={false}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-
-            {/* Pointer Overlay Effects */}
-            <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
-
-          
           </div>
         </div>
       </div>

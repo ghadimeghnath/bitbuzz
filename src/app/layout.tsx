@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Bebas_Neue, Geist } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  variable: "--font-inter",
+const montserrat = Montserrat({
   subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
-
-const bebasNeue = Bebas_Neue({
-  weight: "400",
-  variable: "--font-bebas-neue",
-  subsets: ["latin"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -35,9 +22,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", inter.variable, spaceGrotesk.variable, bebasNeue.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", montserrat.variable, "font-sans")}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-neon-green selection:text-black">
+      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-brand-golden-yellow selection:text-brand-navy">
         <LenisProvider>
           {children}
         </LenisProvider>

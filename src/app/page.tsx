@@ -1,5 +1,4 @@
 import React from "react";
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import EventsSection from "@/components/EventsSection";
@@ -9,17 +8,14 @@ import MapSection from "@/components/MapSection";
 import RegistrationSection from "@/components/RegistrationSection";
 import SpeakersSection from "@/components/SpeakersSection";
 import Footer from "@/components/Footer";
-import IQBusterCard from "@/components/IQBusterCard";
-import BitBuzzPosters from "@/components/IQBusterCard";
+
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <CustomCursor />
+    <main className="min-h-screen bg-brand-navy">
       <Navbar />
       <HeroSection />
       <EventsSection />
-      <BitBuzzPosters/>
       <RulesSection />
       <ScheduleSection />
       <MapSection />

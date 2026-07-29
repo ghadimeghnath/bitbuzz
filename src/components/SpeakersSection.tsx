@@ -9,67 +9,66 @@ import { AnimatedBeam } from "@/components/ui/animated-beam";
 // 1. Reusable Styled Components
 // ==========================================
 
-const CentralLogo = forwardRef<HTMLDivElement, { className?: string }>(
-  ({ className }, ref) => (
+const MainHeaderBox = forwardRef<HTMLDivElement, { title: string; className?: string }>(
+  ({ title, className }, ref) => (
     <div className="relative group">
-      {/* Ambient Glow behind central node */}
-      <div className="absolute -inset-2 rounded-full bg-neon-green/20 blur-xl transition-all duration-500 group-hover:bg-neon-green/30" />
+      <div className="absolute -inset-2 rounded-xl bg-brand-golden-yellow/20 blur-xl transition-all duration-500 group-hover:bg-brand-golden-yellow/30" />
       <div
         ref={ref}
         className={cn(
-          "relative z-20 size-24 md:size-28 rounded-full border-2 border-neon-green bg-charcoal flex items-center justify-center shadow-[0_0_30px_rgba(124,255,79,0.4)] transition-transform duration-300 hover:scale-105",
+          "relative z-20 px-6 py-3 md:px-8 md:py-4 rounded-xl border-2 border-brand-golden-yellow bg-brand-navy flex items-center justify-center shadow-brand-yellow transition-transform duration-300 hover:scale-105",
           className
         )}
       >
-        <span className="text-neon-green font-heading text-5xl md:text-6xl font-extrabold select-none">
-          B
+        <span className="text-brand-golden-yellow font-brand-heading text-xl md:text-3xl font-extrabold tracking-wider select-none">
+          {title}
         </span>
       </div>
     </div>
   )
 );
-CentralLogo.displayName = "CentralLogo";
+MainHeaderBox.displayName = "MainHeaderBox";
 
-const HubBadge = forwardRef<
-  HTMLDivElement,
-  { title: string; className?: string }
->(({ title, className }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "z-10 w-full px-4 py-3 rounded-xl bg-charcoal/90 border border-neon-green/60 text-neon-green font-mono font-bold text-xs uppercase tracking-widest text-center shadow-[0_0_15px_rgba(124,255,79,0.15)] backdrop-blur-md transition-all duration-300 hover:border-neon-green hover:shadow-[0_0_20px_rgba(124,255,79,0.3)]",
-      className
-    )}
-  >
-    {title}
-  </div>
-));
+const HubBadge = forwardRef<HTMLDivElement, { title: string; className?: string }>(
+  ({ title, className }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "z-10 px-6 py-2.5 md:px-8 md:py-3 rounded-xl bg-brand-navy/90 border border-brand-golden-yellow/60 text-brand-golden-yellow font-brand-heading font-bold text-xs md:text-base uppercase tracking-widest text-center shadow-brand-soft backdrop-blur-md transition-all duration-300 hover:border-brand-golden-yellow hover:shadow-brand-yellow",
+        className
+      )}
+    >
+      {title}
+    </div>
+  )
+);
 HubBadge.displayName = "HubBadge";
 
-const MemberCard = forwardRef<
-  HTMLDivElement,
-  { name: string; role: string; className?: string }
->(({ name, role, className }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "relative z-10 w-full flex flex-col items-center justify-center p-4 rounded-xl border border-emerald/30 bg-stone/80 backdrop-blur-md shadow-md transition-all duration-300 hover:border-neon-green hover:bg-stone/95 hover:shadow-[0_0_15px_rgba(124,255,79,0.25)] hover:-translate-y-0.5",
-      className
-    )}
-  >
-    <div className="w-12 h-12 md:w-14 md:h-14 mb-2.5 rounded-full border border-emerald/50 bg-charcoal flex items-center justify-center shadow-inner">
-      <div className="w-8 h-8 rounded-full bg-emerald/20 flex items-center justify-center text-emerald font-mono text-xs font-bold">
-        {name.charAt(0)}
+const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; className?: string }>(
+  ({ name, role, className }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "relative z-10 w-full flex flex-col items-center justify-center p-3 md:p-4 rounded-xl border border-brand-golden-yellow/30 bg-brand-navy/80 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-brand-golden-yellow hover:bg-brand-navy/95 hover:shadow-brand-soft hover:-translate-y-0.5",
+        className
+      )}
+    >
+      <div className="w-10 h-10 md:w-14 md:h-14 mb-2 rounded-full border border-brand-golden-yellow/50 bg-brand-navy flex items-center justify-center shadow-inner">
+        <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-brand-golden-yellow/20 flex items-center justify-center text-brand-golden-yellow font-brand-heading text-xs font-bold">
+          {name.charAt(0)}
+        </div>
       </div>
+      <h3 className="text-xs md:text-sm font-bold font-brand-small text-brand-white uppercase tracking-wider text-center">
+        {name}
+      </h3>
+      {role && (
+        <p className="text-brand-golden-yellow/70 text-[10px] md:text-xs font-brand-small text-center mt-0.5">
+          {role}
+        </p>
+      )}
     </div>
-    <h3 className="text-xs font-bold text-white uppercase tracking-wider text-center">
-      {name}
-    </h3>
-    <p className="text-emerald/70 text-[10px] font-mono text-center mt-1">
-      {role}
-    </p>
-  </div>
-));
+  )
+);
 MemberCard.displayName = "MemberCard";
 
 // ==========================================
@@ -79,134 +78,110 @@ MemberCard.displayName = "MemberCard";
 export default function SpeakersSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Central Source Node
-  const logoRef = useRef<HTMLDivElement>(null);
+  // Level 1: Root Node
+  const topLogoRef = useRef<HTMLDivElement>(null);
 
-  // Category Hub Refs
-  const facultyHubRef = useRef<HTMLDivElement>(null);
-  const inchargeHubRef = useRef<HTMLDivElement>(null);
+  // Level 2: Core Team
+  const coreHubRef = useRef<HTMLDivElement>(null);
+  const amoghRef = useRef<HTMLDivElement>(null);
+  const simranRef = useRef<HTMLDivElement>(null);
+  const saniyaRef = useRef<HTMLDivElement>(null);
+  const sameerRef = useRef<HTMLDivElement>(null);
+
+  // Level 3: Designing Team
   const designHubRef = useRef<HTMLDivElement>(null);
-  const coordHubRef = useRef<HTMLDivElement>(null);
+  const tanushRef = useRef<HTMLDivElement>(null);
+  const rafiaRef = useRef<HTMLDivElement>(null);
+  const sumitRef = useRef<HTMLDivElement>(null);
+  const meghnathRef = useRef<HTMLDivElement>(null);
+  const surajRef = useRef<HTMLDivElement>(null);
 
-  // Member Refs
-  const fac1Ref = useRef<HTMLDivElement>(null);
-  const fac2Ref = useRef<HTMLDivElement>(null);
+  const connections = [
+    // Top -> Core Hub
+    { from: topLogoRef, to: coreHubRef },
 
-  const studentInchargeRef = useRef<HTMLDivElement>(null);
-  const teacherCoordRef = useRef<HTMLDivElement>(null);
+    // Core Hub -> Core Members
+    { from: coreHubRef, to: amoghRef },
+    { from: coreHubRef, to: simranRef },
+    { from: coreHubRef, to: saniyaRef },
+    { from: coreHubRef, to: sameerRef },
 
-  const design1Ref = useRef<HTMLDivElement>(null);
-  const design2Ref = useRef<HTMLDivElement>(null);
-  const design3Ref = useRef<HTMLDivElement>(null);
-  const design4Ref = useRef<HTMLDivElement>(null);
-  const design5Ref = useRef<HTMLDivElement>(null);
+    // Core Hub -> Designing Hub
+    { from: coreHubRef, to: designHubRef },
 
-  const studentCoord1Ref = useRef<HTMLDivElement>(null);
-  const studentCoord2Ref = useRef<HTMLDivElement>(null);
-
-  // All targets receiving simultaneous outward beams from the logo
-  const allTargets = [
-    facultyHubRef,
-    inchargeHubRef,
-    designHubRef,
-    coordHubRef,
-    fac1Ref,
-    fac2Ref,
-    studentInchargeRef,
-    teacherCoordRef,
-    design1Ref,
-    design2Ref,
-    design3Ref,
-    design4Ref,
-    design5Ref,
-    studentCoord1Ref,
-    studentCoord2Ref,
+    // Designing Hub -> Design Members
+    { from: designHubRef, to: tanushRef },
+    { from: designHubRef, to: rafiaRef },
+    { from: designHubRef, to: sumitRef },
+    { from: designHubRef, to: meghnathRef },
+    { from: designHubRef, to: surajRef },
   ];
 
   return (
     <section
       id="team"
-      className="relative w-full bg-charcoal py-16 md:py-24 px-4 sm:px-6 lg:px-12 border-t border-stone/50 overflow-hidden"
+      className="relative w-full py-12 md:py-24 px-3 sm:px-6 lg:px-12 border-t border-brand-golden-yellow/20 bg-brand-navy overflow-hidden"
     >
-      {/* Background Radial Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-neon-green/5 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-transparent to-charcoal" />
+        <Image 
+          src="/speaker_bg.png" 
+          alt="Speakers Background" 
+          fill
+          className="object-cover opacity-20 mix-blend-screen grayscale"
+        />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-golden-yellow/5 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/50 to-brand-navy" />
       </div>
 
       <div
         ref={containerRef}
-        className="max-w-7xl mx-auto relative z-10 flex flex-col items-center"
+        className="max-w-6xl mx-auto relative z-10 flex flex-col items-center gap-12 md:gap-20"
       >
-        {/* TOP LEVEL: CENTRAL LOGO SOURCE */}
-        <div className="mb-16 md:mb-20">
-          <CentralLogo ref={logoRef} />
+        {/* LEVEL 1: BITBUZZ 8.0 */}
+        <div className="flex justify-center w-full">
+          <MainHeaderBox ref={topLogoRef} title="BITBUZZ 8.0" />
         </div>
 
-        {/* RESPONSIVE COLUMNS (1 col Mobile, 2 col Tablet, 4 col Desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 w-full items-start">
+        {/* LEVEL 2: CORE TEAM */}
+        <div className="flex flex-col items-center gap-6 md:gap-8 w-full">
+          <HubBadge ref={coreHubRef} title="CORE TEAM" />
           
-          {/* Column 1: Faculty */}
-          <div className="flex flex-col items-center gap-4 w-full">
-            <HubBadge ref={facultyHubRef} title="FACULTY COORDINATORS" />
-            <div className="flex flex-col gap-3.5 w-full">
-              <MemberCard ref={fac1Ref} name="Mr. Anil Kumar K." role="Asst. Professor" />
-              <MemberCard ref={fac2Ref} name="Ms. Neertha P." role="Asst. Professor" />
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
+            <MemberCard ref={amoghRef} name="Amogh Sir" role="Faculty Lead" />
+            <MemberCard ref={simranRef} name="Simran" role="Core Member" />
+            <MemberCard ref={saniyaRef} name="Saniya" role="Core Member" />
+            <MemberCard ref={sameerRef} name="Sameer Sir" role="Faculty Lead" />
           </div>
-
-          {/* Column 2: Incharge & Leads */}
-          <div className="flex flex-col items-center gap-4 w-full">
-            <HubBadge ref={inchargeHubRef} title="STUDENT INCHARGE" />
-            <div className="flex flex-col gap-3.5 w-full">
-              <MemberCard ref={studentInchargeRef} name="Student Lead" role="Incharge" />
-              <MemberCard ref={teacherCoordRef} name="Teacher Lead" role="Coordinator" />
-            </div>
-          </div>
-
-          {/* Column 3: Designing Team */}
-          <div className="flex flex-col items-center gap-4 w-full">
-            <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
-            <div className="flex flex-col gap-3.5 w-full">
-              <MemberCard ref={design1Ref} name="Rafia" role="Brochure Designer" />
-              <MemberCard ref={design2Ref} name="Tanuuh" role="Brochure Designer" />
-              <MemberCard ref={design3Ref} name="Sumit" role="Logo & Brochure" />
-              <MemberCard ref={design4Ref} name="Meghnath" role="Website Designer" />
-              <MemberCard ref={design5Ref} name="Suraj" role="Website Designer" />
-            </div>
-          </div>
-
-          {/* Column 4: Student Coordinators */}
-          <div className="flex flex-col items-center gap-4 w-full">
-            <HubBadge ref={coordHubRef} title="STUDENT COORDINATORS" />
-            <div className="flex flex-col gap-3.5 w-full">
-              <MemberCard ref={studentCoord1Ref} name="Coordinator 1" role="Student Lead" />
-              <MemberCard ref={studentCoord2Ref} name="Coordinator 2" role="Student Lead" />
-            </div>
-          </div>
-
         </div>
 
-        {/* =========================================================
-            SIMULTANEOUS OUTWARD BEAMS FROM CENTRAL LOGO
-           ========================================================= */}
-        {allTargets.map((targetRef, index) => (
+        {/* LEVEL 3: DESIGNING TEAM */}
+        <div className="flex flex-col items-center gap-6 md:gap-8 w-full">
+          <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
+            <MemberCard ref={tanushRef} name="Tanush" role="Designer" />
+            <MemberCard ref={rafiaRef} name="Rafia" role="Designer" />
+            <MemberCard ref={sumitRef} name="Sumit" role="Designer" />
+            <MemberCard ref={meghnathRef} name="Meghnath" role="Designer" />
+            <MemberCard ref={surajRef} name="Suraj" role="Designer" />
+          </div>
+        </div>
+
+        {/* SHARP 90-DEGREE ANGLED BEAMS */}
+        {connections.map((conn, index) => (
           <AnimatedBeam
             key={index}
             containerRef={containerRef}
-            fromRef={logoRef}
-            toRef={targetRef}
-            pathType="orthogonal"
-            borderRadius={20}
-            duration={3}
+            fromRef={conn.from}
+            toRef={conn.to}
+            duration={7}
             delay={0}
-            reverse={false}
+            repeatDelay={0}
             pathOpacity={0.25}
-            gradientStartColor="#7cff4f"
-            gradientStopColor="#00f2fe"
+            gradientStartColor="#F3CA20"
+            gradientStopColor="#EF9D10"
           />
         ))}
-
       </div>
     </section>
   );

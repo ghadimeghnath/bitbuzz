@@ -12,20 +12,8 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative w-full h-screen overflow-hidden bg-background flex flex-col items-center justify-center pt-20">
-      
-      {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="/bg-img.png" 
-          alt="Minecraft Research Facility" 
-          fill
-          priority
-          className="object-cover opacity-60 mix-blend-screen"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        <div className="absolute inset-0 scanlines opacity-50" />
-      </div>
+    <section id="hero" className="relative w-full h-screen overflow-hidden bg-brand-navy bg-brand-grid flex flex-col items-center justify-center pt-20">
+
 
       {/* Floating Particles */}
       {mounted && (
@@ -33,7 +21,7 @@ export default function HeroSection() {
           {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-2 h-2 bg-neon-green/40"
+              className="absolute w-2 h-2 bg-brand-golden-yellow/40 rounded-full"
               initial={{
                 x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
                 y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1000),
@@ -52,6 +40,17 @@ export default function HeroSection() {
           ))}
         </div>
       )}
+              {/* Background Image Layer */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/bg-img2.png"
+                  alt="Background Event Image"
+                  fill
+                  priority
+                  className="object-cover opacity-20 mix-blend-screen grayscale"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/50 to-transparent" />
+              </div>
 
       {/* Main Content */}
       <div className="relative z-20 text-center flex flex-col items-center">
@@ -61,23 +60,25 @@ export default function HeroSection() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-4"
         >
-          <h1 className="text-5xl md:text-9xl lg:text-[7rem] font-pixel-title font-bold tracking-tight text-white text-glow font-heading leading-none">
-            BITBUZZ <span className="text-neon-green">8.0</span>
+          <h1 className="text-5xl md:text-9xl lg:text-[7rem] font-brand-event-title tracking-tight text-brand-white shadow-brand-soft leading-none">
+            BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
           </h1>
         </motion.div>
-        
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="flex items-center gap-4 text-neon-green mb-12 font-mono text-sm md:text-lg tracking-[0.3em] uppercase font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="flex items-center justify-center gap-3 text-brand-golden-yellow/60 my-5"
         >
-          <span>Think</span>
-          <span className="w-2 h-2 bg-neon-green rounded-full box-glow"></span>
-          <span>Create</span>
-          <span className="w-2 h-2 bg-neon-green rounded-full box-glow"></span>
-          <span>Transform</span>
-        </motion.div>
+
+          <span className="h-px w-8 bg-current sm:w-16" />
+          <p className="text-center font-brand-heading text-[10px] font-bold uppercase tracking-widest text-brand-white sm:text-sm">
+            State Level IT Fest for{" "}
+            <span className="text-brand-golden-yellow">Higher Secondary Students</span>
+          </p>
+          <span className="h-px w-8 bg-current sm:w-16" />
+    </motion.div>
+
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,14 +86,15 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-6"
         >
-          <a href="#register" className="relative px-10 py-5 bg-neon-green text-charcoal font-bold text-lg hover:bg-white transition-colors duration-300 clip-corner font-mono tracking-widest uppercase">
+          <a href="https://forms.gle/XtWS4UM4BQ7qDw9m8" className="relative px-10 py-3 bg-brand-golden-yellow text-brand-navy font-brand-heading font-bold text-lg hover:bg-brand-white transition-colors duration-300 rounded shadow-brand-yellow tracking-widest uppercase">
             Register Now
           </a>
-          <a href="#events" className="relative px-10 py-5 border-2 border-neon-green text-neon-green font-bold text-lg hover:bg-neon-green/10 transition-colors duration-300 clip-corner-reverse text-glow font-mono tracking-widest uppercase bg-charcoal/50 backdrop-blur-sm">
-            Explore Events
+          <a href="/BITBUZZ 8.0.pdf" download className="relative px-10 py-2 border-2 border-brand-golden-yellow text-brand-golden-yellow font-brand-heading font-bold text-lg hover:bg-brand-golden-yellow/10 transition-colors duration-300 rounded shadow-brand-yellow tracking-widest uppercase bg-brand-navy/50 backdrop-blur-sm">
+            Brochure
           </a>
         </motion.div>
       </div>
-    </section>
+
+    </section >
   );
 }

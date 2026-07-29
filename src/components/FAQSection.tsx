@@ -3,10 +3,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const faqColors = [
+  { text: "text-brand-golden-yellow", border: "border-brand-golden-yellow", borderOp: "border-brand-golden-yellow/30", bg: "bg-brand-golden-yellow", bgOp: "bg-brand-golden-yellow/70", shadow: "shadow-lg shadow-brand-golden-yellow/20" },
+  { text: "text-brand-light-green", border: "border-brand-light-green", borderOp: "border-brand-light-green/30", bg: "bg-brand-light-green", bgOp: "bg-brand-light-green/70", shadow: "shadow-lg shadow-brand-light-green/20" },
+  { text: "text-brand-coral", border: "border-brand-coral", borderOp: "border-brand-coral/30", bg: "bg-brand-coral", bgOp: "bg-brand-coral/70", shadow: "shadow-lg shadow-brand-coral/20" },
+  { text: "text-brand-bright-orange", border: "border-brand-bright-orange", borderOp: "border-brand-bright-orange/30", bg: "bg-brand-bright-orange", bgOp: "bg-brand-bright-orange/70", shadow: "shadow-lg shadow-brand-bright-orange/20" },
+];
+
 const faqs = [
   {
     question: "What is BITBUZZ 8.0?",
-    answer: "BITBUZZ 8.0 is a state-level IT festival designed for higher secondary students, merging the aesthetics of Minecraft with modern technology to create a unique digital experience.",
+    answer: "BITBUZZ 8.0 is a state-level IT festival designed for higher secondary students, merging modern aesthetics with cutting edge technology to create a unique digital experience.",
   },
   {
     question: "Who can participate?",
@@ -17,8 +24,8 @@ const faqs = [
     answer: "Registration details and fee structures are available on the registration portal. Some events may be free while premium events require a nominal fee.",
   },
   {
-    question: "Do I need a Minecraft account?",
-    answer: "Yes, for specific events like the Creative Build Blitz and Survival Chaos, a valid Minecraft account is required. However, there are non-gaming technical events as well.",
+    question: "Do I need special accounts to participate?",
+    answer: "Some events might have specific prerequisites which will be mentioned in their respective guidelines. Ensure you read the instructions carefully before registering.",
   },
 ];
 
@@ -26,7 +33,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative w-full bg-background py-32 px-6 md:px-12">
+    <section className="relative w-full bg-brand-navy py-32 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -34,14 +41,15 @@ export default function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-widest text-white">
-            DATA <span className="text-neon-green">LOGS</span> // FAQ
+          <h2 className="text-4xl md:text-5xl font-brand-heading font-bold uppercase tracking-widest text-brand-white">
+            DATA <span className="text-brand-golden-yellow">LOGS</span> // FAQ
           </h2>
         </motion.div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
+            const color = faqColors[index % faqColors.length];
             
             return (
               <motion.div 
@@ -50,18 +58,18 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`border ${isOpen ? "border-neon-green bg-stone/50" : "border-stone bg-charcoal"} transition-colors duration-300 clip-corner`}
+                className={`border ${isOpen ? `${color.border} bg-brand-navy/80 ${color.shadow}` : `${color.borderOp} bg-brand-navy shadow-brand-soft`} transition-all duration-300 rounded`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left"
                 >
-                  <span className={`text-lg font-bold uppercase tracking-wider ${isOpen ? "text-neon-green text-glow" : "text-white"}`}>
+                  <span className={`text-lg font-brand-heading font-bold tracking-wider ${isOpen ? color.text : "text-brand-white"}`}>
                     {faq.question}
                   </span>
                   <div className="relative w-6 h-6 flex items-center justify-center">
-                    <div className={`absolute w-full h-0.5 bg-emerald transition-transform duration-300 ${isOpen ? "rotate-180 bg-neon-green" : ""}`} />
-                    <div className={`absolute w-full h-0.5 bg-emerald transition-transform duration-300 ${isOpen ? "rotate-0 opacity-0" : "rotate-90"}`} />
+                    <div className={`absolute w-full h-0.5 transition-transform duration-300 ${isOpen ? `rotate-180 ${color.bg}` : color.bgOp}`} />
+                    <div className={`absolute w-full h-0.5 transition-transform duration-300 ${isOpen ? `rotate-0 opacity-0 ${color.bg}` : `rotate-90 ${color.bgOp}`}`} />
                   </div>
                 </button>
                 
@@ -73,7 +81,7 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="p-6 pt-0 text-foreground/80 font-sans leading-relaxed border-t border-emerald/20 mt-2">
+                      <div className={`p-6 pt-0 text-brand-white/80 font-brand-body leading-relaxed border-t ${color.borderOp} mt-2`}>
                         {faq.answer}
                       </div>
                     </motion.div>
