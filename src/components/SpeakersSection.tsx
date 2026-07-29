@@ -160,7 +160,7 @@ export default function SpeakersSection() {
         <div className="flex flex-col items-center gap-6 md:gap-8 w-full">
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
             <MemberCard ref={sumitRef} name="Sumit" role="Designer" />
             <MemberCard ref={rafiaRef} name="Rafia" role="Designer" />
             <MemberCard ref={thanushRef} name="Thanush" role="Designer" />
