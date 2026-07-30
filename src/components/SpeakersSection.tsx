@@ -9,24 +9,29 @@ import { AnimatedBeam } from "@/components/ui/animated-beam";
 // 1. Reusable Styled Components
 // ==========================================
 
-const MainHeaderBox = forwardRef<HTMLDivElement, { title: string; className?: string }>(
-  ({ title, className }, ref) => (
-    <div className="relative group">
-      <div className="absolute -inset-2 rounded-xl bg-brand-golden-yellow/20 blur-xl transition-all duration-500 group-hover:bg-brand-golden-yellow/30" />
-      <div
-        ref={ref}
-        className={cn(
-          "relative z-20 px-6 py-3 md:px-8 md:py-4 rounded-xl border-2 border-brand-golden-yellow bg-brand-navy flex items-center justify-center shadow-brand-yellow transition-transform duration-300 hover:scale-105",
-          className
-        )}
-      >
-        <span className="text-brand-golden-yellow font-brand-heading text-xl md:text-3xl font-extrabold tracking-wider select-none">
-          {title}
-        </span>
-      </div>
+const MainHeaderBox = forwardRef<
+  HTMLDivElement,
+  { src: string; alt?: string; className?: string; imageClassName?: string }
+>(({ src, alt = "Logo", className, imageClassName }, ref) => (
+  <div className="relative group">
+    <div className="absolute -inset-2 rounded-xl bg-brand-golden-yellow/20 blur-xl transition-all duration-500 group-hover:bg-brand-golden-yellow/30" />
+    <div
+      ref={ref}
+      className={cn(
+        "relative z-20 px-6 py-3 md:px-8 md:py-4 rounded-xl border-2 border-brand-golden-yellow bg-brand-navy flex items-center justify-center shadow-brand-yellow transition-transform duration-300 hover:scale-105",
+        className
+      )}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={200}
+        height={60}
+        className={cn("h-8 md:h-12 w-auto object-contain select-none pointer-events-none", imageClassName)}
+      />
     </div>
-  )
-);
+  </div>
+));
 MainHeaderBox.displayName = "MainHeaderBox";
 
 const HubBadge = forwardRef<HTMLDivElement, { title: string; className?: string }>(
@@ -139,9 +144,15 @@ export default function SpeakersSection() {
         ref={containerRef}
         className="max-w-6xl mx-auto relative z-10 flex flex-col items-center gap-12 md:gap-20"
       >
-        {/* LEVEL 1: BITBUZZ 8.0 */}
+        {/* LEVEL 1: BITBUZZ 8.0 IMAGE */}
         <div className="flex justify-center w-full">
-          <MainHeaderBox ref={topLogoRef} title="BITBUZZ 8.0" />
+         <MainHeaderBox
+  ref={topLogoRef}
+  src="/logo.png"
+  alt="BITBUZZ 8.0"
+  className="p-0"
+  imageClassName="h-15 md:h-20" // Increase height here (default was h-8 md:h-12)
+/>
         </div>
 
         {/* LEVEL 2: CORE TEAM */}
@@ -161,12 +172,12 @@ export default function SpeakersSection() {
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
-            <MemberCard ref={sumitRef} name="Sumit" role="Designer" />
-            <MemberCard ref={rafiaRef} name="Rafia" role="Designer" />
-            <MemberCard ref={thanushRef} name="Thanush" role="Designer" />
-            <MemberCard ref={rehaanRef} name="Rehaan" role="Designer" />
-            <MemberCard ref={surajRef} name="Suraj" role="Web Developer" />
-            <MemberCard ref={meghnathRef} name="Meghnath Don" role="Web Developer" />
+            <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" />
+            <MemberCard ref={rafiaRef} name="Rafia " role="Graphic Designer" />
+            <MemberCard ref={thanushRef} name="Thanush" role="Graphic Designer" />
+            <MemberCard ref={rehaanRef} name="Rehaan" role="Graphic Designer" />
+            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" />
+            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" role="Web Developer" />
           </div>
         </div>
 

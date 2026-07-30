@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -40,23 +41,28 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
-        scrolled ? "py-4" : "py-6"
+        scrolled ? "py-3" : "py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div
-          className={`flex items-center justify-between px-6 py-4 rounded-xl border transition-all duration-300 ${
+          className={`flex items-center justify-between px-4 sm:px-6 py-3 rounded-xl border transition-all duration-300 ${
             scrolled || isOpen
               ? "bg-brand-navy/90 backdrop-blur-md border-brand-golden-yellow/30 shadow-brand-soft"
               : "bg-transparent border-transparent"
           }`}
         >
           {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-6 h-6 bg-brand-golden-yellow rounded flex items-center justify-center">
-              <div className="w-3 h-3 bg-brand-navy rounded" />
-            </div>
-            <span className="text-xl font-brand-event-title tracking-widest text-brand-white">
+          <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group">
+            <Image
+              src="/logo.png"
+              alt="BITBUZZ Logo"
+              width={80}
+              height={80}
+              priority
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="text-lg sm:text-xl font-brand-event-title tracking-widest text-brand-white">
               BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
             </span>
           </div>

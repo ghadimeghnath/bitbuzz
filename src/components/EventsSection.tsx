@@ -77,6 +77,8 @@ function WheelCard({ event, index, scrollYProgress, totalCards }: { event: any, 
   const pointerEvents = useTransform(opacity, (v) => v > 0.5 ? "auto" : "none") as any;
 
   return (
+    <>
+
     <div className="absolute top-1/2 left-1/2 w-full max-w-[92%] sm:max-w-xl md:max-w-2xl lg:max-w-4xl -translate-x-1/2 -translate-y-1/2 pointer-events-none flex justify-center md:pl-24">
       <motion.div
         style={{ 
@@ -88,7 +90,8 @@ function WheelCard({ event, index, scrollYProgress, totalCards }: { event: any, 
         }}
         className="will-change-transform pointer-events-auto w-full"
       >
-        <div className="group relative bg-brand-navy/90 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-500 overflow-hidden rounded flex flex-col sm:flex-row shadow-brand-soft hover:shadow-brand-yellow w-full">
+        <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
+                <div className="group relative bg-brand-navy/90 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-500 overflow-hidden rounded flex flex-col sm:flex-row shadow-brand-soft hover:shadow-brand-yellow w-full">
           <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
           <div className="relative w-full sm:w-2/5 aspect-video sm:aspect-auto border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
@@ -131,5 +134,6 @@ function WheelCard({ event, index, scrollYProgress, totalCards }: { event: any, 
         </div>
       </motion.div>
     </div>
+    </>
   );
 }

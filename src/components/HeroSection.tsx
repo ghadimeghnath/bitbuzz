@@ -12,9 +12,25 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative w-full h-screen overflow-hidden bg-brand-navy bg-brand-grid flex flex-col items-center justify-center pt-20">
-
-
+    <section
+      id="hero"
+      className="
+relative
+min-h-screen
+w-full
+overflow-hidden
+bg-brand-navy
+flex
+items-center
+justify-center
+pt-20
+pb-16
+px-4
+sm:px-8
+md:px-12
+lg:px-16
+"
+    >
       {/* Floating Particles */}
       {mounted && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
@@ -40,61 +56,130 @@ export default function HeroSection() {
           ))}
         </div>
       )}
-              {/* Background Image Layer */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/bg-img2.png"
-                  alt="Background Event Image"
-                  fill
-                  priority
-                  className="object-cover opacity-20 mix-blend-screen grayscale"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/50 to-transparent" />
-              </div>
+
+{/* Background Image Layer */}
+<div className="absolute inset-0 z-0 pointer-events-none">
+
+  {/* Desktop */}
+  <Image
+    src="/bg-img-3.png"
+    alt="Desktop Background"
+    fill
+    priority
+    className="hidden lg:block object-cover object-center"
+  />
+
+  {/* Tablet */}
+  <Image
+    src="/bg-img-tablet.png"
+    alt="Tablet Background"
+    fill
+    priority
+    className="hidden sm:block lg:hidden object-cover object-center"
+  />
+
+  {/* Mobile */}
+  <Image
+    src="/bg-img-mobi-1.png"
+    alt="Mobile Background"
+    fill
+    priority
+    className="block sm:hidden object-cover object-center"
+  />
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-brand-navy/50" />
+
+  {/* Bottom Fade */}
+  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
+  <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
+
+  {/* Optional vignette */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.45)_100%)]" />
+</div>
 
       {/* Main Content */}
-      <div className="relative z-20 text-center flex flex-col items-center">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-14 lg:px-20">
+        
+        {/* Prominent Logo Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-4"
+          className="flex flex-col items-center justify-center text-center mb-2"
         >
-          <h1 className="text-5xl md:text-9xl lg:text-[7rem] font-brand-event-title tracking-tight text-brand-white shadow-brand-soft leading-none">
-            BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
-          </h1>
+          <div className="relative group">
+            <Image
+              src="/logo.png"
+              alt="BITBUZZ Logo"
+              width={500}
+              height={500}
+              priority
+              className="
+w-48 h-48
+sm:w-64 sm:h-64
+md:w-80 md:h-80
+lg:w-[28rem] lg:h-[28rem]
+xl:w-[32rem] xl:h-[32rem]
+object-contain
+drop-shadow-[0_0_40px_rgba(255,255,255,0.18)]
+"
+            />
+          </div>
         </motion.div>
+
+        {/* Subtitle with Gradient Divider Lines */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex items-center justify-center gap-3 text-brand-golden-yellow/60 my-5"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex items-center justify-center gap-3 sm:gap-5 text-brand-golden-yellow my-6 max-w-2xl"
         >
-
-          <span className="h-px w-8 bg-current sm:w-16" />
-          <p className="text-center font-brand-heading text-[10px] font-bold uppercase tracking-widest text-brand-white sm:text-sm">
+          <span className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-brand-golden-yellow/60 shrink-0" />
+          <p className="
+text-center
+font-brand-heading
+text-xs
+sm:text-sm
+md:text-base
+font-bold
+uppercase
+tracking-[0.22em]
+text-white
+drop-shadow-lg
+">
             State Level IT Fest for{" "}
             <span className="text-brand-golden-yellow">Higher Secondary Students</span>
           </p>
-          <span className="h-px w-8 bg-current sm:w-16" />
-    </motion.div>
+          <span className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-brand-golden-yellow/60 shrink-0" />
+        </motion.div>
 
-
+        {/* Call to Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2 w-full max-w-md sm:max-w-none"
         >
-          <a href="https://forms.gle/XtWS4UM4BQ7qDw9m8" className="relative px-10 py-3 bg-brand-golden-yellow text-brand-navy font-brand-heading font-bold text-lg hover:bg-brand-white transition-colors duration-300 rounded shadow-brand-yellow tracking-widest uppercase">
+          <a
+            href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-brand-golden-yellow text-brand-navy font-brand-heading font-bold text-base sm:text-lg hover:bg-brand-white hover:scale-105 active:scale-95 transition-all duration-300 rounded shadow-brand-yellow tracking-widest uppercase text-center"
+          >
             Register Now
           </a>
-          <a href="/BITBUZZ 8.0.pdf" download className="relative px-10 py-2 border-2 border-brand-golden-yellow text-brand-golden-yellow font-brand-heading font-bold text-lg hover:bg-brand-golden-yellow/10 transition-colors duration-300 rounded shadow-brand-yellow tracking-widest uppercase bg-brand-navy/50 backdrop-blur-sm">
+
+          <a
+            href="/BITBUZZ 8.0.pdf"
+            download
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border-2 border-brand-golden-yellow/80 text-brand-golden-yellow font-brand-heading font-bold text-base sm:text-lg hover:bg-brand-golden-yellow/15 hover:border-brand-golden-yellow hover:scale-105 active:scale-95 transition-all duration-300 rounded shadow-brand-yellow tracking-widest uppercase bg-brand-navy/60 backdrop-blur-md text-center"
+          >
             Brochure
           </a>
         </motion.div>
-      </div>
 
-    </section >
+      </div>
+    </section>
   );
 }

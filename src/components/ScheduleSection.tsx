@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   Calendar,
   MapPin,
+  Clock,
   Trophy,
   HelpCircle,
   ImageIcon,
@@ -41,11 +42,12 @@ interface ScheduleEvent {
   location: string;
   category: Category;
   icon: LucideIcon;
+  startTime: string;
+  endTime: string;
 }
 
 interface ScheduleSlot {
-  start: string;
-  end: string;
+  timeSlot: string;
   events: ScheduleEvent[];
 }
 
@@ -97,152 +99,187 @@ const categoryLegend: { label: string; category: Category }[] = [
 
 const schedule: ScheduleSlot[] = [
   {
-    start: "9:00 AM",
-    end: "9:30 AM",
+    timeSlot: "9:00 AM",
     events: [
       {
         title: "Inaugural Function",
         location: "Hall 1",
         category: "ceremony",
         icon: Trophy,
+        startTime: "9:00 AM",
+        endTime: "9:30 AM",
       },
     ],
   },
   {
-    start: "10:00 AM",
-    end: "11:00 AM",
+    timeSlot: "10:00 AM",
     events: [
       {
-        title: "Quiz",
+        title: "Quiz - Round 1",
         location: "Classroom",
         category: "competitions",
         icon: HelpCircle,
+        startTime: "10:00 AM",
+        endTime: "11:00 AM",
       },
       {
         title: "E-Poster",
         location: "Lab 1",
         category: "creative",
         icon: ImageIcon,
+        startTime: "10:00 AM",
+        endTime: "11:30 AM",
       },
-    ],
-  },
-  {
-    start: "11:00 AM",
-    end: "12:00 PM",
-    events: [
       {
-        title: "Paper Presentations",
-        location: "Classroom",
-        category: "competitions",
-        icon: FileText,
-      },
-    ],
-  },
-  {
-    start: "12:00 PM",
-    end: "1:00 PM",
-    events: [
-      {
-        title: "Digital Crisis Challenge",
-        location: "Classroom",
+        title: "Typing Titan",
+        location: "Lab 4",
         category: "technical",
-        icon: ShieldCheck,
+        icon: Lock,
+        startTime: "10:00 AM",
+        endTime: "11:30 AM",
       },
-    ],
-  },
-  {
-    start: "2:00 PM",
-    end: "3:00 PM",
-    events: [
       {
-        title: "Gaming — FIFA / Free Fire",
+        title: "Gaming (FIFA / Free Fire)",
         location: "Classroom",
         category: "gaming",
         icon: Gamepad2,
+        startTime: "10:00 AM",
+        endTime: "1:00 PM",
       },
-    ],
-  },
-  {
-    start: "2:00 PM",
-    end: "4:00 PM",
-    events: [
       {
-        title: "Reel Making",
-        location: "Hall 1 / Venue",
+        title: "Reel Making - Pre Event",
+        location: "Venue",
         category: "creative",
         icon: Clapperboard,
+        startTime: "10:00 AM",
+        endTime: "11:00 AM",
       },
       {
         title: "Debate",
         location: "Hall 1",
         category: "creative",
         icon: Mic2,
-      },
-      {
-        title: "Role Play",
-        location: "Classroom",
-        category: "creative",
-        icon: Drama,
-      },
-    ],
-  },
-  {
-    start: "3:00 PM",
-    end: "4:00 PM",
-    events: [
-      {
-        title: "Technical Skit",
-        location: "Hall 2",
-        category: "technical",
-        icon: Users,
+        startTime: "10:00 AM",
+        endTime: "2:30 PM",
       },
       {
         title: "Tech Startup",
         location: "Hall 2",
         category: "technical",
         icon: Rocket,
+        startTime: "10:00 AM",
+        endTime: "1:00 PM",
+      },
+      {
+        title: "E-Treasure Hunt",
+        location: "Lab 3",
+        category: "technical",
+        icon: Lock,
+        startTime: "10:00 AM",
+        endTime: "1:00 PM",
+      },
+    ],
+  },
+  {
+    timeSlot: "11:00 AM",
+    events: [
+      {
+        title: "Quiz - Round 2",
+        location: "Classroom",
+        category: "competitions",
+        icon: HelpCircle,
+        startTime: "11:00 AM",
+        endTime: "1:00 PM",
+      },
+      {
+        title: "Paper Presentation",
+        location: "Classroom",
+        category: "competitions",
+        icon: FileText,
+        startTime: "11:00 AM",
+        endTime: "4:00 PM",
+      },
+      {
+        title: "Reel Making - Event",
+        location: "Venue",
+        category: "creative",
+        icon: Clapperboard,
+        startTime: "11:00 AM",
+        endTime: "4:00 PM",
+      },
+      {
+        title: "Memory Mania",
+        location: "Lab 2",
+        category: "technical",
+        icon: BrainCircuit,
+        startTime: "11:00 AM",
+        endTime: "1:00 PM",
+      },
+      {
+        title: "Sports (Rubik's Cube / Tic Tac Toe)",
+        location: "Classroom / Multipurpose Hall",
+        category: "sports",
+        icon: Dumbbell,
+        startTime: "11:00 AM",
+        endTime: "1:00 PM",
+      },
+    ],
+  },
+  {
+    timeSlot: "2:00 PM",
+    events: [
+      {
+        title: "Digital Crisis Challenge",
+        location: "Classroom",
+        category: "technical",
+        icon: ShieldCheck,
+        startTime: "2:00 PM",
+        endTime: "4:00 PM",
+      },
+      {
+        title: "Role Play",
+        location: "Classroom",
+        category: "creative",
+        icon: Drama,
+        startTime: "2:00 PM",
+        endTime: "4:00 PM",
+      },
+      {
+        title: "Technical Skit",
+        location: "Hall 2",
+        category: "technical",
+        icon: Users,
+        startTime: "2:00 PM",
+        endTime: "4:00 PM",
       },
       {
         title: "Tech Escape Room",
         location: "Classroom",
         category: "technical",
         icon: Lock,
+        startTime: "2:00 PM",
+        endTime: "3:30 PM",
       },
       {
-        title: "Memory Mania",
-        location: "Lab 3 / Class",
-        category: "technical",
-        icon: BrainCircuit,
-      },
-    ],
-  },
-  {
-    start: "4:00 PM",
-    end: "5:00 PM",
-    events: [
-      {
-        title: "Sports — Tic Tac Toe / Rubik's Cube",
+        title: "Sports (Jenga / Ludo)",
         location: "Classroom",
         category: "sports",
-        icon: Dumbbell,
-      },
-      {
-        title: "Jenga / Ludo",
-        location: "Classroom",
-        category: "creative",
         icon: Puzzle,
+        startTime: "2:00 PM",
+        endTime: "4:00 PM",
       },
     ],
   },
   {
-    start: "4:00 PM",
-    end: "5:00 PM",
+    timeSlot: "4:00 PM",
     events: [
       {
         title: "Valedictory Function",
         location: "Hall 1",
         category: "ceremony",
         icon: Award,
+        startTime: "4:00 PM",
+        endTime: "5:00 PM",
       },
     ],
   },
@@ -311,11 +348,11 @@ export default function ScheduleSection() {
               >
                 {/* Time rail */}
                 <div className="w-16 sm:w-28 md:w-32 shrink-0 pt-1 sm:pt-3 text-right">
-                  <div className="font-brand-date text-[11px] sm:text-sm font-bold tracking-wide text-brand-white leading-tight">
-                    {slot.start}
+                  <div className="font-brand-date text-xs sm:text-base font-bold tracking-wide text-brand-golden-yellow leading-tight">
+                    {slot.timeSlot}
                   </div>
                   <div className="font-brand-date text-[10px] sm:text-xs text-brand-white/50 leading-tight">
-                    – {slot.end}
+                    Onwards
                   </div>
                 </div>
 
@@ -350,12 +387,21 @@ export default function ScheduleSection() {
                             </h4>
                           </div>
 
-                          <span
-                            className={`inline-flex items-center gap-1 self-start sm:self-auto shrink-0 text-[10px] sm:text-xs font-brand-small font-bold uppercase tracking-widest border rounded px-2 py-1 ${styles.badge}`}
-                          >
-                            <MapPin className="w-3 h-3" />
-                            {evt.location}
-                          </span>
+                          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
+                            {/* Duration Badge */}
+                            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-brand-date font-semibold text-brand-golden-yellow/90 bg-brand-golden-yellow/10 border border-brand-golden-yellow/20 rounded px-2 py-1">
+                              <Clock className="w-3 h-3" />
+                              {evt.startTime} – {evt.endTime}
+                            </span>
+
+                            {/* Location Badge */}
+                            <span
+                              className={`inline-flex items-center gap-1 text-[10px] sm:text-xs font-brand-small font-bold uppercase tracking-widest border rounded px-2 py-1 ${styles.badge}`}
+                            >
+                              <MapPin className="w-3 h-3" />
+                              {evt.location}
+                            </span>
+                          </div>
                         </div>
                       );
                     })}
