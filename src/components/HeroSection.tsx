@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { Hand } from "lucide-react";
 import GlowingLogo from "./GlowingLogo";
 
 export default function HeroSection() {
@@ -11,6 +12,14 @@ export default function HeroSection() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Smooth scroll handler for the indicator
+  const handleScrollDown = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section
@@ -58,51 +67,50 @@ lg:px-16
         </div>
       )}
 
-{/* Background Image Layer */}
-<div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Desktop */}
+        <Image
+          src="/bg-img-3.png"
+          alt="Desktop Background"
+          fill
+          priority
+          className="hidden lg:block object-cover object-center"
+        />
 
-  {/* Desktop */}
-  <Image
-    src="/bg-img-3.png"
-    alt="Desktop Background"
-    fill
-    priority
-    className="hidden lg:block object-cover object-center"
-  />
+        {/* Tablet */}
+        <Image
+          src="/bg-img-tablet.png"
+          alt="Tablet Background"
+          fill
+          priority
+          className="hidden sm:block lg:hidden object-cover object-center"
+        />
 
-  {/* Tablet */}
-  <Image
-    src="/bg-img-tablet.png"
-    alt="Tablet Background"
-    fill
-    priority
-    className="hidden sm:block lg:hidden object-cover object-center"
-  />
+        {/* Mobile */}
+        <Image
+          src="/bg-img-mobi-1.png"
+          alt="Mobile Background"
+          fill
+          priority
+          className="block sm:hidden object-cover object-center"
+        />
 
-  {/* Mobile */}
-  <Image
-    src="/bg-img-mobi-1.png"
-    alt="Mobile Background"
-    fill
-    priority
-    className="block sm:hidden object-cover object-center"
-  />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-brand-navy/50" />
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-brand-navy/50" />
+        {/* Bottom Fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
+        <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
 
-  {/* Bottom Fade */}
-  <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
-  <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
-
-  {/* Optional vignette */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.45)_100%)]" />
-</div>
+        {/* Optional vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.45)_100%)]" />
+      </div>
 
       {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-14 lg:px-20">
         
-        {/* Prominent Logo Section */}
+        {/* Prominent Responsive Logo Section */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -110,23 +118,7 @@ lg:px-16
           className="flex flex-col items-center justify-center text-center mb-2"
         >
           <div className="relative group">
-            {/* <Image
-              src="/logo-1.svg"
-              alt="BITBUZZ Logo"
-              width={500}
-              height={500}
-              priority
-              className="
-w-48 h-48
-sm:w-64 sm:h-64
-md:w-80 md:h-80
-lg:w-[28rem] lg:h-[28rem]
-xl:w-[32rem] xl:h-[32rem]
-object-contain
-drop-shadow-[0_0_40px_rgba(255,255,255,0.18)]
-"
-            /> */}
-            <GlowingLogo className={"p-0 m-0"}/>
+            <GlowingLogo className="w-52 sm:w-72 md:w-80 lg:w-[380px] xl:w-[440px] p-0 m-0 transition-all duration-300" />
           </div>
         </motion.div>
 
@@ -155,33 +147,70 @@ drop-shadow-lg
           </p>
           <span className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-brand-golden-yellow/60 shrink-0" />
         </motion.div>
-
-        {/* Call to Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-2 w-full max-w-md sm:max-w-none"
-        >
-          <a
-            href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 bg-brand-golden-yellow text-brand-navy font-brand-heading font-bold text-base sm:text-lg hover:bg-brand-white hover:scale-105 active:scale-95 transition-all duration-300 rounded shadow-brand-yellow tracking-widest uppercase text-center"
-          >
-            Register Now
-          </a>
-
-          <a
-            href="/BITBUZZ 8.0.pdf"
-            download
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border-2 border-brand-golden-yellow/80 text-brand-golden-yellow font-brand-heading font-bold text-base sm:text-lg hover:bg-brand-golden-yellow/15 hover:border-brand-golden-yellow hover:scale-105 active:scale-95 transition-all duration-300 rounded shadow-brand-yellow tracking-widest uppercase bg-brand-navy/60 backdrop-blur-md text-center"
-          >
-            Brochure
-          </a>
-        </motion.div>
-
       </div>
+
+      {/* Animated Scroll Indicator (Mobile Hand + Desktop Mouse) */}
+      <motion.button
+        type="button"
+        onClick={handleScrollDown}
+        aria-label="Scroll down"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group cursor-pointer focus:outline-none"
+      >
+        {/* Contextual Label */}
+        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-brand-golden-yellow/80 group-hover:text-brand-golden-yellow transition-colors duration-300">
+          <span className="sm:hidden">Swipe Up</span>
+          <span className="hidden sm:inline">Scroll Down</span>
+        </span>
+
+        {/* MOBILE VIEW: Animated Hand Gesture */}
+        <div className="sm:hidden relative flex items-center justify-center w-10 h-10">
+          <motion.div
+            animate={{
+              scale: [0.8, 1.4, 0.8],
+              opacity: [0.2, 0.7, 0.2],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute w-8 h-8 rounded-full bg-brand-golden-yellow/20 border border-brand-golden-yellow/40"
+          />
+          <motion.div
+            animate={{
+              y: [12, -8, 12],
+              opacity: [0.3, 1, 0.3],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="relative text-brand-golden-yellow drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+          >
+            <Hand className="w-6 h-6 rotate-[-15deg]" />
+          </motion.div>
+        </div>
+
+        {/* DESKTOP VIEW: Mouse Capsule Icon */}
+        <div className="hidden sm:flex w-6 h-10 rounded-full border-2 border-brand-golden-yellow/50 group-hover:border-brand-golden-yellow justify-center p-1.5 transition-colors duration-300 shadow-md backdrop-blur-sm">
+          <motion.div
+            animate={{
+              y: [0, 12, 0],
+              opacity: [1, 0.2, 1],
+            }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="w-1.5 h-2 bg-brand-golden-yellow rounded-full"
+          />
+        </div>
+      </motion.button>
     </section>
   );
 }

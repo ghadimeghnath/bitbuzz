@@ -1,0 +1,254 @@
+[
+  {
+    "title": "Quiz (IQ Buster)",
+    "category": "ONSTAGE",
+    "difficulty": "Easy",
+    "image": "/event_ai_1785160115853.png",
+    "colorCls": {
+      "text": "text-brand-light-green",
+      "bg": "bg-brand-light-green",
+      "border": "border-brand-light-green",
+      "hoverBg": "hover:bg-brand-light-green"
+    },
+    "id": "01",
+    "slug": "quiz-iq-buster-01"
+  },
+  {
+    "title": "Paper Presentations (Techfluence)",
+    "category": "ONSTAGE",
+    "difficulty": "Medium",
+    "image": "/event_coding_1785160138095.png",
+    "colorCls": {
+      "text": "text-brand-coral",
+      "bg": "bg-brand-coral",
+      "border": "border-brand-coral",
+      "hoverBg": "hover:bg-brand-coral"
+    },
+    "id": "02",
+    "slug": "paper-presentations-techfluence-02"
+  },
+  {
+    "title": "Debate Competition (Argument Arena)",
+    "category": "ONSTAGE",
+    "difficulty": "Medium",
+    "image": "/event_cyber_1785160263055.png",
+    "colorCls": {
+      "text": "text-brand-mustard-yellow",
+      "bg": "bg-brand-mustard-yellow",
+      "border": "border-brand-mustard-yellow",
+      "hoverBg": "hover:bg-brand-mustard-yellow"
+    },
+    "id": "03",
+    "slug": "debate-competition-argument-arena-03"
+  },
+  {
+    "title": "Bit Rescue",
+    "category": "ONSTAGE",
+    "difficulty": "Hard",
+    "image": "/event_robotics_1785160294163.png",
+    "colorCls": {
+      "text": "text-brand-orange",
+      "bg": "bg-brand-orange",
+      "border": "border-brand-orange",
+      "hoverBg": "hover:bg-brand-orange"
+    },
+    "id": "04",
+    "slug": "bit-rescue-04"
+  },
+  {
+    "title": "Tech Startup Pitch (Inno Pitch)",
+    "category": "ONSTAGE",
+    "difficulty": "Hard",
+    "image": "/event_gaming_1785160312866.png",
+    "colorCls": {
+      "text": "text-brand-bright-orange",
+      "bg": "bg-brand-bright-orange",
+      "border": "border-brand-bright-orange",
+      "hoverBg": "hover:bg-brand-bright-orange"
+    },
+    "id": "05",
+    "slug": "tech-startup-pitch-inno-pitch-05"
+  },
+  {
+    "title": "Role Play (Decode & Act)",
+    "category": "ONSTAGE",
+    "difficulty": "Easy",
+    "image": "/event_quiz_1785160445597.png",
+    "colorCls": {
+      "text": "text-brand-lime-yellow",
+      "bg": "bg-brand-lime-yellow",
+      "border": "border-brand-lime-yellow",
+      "hoverBg": "hover:bg-brand-lime-yellow"
+    },
+    "id": "06",
+    "slug": "role-play-decode-act-06"
+  },
+  {
+    "title": "Technical Skit (Nautanki)",
+    "category": "ONSTAGE",
+    "difficulty": "Medium",
+    "image": "/event_ai_1785160115853.png",
+    "colorCls": {
+      "text": "text-brand-light-green",
+      "bg": "bg-brand-light-green",
+      "border": "border-brand-light-green",
+      "hoverBg": "hover:bg-brand-light-green"
+    },
+    "id": "07",
+    "slug": "technical-skit-nautanki-07"
+  },
+  {
+    "title": "Tech Trail Hunt (E Treasure Hunt)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Hard",
+    "image": "/event_coding_1785160138095.png",
+    "colorCls": {
+      "text": "text-brand-coral",
+      "bg": "bg-brand-coral",
+      "border": "border-brand-coral",
+      "hoverBg": "hover:bg-brand-coral"
+    },
+    "id": "08",
+    "slug": "tech-trail-hunt-e-treasure-hunt-08"
+  },
+  {
+    "title": "MindSync",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Medium",
+    "image": "/event_cyber_1785160263055.png",
+    "colorCls": {
+      "text": "text-brand-mustard-yellow",
+      "bg": "bg-brand-mustard-yellow",
+      "border": "border-brand-mustard-yellow",
+      "hoverBg": "hover:bg-brand-mustard-yellow"
+    },
+    "id": "09",
+    "slug": "mindsync-09"
+  },
+  {
+    "title": "Encrypted Escape (Tech Escape Room)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Hard",
+    "image": "/event_robotics_1785160294163.png",
+    "colorCls": {
+      "text": "text-brand-orange",
+      "bg": "bg-brand-orange",
+      "border": "border-brand-orange",
+      "hoverBg": "hover:bg-brand-orange"
+    },
+    "id": "10",
+    "slug": "encrypted-escape-tech-escape-room-10"
+  },
+  {
+    "title": "Reel Making (Eureka)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Easy",
+    "image": "/event_gaming_1785160312866.png",
+    "colorCls": {
+      "text": "text-brand-bright-orange",
+      "bg": "bg-brand-bright-orange",
+      "border": "border-brand-bright-orange",
+      "hoverBg": "hover:bg-brand-bright-orange"
+    },
+    "id": "11",
+    "slug": "reel-making-eureka-11"
+  },
+  {
+    "title": "E-Poster Making (Artsclusive)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Easy",
+    "image": "/event_quiz_1785160445597.png",
+    "colorCls": {
+      "text": "text-brand-lime-yellow",
+      "bg": "bg-brand-lime-yellow",
+      "border": "border-brand-lime-yellow",
+      "hoverBg": "hover:bg-brand-lime-yellow"
+    },
+    "id": "12",
+    "slug": "e-poster-making-artsclusive-12"
+  },
+  {
+    "title": "Speed Typing (Typing Titans)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Medium",
+    "image": "/event_ai_1785160115853.png",
+    "colorCls": {
+      "text": "text-brand-light-green",
+      "bg": "bg-brand-light-green",
+      "border": "border-brand-light-green",
+      "hoverBg": "hover:bg-brand-light-green"
+    },
+    "id": "13",
+    "slug": "speed-typing-typing-titans-13"
+  },
+  {
+    "title": "Battle Arena (Free Fire / FIFA)",
+    "category": "OFF STAGE / LAB",
+    "difficulty": "Expert",
+    "image": "/event_coding_1785160138095.png",
+    "colorCls": {
+      "text": "text-brand-coral",
+      "bg": "bg-brand-coral",
+      "border": "border-brand-coral",
+      "hoverBg": "hover:bg-brand-coral"
+    },
+    "id": "14",
+    "slug": "battle-arena-free-fire-fifa-14"
+  },
+  {
+    "title": "Grid Rush (Tic Tac Toe)",
+    "category": "SPORTS",
+    "difficulty": "Easy",
+    "image": "/event_cyber_1785160263055.png",
+    "colorCls": {
+      "text": "text-brand-mustard-yellow",
+      "bg": "bg-brand-mustard-yellow",
+      "border": "border-brand-mustard-yellow",
+      "hoverBg": "hover:bg-brand-mustard-yellow"
+    },
+    "id": "15",
+    "slug": "grid-rush-tic-tac-toe-15"
+  },
+  {
+    "title": "Cube Craze (Rubiks Cube)",
+    "category": "SPORTS",
+    "difficulty": "Medium",
+    "image": "/event_robotics_1785160294163.png",
+    "colorCls": {
+      "text": "text-brand-orange",
+      "bg": "bg-brand-orange",
+      "border": "border-brand-orange",
+      "hoverBg": "hover:bg-brand-orange"
+    },
+    "id": "16",
+    "slug": "cube-craze-rubiks-cube-16"
+  },
+  {
+    "title": "Roll Royale",
+    "category": "SPORTS",
+    "difficulty": "Easy",
+    "image": "/event_gaming_1785160312866.png",
+    "colorCls": {
+      "text": "text-brand-bright-orange",
+      "bg": "bg-brand-bright-orange",
+      "border": "border-brand-bright-orange",
+      "hoverBg": "hover:bg-brand-bright-orange"
+    },
+    "id": "17",
+    "slug": "roll-royale-17"
+  },
+  {
+    "title": "Tower Tumble",
+    "category": "SPORTS",
+    "difficulty": "Easy",
+    "image": "/event_quiz_1785160445597.png",
+    "colorCls": {
+      "text": "text-brand-lime-yellow",
+      "bg": "bg-brand-lime-yellow",
+      "border": "border-brand-lime-yellow",
+      "hoverBg": "hover:bg-brand-lime-yellow"
+    },
+    "id": "18",
+    "slug": "tower-tumble-18"
+  }
+]

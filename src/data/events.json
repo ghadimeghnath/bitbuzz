@@ -1,0 +1,31 @@
+[
+  {
+    "slug": "stranger-screens",
+    "title": "Stranger Screens",
+    "category": "WEB DESIGNING EVENT",
+    "about": "Step into the world where creativity meets technology! The Web Designing event challenges you to transform ideas into visually stunning and user-friendly websites. Whether you're a beginner or a passionate designer, this is your chance to showcase your design thinking, layout skills and front-end creativity under exciting real-world challenges. Work as a team, think fast, design smart and let your website speak for you.",
+    "date": "March 10, 2026",
+    "teamSize": "2 members",
+    "rules": [
+      "Participants must report on time for all rounds",
+      "All participants must use Visual Studio Code (VS Code) as their code editor/IDE for this event",
+      "Participants must have knowledge and only use HTML, CSS, and JavaScript",
+      "The rounds and design tasks will be provided on the spot",
+      "Electronic gadgets are not allowed",
+      "Use of Claude code, codex are prohibited",
+      "AI tools are allowed for this event, and more detailed guidelines regarding their usage will be shared during the event",
+      "Judges' decisions are final and cannot be challenged",
+      "Violation of any rule would lead to disqualification"
+    ],
+    "studentCoordinators": [
+      { "name": "Cherish John Pinto", "phone": "7892120181" },
+      { "name": "Pratheeksha", "phone": "9686039761" },
+      { "name": "Sathwik", "phone": "8884852258" },
+      { "name": "Jasmine Sonia", "phone": "7090061862" }
+    ],
+    "staffCoordinators": [
+      { "name": "Dr. Srinivas B.L" },
+      { "name": "Ms. Nausheeda B.S" }
+    ]
+  }
+]

@@ -24,7 +24,7 @@ export default function GlowingLogo({
   showBeams = true,
   beamColor = "#00F0FF",
   beamColorSecondary = "",
-  beamWidth = 3,
+  beamWidth = 1,
   beamLength = 440,
   beamGap = 600,
   beamSpeed = 4,
@@ -69,11 +69,8 @@ export default function GlowingLogo({
   const rawId = useId();
   const uid = rawId.replace(/:/g, "");
 
-  const allPaths = [
-    ...WORDMARK_PATHS,
-    ...ICON_PATHS,
-    ...ORANGE_YELLOW_CIRCUIT_PATHS,
-  ];
+  // Base background paths (Circuit & Icon elements)
+  const basePaths = [...ORANGE_YELLOW_CIRCUIT_PATHS, ...ICON_PATHS];
 
   const resolveFill = (p: any) => {
     if (WORDMARK_PATHS.includes(p) && wordmarkColor) return wordmarkColor;
@@ -100,13 +97,11 @@ export default function GlowingLogo({
         borderRadius: 24,
       }}
     >
-      <div style={{ position: "relative", width, height: width }}>
+      <div className="relative w-full h-full aspect-square" style={{ maxWidth: width }}>
         <svg
-          width={width}
-          height={width}
           viewBox="0 0 1000 1000"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ display: "block", overflow: "visible" }}
+          className="w-full h-full block overflow-visible"
         >
           <defs>
             {/* Halo glow filter */}
@@ -142,7 +137,7 @@ export default function GlowingLogo({
             </mask>
           </defs>
 
-          {/* Layer 1 — Soft background halo (Circuit Paths Only) */}
+          {/* Layer 1 — Soft background halo */}
           <motion.g
             filter={`url(#glow-blur-${uid})`}
             animate={{
@@ -166,14 +161,14 @@ export default function GlowingLogo({
             ))}
           </motion.g>
 
-          {/* Layer 2 — Crisp base logo (All Paths visible) */}
+          {/* Layer 2 — Crisp base icon & background circuit paths */}
           <g>
-            {allPaths.map((p, i) => (
+            {basePaths.map((p, i) => (
               <path key={i} d={p.d} transform={p.transform} fill={resolveFill(p)} />
             ))}
           </g>
 
-          {/* Layer 3 — Traveling light sweep (Circuit Paths Only via mask) */}
+          {/* Layer 3 — Traveling light sweep */}
           <g mask={`url(#logo-mask-${uid})`}>
             <motion.rect
               x="-200"
@@ -191,7 +186,7 @@ export default function GlowingLogo({
             />
           </g>
 
-          {/* Layer 4 — Animated Path Beams (Circuit Paths Only - Seamless Loop) */}
+          {/* Layer 4 — Animated Path Beams */}
           {showBeams && (
             <g filter={`url(#beam-glow-${uid})`}>
               {ORANGE_YELLOW_CIRCUIT_PATHS.map((p, i) => {
@@ -223,6 +218,13 @@ export default function GlowingLogo({
               })}
             </g>
           )}
+
+          {/* Layer 5 (TOP) — Wordmark ("BITBUZZ") always rendered on top */}
+          <g>
+            {WORDMARK_PATHS.map((p, i) => (
+              <path key={i} d={p.d} transform={p.transform} fill={resolveFill(p)} />
+            ))}
+          </g>
         </svg>
       </div>
     </div>

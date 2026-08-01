@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
@@ -53,19 +54,22 @@ export default function Navbar() {
           }`}
         >
           {/* Logo */}
-          <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group">
-            <Image
-              src="/logo.png"
-              alt="BITBUZZ Logo"
-              width={80}
-              height={80}
-              priority
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="text-lg sm:text-xl font-brand-event-title tracking-widest text-brand-white">
-              BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
-            </span>
-          </div>
+<Link 
+  href="/" 
+  className="flex items-center gap-2 sm:gap-3 cursor-pointer group"
+>
+  <Image
+    src="/final-logo.png"
+    alt="BITBUZZ Logo"
+    width={80}
+    height={80}
+    priority
+    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105"
+  />
+  <span className="text-lg sm:text-xl font-brand-event-title tracking-widest text-brand-white">
+    BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
+  </span>
+</Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 font-brand-heading text-xs font-bold tracking-widest uppercase">

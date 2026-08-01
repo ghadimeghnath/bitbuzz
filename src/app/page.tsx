@@ -15,8 +15,8 @@ export default function Home() {
     <main className="min-h-screen bg-brand-navy">
       <Navbar />
       <HeroSection />
-      <EventsSection />
       <RulesSection />
+      <EventsSection />
       <ScheduleSection />
       <MapSection />
       <RegistrationSection />

@@ -148,9 +148,9 @@ export default function SpeakersSection() {
         <div className="flex justify-center w-full">
          <MainHeaderBox
   ref={topLogoRef}
-  src="/logo.png"
+  src="/final-logo.png"
   alt="BITBUZZ 8.0"
-  className="p-0"
+  className=""
   imageClassName="h-15 md:h-20" // Increase height here (default was h-8 md:h-12)
 />
         </div>
