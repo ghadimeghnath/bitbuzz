@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import GlowingLogo from "./GlowingLogo";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -109,8 +110,8 @@ lg:px-16
           className="flex flex-col items-center justify-center text-center mb-2"
         >
           <div className="relative group">
-            <Image
-              src="/logo.png"
+            {/* <Image
+              src="/logo-1.svg"
               alt="BITBUZZ Logo"
               width={500}
               height={500}
@@ -124,7 +125,8 @@ xl:w-[32rem] xl:h-[32rem]
 object-contain
 drop-shadow-[0_0_40px_rgba(255,255,255,0.18)]
 "
-            />
+            /> */}
+            <GlowingLogo className={"p-0 m-0"}/>
           </div>
         </motion.div>
 
