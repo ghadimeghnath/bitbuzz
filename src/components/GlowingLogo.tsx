@@ -75,7 +75,7 @@ export default function GlowingLogo({
     ...ORANGE_YELLOW_CIRCUIT_PATHS,
   ];
 
-  const resolveFill = (p: { fill: string }) => {
+  const resolveFill = (p: any) => {
     if (WORDMARK_PATHS.includes(p) && wordmarkColor) return wordmarkColor;
     if (ICON_PATHS.includes(p) && iconColor) return iconColor;
     return p.fill;
