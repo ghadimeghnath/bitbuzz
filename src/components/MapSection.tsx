@@ -15,10 +15,10 @@ export default function MapSection() {
       id="map"
       className="relative w-full py-24 px-6 md:px-12 border-y border-brand-golden-yellow/20 bg-brand-navy overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-center z-10">
         {/* Left Column: Details */}
-        <div className="w-full md:w-1/3">
-          <h2 className="text-3xl md:text-5xl font-brand-heading font-bold text-brand-white uppercase tracking-widest mb-4">
+        <div className="w-full md:w-1/3 bg-brand-navy z-10">
+          <h2 className="text-3xl md:text-5xl font-brand-heading font-bold text-brand-white uppercase tracking-widest mb-4 ">
             LOCATE // <span className="text-brand-golden-yellow">VENUE</span>
           </h2>
           <p className="text-brand-white/80 font-brand-body text-sm leading-relaxed mb-8">

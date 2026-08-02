@@ -16,6 +16,7 @@ import Link from "next/link";
 import events from "@/data/baseEvents.json";
 import { CornerMarks } from "./ui/CornerMarks";
 import { Hand } from "lucide-react";
+import { CircuitDots } from "./ui/CircuitDots";
 
 interface EventItem {
   id: string | number;
@@ -250,12 +251,15 @@ export default function EventsSection() {
       className="relative w-full bg-brand-navy "
     >
       {/* Title chip */}
-      <div className="relative mt-8 sm:mt-10">
-        <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
-          <CornerMarks />
-          <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
-            Events & Rules
-          </h2>
+      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-10">
+        <div className="relative mt-8 sm:mt-10">
+          <CircuitDots className="pointer-events-none absolute -right-4 -top-10 hidden h-24 w-40 text-brand-golden-yellow/25 sm:block" />
+          <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
+            <CornerMarks />
+            <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
+              Events & Rules
+            </h2>
+          </div>
         </div>
       </div>
       <div
@@ -267,7 +271,7 @@ export default function EventsSection() {
           ["--stage-hub-gap-tablet" as any]: `${STAGE_HUB_GAP.tablet}px`,
           ["--stage-hub-gap-desktop" as any]: `${STAGE_HUB_GAP.desktop}px`,
         }}
-        className="sticky top-0 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-start md:justify-between p-2 sm:p-4 md:p-8 lg:p-12
+        className="sticky top-0 z-10 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-start md:justify-between p-2 sm:p-4 md:p-8 lg:p-12
           gap-[var(--stage-hub-gap-mobile)] sm:gap-[var(--stage-hub-gap-tablet)] md:gap-[var(--stage-hub-gap-desktop)]"
       >
 
@@ -579,7 +583,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
             {/* Card Media Section */}
-            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-1/2 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
+            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-1/2 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0 ">
               <Image
                 src={event.image}
                 alt={event.title}

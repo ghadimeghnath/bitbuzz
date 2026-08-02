@@ -24,7 +24,7 @@ export default function GlowingLogo({
   showBeams = true,
   beamColor = "#00F0FF",
   beamColorSecondary = "",
-  beamWidth = 1,
+  beamWidth = 2,
   beamLength = 440,
   beamGap = 600,
   beamSpeed = 4,

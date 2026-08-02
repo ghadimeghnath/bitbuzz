@@ -8,11 +8,13 @@ import MapSection from "@/components/MapSection";
 import RegistrationSection from "@/components/RegistrationSection";
 import SpeakersSection from "@/components/SpeakersSection";
 import Footer from "@/components/Footer";
+import { FloatingParticles } from "@/components/ui/FloatingParticles";
 
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-brand-navy">
+      <FloatingParticles />
       <Navbar />
       <HeroSection />
       <RulesSection />

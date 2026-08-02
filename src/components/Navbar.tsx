@@ -84,7 +84,7 @@ export default function Navbar() {
             ))}
             <a
               href="#register"
-              className="px-4 py-2 border border-brand-golden-yellow text-brand-golden-yellow hover:bg-brand-golden-yellow hover:text-brand-navy transition-all rounded shadow-brand-yellow"
+              className="px-5 py-2.5 bg-brand-golden-yellow text-brand-navy font-black hover:bg-brand-golden-yellow/90 hover:scale-105 hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] transition-all rounded shadow-[0_0_10px_rgba(234,179,8,0.3)]"
             >
               Register
             </a>
@@ -135,7 +135,7 @@ export default function Navbar() {
                 <a
                   href="#register"
                   onClick={() => setIsOpen(false)}
-                  className="mt-2 block w-full py-3 border border-brand-golden-yellow text-brand-golden-yellow hover:bg-brand-golden-yellow hover:text-brand-navy transition-all rounded shadow-brand-yellow text-center"
+                  className="mt-4 block w-full py-3.5 bg-brand-golden-yellow text-brand-navy font-black uppercase tracking-widest hover:bg-brand-golden-yellow/90 transition-all rounded shadow-[0_0_15px_rgba(234,179,8,0.4)] text-center"
                 >
                   Register
                 </a>

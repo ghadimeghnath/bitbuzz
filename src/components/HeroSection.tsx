@@ -26,6 +26,7 @@ export default function HeroSection() {
       id="hero"
       className="
 relative
+
 min-h-dvh
 w-full
 overflow-hidden
@@ -41,32 +42,6 @@ md:px-12
 lg:px-16
 "
     >
-      {/* Floating Particles */}
-      {mounted && (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-          {[...Array(30)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-brand-golden-yellow/40 rounded-full"
-              initial={{
-                x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
-                y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1000),
-                opacity: Math.random() * 0.5 + 0.2,
-              }}
-              animate={{
-                y: [null, Math.random() * -200 - 100],
-                opacity: [null, 0],
-              }}
-              transition={{
-                duration: Math.random() * 5 + 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
-      )}
-
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Desktop */}
@@ -97,14 +72,9 @@ lg:px-16
         />
 
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-brand-navy/50" />
+        <div className="absolute inset-0 bg-brand-navy/70" />
 
         {/* Bottom Fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
-        <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-transparent" />
-
-        {/* Optional vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.45)_100%)]" />
       </div>
 
       {/* Main Content */}
@@ -118,7 +88,7 @@ lg:px-16
           className="flex flex-col items-center justify-center text-center mb-2"
         >
           <div className="relative group">
-            <GlowingLogo className="w-52 sm:w-72 md:w-80 lg:w-[380px] xl:w-[440px] p-0 m-0 transition-all duration-300" />
+            <GlowingLogo className=" w-60 sm:w-72 md:w-80 lg:w-[380px] xl:w-[440px] p-0 m-0 transition-all duration-300" />
           </div>
         </motion.div>
 
