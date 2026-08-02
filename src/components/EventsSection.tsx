@@ -15,6 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import events from "@/data/baseEvents.json";
 import { CornerMarks } from "./ui/CornerMarks";
+import { Hand } from "lucide-react";
 
 interface EventItem {
   id: string | number;
@@ -349,7 +350,7 @@ function getLogoDiameter(width: number) {
 const PILL_ARC = {
   minAngularGapDegDesktop: 30,
   minAngularGapDegTablet: 30,
-  minAngularGapDegMobile: 56,
+  minAngularGapDegMobile: 67,
   baselinePillCount: 4,
   radiusGrowthPerExtraPill: 14, // px
   bufferMobile: 50, // px clearance beyond logo radius, mobile (vertical arc)
@@ -440,7 +441,7 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobil
                 // then translate() pushes it outward along that rotated axis.
                 transform: `translate(-50%, -50%) rotate(${angle}deg) ${translate}`,
               }}
-              className={`pointer-events-auto px-2 py-3 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive
+              className={`pointer-events-auto px-3 py-1.5 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 backdrop-blur-md border font-brand-heading text-[10px] sm:text-xs md:text-sm lg:text-base font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive
                   ? "bg-brand-golden-yellow text-brand-navy border-brand-golden-yellow shadow-[0_0_12px_rgba(234,179,8,0.5)] scale-105"
                   : "bg-brand-navy/90 text-brand-white/80 border-brand-golden-yellow/40 hover:border-brand-golden-yellow hover:text-brand-white hover:scale-105"
                 }`}
@@ -509,13 +510,76 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             lg:[--wheel-pivot:clamp(-950px,-45vw,-550px)_50%]
             xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
         >
-          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col shadow-2xl w-full aspect-square overflow-hidden">
+          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full aspect-square sm:aspect-auto sm:h-auto overflow-hidden">
+            
+{/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
+{index < 1 && (
+  <div className="sm:hidden absolute top-1/2 right-4 -translate-y-1/2 z-50 pointer-events-none flex items-center gap-1.5">
+    
+    {/* Swipe Left Text Message */}
+    <motion.span
+      animate={{
+        x: [10, 10, -15, -15, 10],       // Moves left in tandem with the hand
+        opacity: [0, 0.9, 0.9, 0, 0],     // Fades in and out with the gesture
+      }}
+      transition={{
+        duration: 2.2,
+        repeat: Infinity,
+        repeatDelay: 0.6,
+        times: [0, 0.2, 0.65, 0.85, 1],
+        ease: "easeInOut",
+      }}
+      className="text-[11px] font-medium tracking-wide uppercase text-brand-golden-yellow/90 drop-shadow-[0_0_6px_rgba(255,215,0,0.3)] whitespace-nowrap select-none"
+    >
+      Swipe left
+    </motion.span>
+
+    {/* Hand & Ripple Container */}
+    <div className="relative flex items-center justify-center">
+      {/* Touch Point Ripple Effect */}
+      <motion.div
+        animate={{
+          scale: [0.6, 1.5, 0.6],
+          opacity: [0, 0.6, 0],
+        }}
+        transition={{
+          duration: 2.2,
+          repeat: Infinity,
+          repeatDelay: 0.6,
+          times: [0, 0.25, 0.5],
+          ease: "easeOut",
+        }}
+        className="absolute right-0 w-8 h-8 rounded-full bg-brand-golden-yellow/20 border border-brand-golden-yellow/50"
+      />
+
+      {/* Hand Gesture Animation */}
+      <motion.div
+        animate={{
+          x: [16, 16, -20, -20, 16],
+          scale: [1, 0.85, 0.85, 1, 1],
+          opacity: [0, 1, 1, 0, 0],
+        }}
+        transition={{
+          duration: 2.2,
+          repeat: Infinity,
+          repeatDelay: 0.6,
+          times: [0, 0.2, 0.65, 0.85, 1],
+          ease: "easeInOut",
+        }}
+        className="relative text-brand-golden-yellow drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+      >
+        <Hand className="w-6 h-6" />
+      </motion.div>
+    </div>
+
+  </div>
+)}
 
             {/* Subtle Glow Border */}
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
             {/* Card Media Section */}
-            <div className="relative w-full h-1/2 border-b border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
+            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-1/2 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
               <Image
                 src={event.image}
                 alt={event.title}
@@ -533,32 +597,32 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
               {/* Header: Title & Event ID */}
               <div>
                 <div className="flex items-start justify-between gap-2 mb-0.5 sm:mb-1">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="flex items-center gap-2 sm:gap-2.5">
                     <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                    <h3 className="font-brand-competition text-xs sm:text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold text-brand-white tracking-wider line-clamp-1">
+                    <h3 className="font-brand-competition text-base sm:text-lg md:text-lg lg:text-lg 2xl:text-3xl font-bold text-brand-white tracking-wider line-clamp-2">
                       {event.title}
                     </h3>
                   </div>
-                  <span className={`font-brand-heading font-bold text-xs sm:text-base md:text-lg lg:text-xl 2xl:text-2xl shrink-0 ${event.colorCls.text}`}>
+                  <span className={`font-brand-heading font-bold text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl shrink-0 ${event.colorCls.text}`}>
                     #{event.id}
                   </span>
                 </div>
 
                 {/* Category Tag */}
-                <span className={`block font-brand-heading font-bold text-[8px] sm:text-[10px] md:text-xs lg:text-sm uppercase tracking-widest ${event.colorCls.text}`}>
+                <span className={`block font-brand-heading font-bold text-[10px] sm:text-xs md:text-sm lg:text-base uppercase tracking-wider ${event.colorCls.text}`}>
                   {event.category}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-brand-white/70 font-brand-body text-[10px] sm:text-xs md:text-sm lg:text-base leading-tight sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
+              <p className="text-brand-white/80 font-brand-body text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
                 Initiate protocol {event.id}. Prepare your systems for the {event.title} challenge within the arena. Success requires strategy.
               </p>
 
               {/* Action Link */}
               <Link
                 href={`/event/${event.slug}`}
-                className={`relative z-30 block text-center w-full py-1.5 sm:py-2 md:py-2.5 lg:py-3 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-[9px] sm:text-xs md:text-sm lg:text-base font-bold tracking-widest uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-1`}
+                className={`relative z-30 block text-center w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-wider uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-2`}
               >
                 [ View Details ]
               </Link>
