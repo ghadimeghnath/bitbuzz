@@ -38,10 +38,11 @@ interface WheelCardProps {
 
 export default function EventsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const panStartIndexRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile screen size to decouple vertical scroll on touch devices
+  // Detect mobile screen size
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -56,7 +57,6 @@ export default function EventsSection() {
     offset: ["start start", "end end"],
   });
 
-  // Unified active progress motion value for both mobile swipe and desktop scroll
   const activeProgress = useMotionValue(0);
 
   // Sync scrollYProgress to activeProgress on Desktop only
@@ -77,45 +77,62 @@ export default function EventsSection() {
     }
   });
 
-  // Handle Horizontal Mobile Swiping / Dragging
+  // Capture starting card index when touch drag starts
+  const handlePanStart = () => {
+    if (!isMobile) return;
+    panStartIndexRef.current = activeIndex;
+  };
+
+  // Limit live touch drag visual preview to max +/- 1 card offset
   const handlePan = (_: any, info: PanInfo) => {
     if (!isMobile || events.length <= 1) return;
 
-    // Convert pixel horizontal drag to normalized progress delta
-    const swipeSensitivity = 1 / (window.innerWidth * 0.75);
-    const deltaProgress = -info.delta.x * swipeSensitivity;
+    const total = events.length - 1;
+    if (total <= 0) return;
 
-    const current = activeProgress.get();
-    const next = Math.min(1, Math.max(0, current + deltaProgress));
-    activeProgress.set(next);
+    // Convert screen pixel delta to step normalized to 1 card width
+    const stepDelta = -info.offset.x / (window.innerWidth * 0.45);
+    // Clamp preview movement between -1 and +1 card step
+    const clampedStepDelta = Math.min(1, Math.max(-1, stepDelta));
+
+    const startProgress = panStartIndexRef.current / total;
+    const targetProgress = Math.min(
+      1,
+      Math.max(0, startProgress + clampedStepDelta / total)
+    );
+
+    activeProgress.set(targetProgress);
   };
 
+  // Force snap movement to move strictly ONE card forward or backward
   const handlePanEnd = (_: any, info: PanInfo) => {
     if (!isMobile || events.length <= 1) return;
 
-    const currentProgress = activeProgress.get();
-    let targetIndex = Math.round(currentProgress * (events.length - 1));
+    const total = events.length - 1;
+    if (total <= 0) return;
 
-    // Support flick / high velocity swipe gestures
-    if (Math.abs(info.velocity.x) > 300) {
-      if (info.velocity.x < 0) {
-        targetIndex = Math.min(
-          events.length - 1,
-          Math.ceil(currentProgress * (events.length - 1))
-        );
-      } else {
-        targetIndex = Math.max(
-          0,
-          Math.floor(currentProgress * (events.length - 1))
-        );
-      }
+    const distanceThreshold = 35; // Min pixels moved to trigger swipe
+    const velocityThreshold = 150; // Min swipe speed to trigger swipe
+    const startIdx = panStartIndexRef.current;
+    let targetIdx = startIdx;
+
+    if (
+      info.offset.x < -distanceThreshold ||
+      info.velocity.x < -velocityThreshold
+    ) {
+      targetIdx = Math.min(total, startIdx + 1); // Move exactly 1 card forward
+    } else if (
+      info.offset.x > distanceThreshold ||
+      info.velocity.x > velocityThreshold
+    ) {
+      targetIdx = Math.max(0, startIdx - 1); // Move exactly 1 card backward
     }
 
-    const targetProgress = targetIndex / (events.length - 1);
+    const targetProgress = targetIdx / total;
     animate(activeProgress, targetProgress, {
       type: "spring",
-      stiffness: 280,
-      damping: 28,
+      stiffness: 300,
+      damping: 30,
     });
   };
 
@@ -126,7 +143,6 @@ export default function EventsSection() {
 
   const activeCategory = events[activeIndex]?.category;
 
-  // Auto-swipe on mobile or smooth-scroll on desktop when clicking a category
   const handleCategoryClick = (category: string) => {
     const targetIndex = events.findIndex((e) => e.category === category);
     if (targetIndex === -1) return;
@@ -176,6 +192,7 @@ export default function EventsSection() {
 
         {/* CAROUSEL WHEEL STAGE */}
         <motion.div
+          onPanStart={handlePanStart}
           onPan={handlePan}
           onPanEnd={handlePanEnd}
           className="relative w-full h-full flex items-center justify-center z-20 touch-pan-y"
@@ -216,7 +233,7 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory }: LogoC
         
         {/* Central Circular Logo */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_25px_rgba(234,179,8,0.25)] z-20 transition-all">
-         <Image src={'/final-logo.png'} height={100} width={100} alt="Logo" />
+          <Image src={'/final-logo.png'} height={80} width={80} alt="Logo"/>
         </div>
 
         {/* Arced Category Pills Orbiting Logo */}
