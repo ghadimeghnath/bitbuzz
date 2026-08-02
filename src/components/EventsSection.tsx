@@ -509,13 +509,13 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             lg:[--wheel-pivot:clamp(-950px,-45vw,-550px)_50%]
             xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
         >
-          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full h-auto overflow-hidden">
+          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col shadow-2xl w-full aspect-square overflow-hidden">
 
             {/* Subtle Glow Border */}
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
-            {/* Card Media Section — taller on mobile to fill the card height */}
-            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-40 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
+            {/* Card Media Section */}
+            <div className="relative w-full h-1/2 border-b border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
               <Image
                 src={event.image}
                 alt={event.title}
