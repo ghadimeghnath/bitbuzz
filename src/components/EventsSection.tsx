@@ -1,7 +1,16 @@
 "use client";
 
-import { motion, useScroll, useTransform, MotionValue, useMotionValueEvent } from "framer-motion";
-import { useRef, useMemo, useState } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  MotionValue,
+  useMotionValue,
+  useMotionValueEvent,
+  animate,
+  PanInfo,
+} from "framer-motion";
+import { useRef, useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import events from "@/data/baseEvents.json";
@@ -23,21 +32,42 @@ interface EventItem {
 interface WheelCardProps {
   event: EventItem;
   index: number;
-  scrollYProgress: MotionValue<number>;
+  progress: MotionValue<number>;
   totalCards: number;
 }
 
 export default function EventsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size to decouple vertical scroll on touch devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Dynamically update active index on scroll to highlight current category pill
+  // Unified active progress motion value for both mobile swipe and desktop scroll
+  const activeProgress = useMotionValue(0);
+
+  // Sync scrollYProgress to activeProgress on Desktop only
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (!isMobile) {
+      activeProgress.set(latest);
+    }
+  });
+
+  // Dynamically update active index on progress change
+  useMotionValueEvent(activeProgress, "change", (latest) => {
     const idx = Math.min(
       events.length - 1,
       Math.max(0, Math.round(latest * (events.length - 1)))
@@ -47,6 +77,48 @@ export default function EventsSection() {
     }
   });
 
+  // Handle Horizontal Mobile Swiping / Dragging
+  const handlePan = (_: any, info: PanInfo) => {
+    if (!isMobile || events.length <= 1) return;
+
+    // Convert pixel horizontal drag to normalized progress delta
+    const swipeSensitivity = 1 / (window.innerWidth * 0.75);
+    const deltaProgress = -info.delta.x * swipeSensitivity;
+
+    const current = activeProgress.get();
+    const next = Math.min(1, Math.max(0, current + deltaProgress));
+    activeProgress.set(next);
+  };
+
+  const handlePanEnd = (_: any, info: PanInfo) => {
+    if (!isMobile || events.length <= 1) return;
+
+    const currentProgress = activeProgress.get();
+    let targetIndex = Math.round(currentProgress * (events.length - 1));
+
+    // Support flick / high velocity swipe gestures
+    if (Math.abs(info.velocity.x) > 300) {
+      if (info.velocity.x < 0) {
+        targetIndex = Math.min(
+          events.length - 1,
+          Math.ceil(currentProgress * (events.length - 1))
+        );
+      } else {
+        targetIndex = Math.max(
+          0,
+          Math.floor(currentProgress * (events.length - 1))
+        );
+      }
+    }
+
+    const targetProgress = targetIndex / (events.length - 1);
+    animate(activeProgress, targetProgress, {
+      type: "spring",
+      stiffness: 280,
+      damping: 28,
+    });
+  };
+
   // Extract unique categories
   const categories = useMemo(() => {
     return Array.from(new Set(events.map((e) => e.category)));
@@ -54,24 +126,34 @@ export default function EventsSection() {
 
   const activeCategory = events[activeIndex]?.category;
 
-  // Auto-swipe / smooth-scroll to the first event card of the clicked category
+  // Auto-swipe on mobile or smooth-scroll on desktop when clicking a category
   const handleCategoryClick = (category: string) => {
     const targetIndex = events.findIndex((e) => e.category === category);
-    if (targetIndex === -1 || !containerRef.current) return;
+    if (targetIndex === -1) return;
 
-    const container = containerRef.current;
-    const rect = container.getBoundingClientRect();
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const containerStart = rect.top + scrollTop;
-    const totalScrollableHeight = container.offsetHeight - window.innerHeight;
+    const targetProgress = targetIndex / Math.max(1, events.length - 1);
 
-    const progress = targetIndex / Math.max(1, events.length - 1);
-    const targetScrollY = containerStart + totalScrollableHeight * progress;
+    if (isMobile) {
+      animate(activeProgress, targetProgress, {
+        type: "spring",
+        stiffness: 220,
+        damping: 25,
+      });
+    } else {
+      if (!containerRef.current) return;
+      const container = containerRef.current;
+      const rect = container.getBoundingClientRect();
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const containerStart = rect.top + scrollTop;
+      const totalScrollableHeight = container.offsetHeight - window.innerHeight;
 
-    window.scrollTo({
-      top: targetScrollY,
-      behavior: "smooth",
-    });
+      const targetScrollY = containerStart + totalScrollableHeight * targetProgress;
+
+      window.scrollTo({
+        top: targetScrollY,
+        behavior: "smooth",
+      });
+    }
   };
 
   const trackHeight = `${Math.min(500, Math.max(250, events.length * 45))}vh`;
@@ -80,10 +162,10 @@ export default function EventsSection() {
     <section
       ref={containerRef}
       id="events"
-      style={{ height: trackHeight }}
+      style={{ height: isMobile ? "100dvh" : trackHeight }}
       className="relative w-full bg-brand-navy"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col md:flex-row items-center justify-between p-4 md:p-12">
+      <div className="sticky top-0 h-[70%] w-full overflow-hidden flex flex-col md:flex-row items-center justify-between p-2 sm:p-4 md:p-8 lg:p-12">
         
         {/* LOGO & CATEGORY ARC HUB */}
         <LogoCategoryHub
@@ -93,17 +175,21 @@ export default function EventsSection() {
         />
 
         {/* CAROUSEL WHEEL STAGE */}
-        <div className="relative w-full h-full flex items-center justify-center z-20 pointer-events-none">
+        <motion.div
+          onPan={handlePan}
+          onPanEnd={handlePanEnd}
+          className="relative w-full h-full flex items-center justify-center z-20 touch-pan-y"
+        >
           {events.map((event, index) => (
             <WheelCard
               key={event.id || index}
               event={event}
               index={index}
-              scrollYProgress={scrollYProgress}
+              progress={activeProgress}
               totalCards={events.length}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -122,27 +208,23 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory }: LogoC
   return (
     <div className="absolute z-30 pointer-events-auto flex items-center justify-center
       /* Mobile Positioning: Anchored at Bottom Center */
-      bottom-8 left-1/2 -translate-x-1/2 
+      bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 
       /* Desktop Positioning: Anchored at Left Center */
-      md:bottom-auto md:top-1/2 md:left-12 lg:left-20 md:translate-x-0 md:-translate-y-1/2"
+      md:bottom-auto md:top-1/2 md:left-6 lg:left-12 xl:left-16 2xl:left-20 md:translate-x-0 md:-translate-y-1/2"
     >
       <div className="relative flex items-center justify-center">
         
         {/* Central Circular Logo */}
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_30px_rgba(234,179,8,0.25)] z-20 transition-all">
-          <div className="text-brand-golden-yellow font-brand-heading font-black text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wider uppercase text-center">
-            LOGO
-          </div>
-          <span className="text-[8px] md:text-[10px] lg:text-xs text-brand-white/50 tracking-widest uppercase font-mono">
-            Arena
-          </span>
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_25px_rgba(234,179,8,0.25)] z-20 transition-all">
+         <Image src={'/final-logo.png'} height={100} width={100} />
         </div>
 
-        {/* Arced Category Pills orbiting central Logo */}
+        {/* Arced Category Pills Orbiting Logo */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
           {categories.map((cat, idx) => {
             const total = categories.length;
-            const spread = total > 1 ? 90 : 0;
+            
+            const spread = total > 1 ? (total > 4 ? 110 : 90) : 0;
             const step = total > 1 ? spread / (total - 1) : 0;
             const startAngle = -spread / 2;
             const angle = startAngle + idx * step;
@@ -159,17 +241,18 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory }: LogoC
               >
                 <div
                   className="
-                    /* Mobile Orbit: Arcs around TOP of Logo */
-                    [transform:rotate(calc(var(--arc-angle)-90deg))_translate(70px)_rotate(calc(-1*(var(--arc-angle)-90deg)))]
-                    sm:[transform:rotate(calc(var(--arc-angle)-90deg))_translate(82px)_rotate(calc(-1*(var(--arc-angle)-90deg)))]
-                    /* Desktop Orbit: Arcs around RIGHT of Logo */
-                    md:[transform:rotate(var(--arc-angle))_translate(110px)_rotate(calc(-1*var(--arc-angle)))]
-                    lg:[transform:rotate(var(--arc-angle))_translate(135px)_rotate(calc(-1*var(--arc-angle)))]
+                    /* Mobile Orbit: Arcs around TOP of Logo (-90deg offset) */
+                    [transform:rotate(calc(var(--arc-angle)-90deg))_translate(54px)_rotate(calc(-1*(var(--arc-angle)-90deg)))]
+                    sm:[transform:rotate(calc(var(--arc-angle)-90deg))_translate(68px)_rotate(calc(-1*(var(--arc-angle)-90deg)))]
+                    /* Desktop Orbit: Arcs around RIGHT of Logo (0deg offset) */
+                    md:[transform:rotate(var(--arc-angle))_translate(95px)_rotate(calc(-1*var(--arc-angle)))]
+                    lg:[transform:rotate(var(--arc-angle))_translate(120px)_rotate(calc(-1*var(--arc-angle)))]
+                    xl:[transform:rotate(var(--arc-angle))_translate(135px)_rotate(calc(-1*var(--arc-angle)))]
                   "
                 >
                   <button
                     onClick={() => onSelectCategory(cat)}
-                    className={`px-2.5 py-1 md:px-3.5 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                    className={`px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${
                       isActive
                         ? "bg-brand-golden-yellow text-brand-navy border-brand-golden-yellow shadow-[0_0_12px_rgba(234,179,8,0.5)] scale-105"
                         : "bg-brand-navy/90 text-brand-white/80 border-brand-golden-yellow/40 hover:border-brand-golden-yellow hover:text-brand-white hover:scale-105"
@@ -191,12 +274,12 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory }: LogoC
 /* =========================================================================
    WHEEL CARD COMPONENT
    ========================================================================= */
-function WheelCard({ event, index, scrollYProgress, totalCards }: WheelCardProps) {
+function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
   const theta = 360 / totalCards;
   const baseAngle = index * theta;
 
   const globalRotation = useTransform(
-    scrollYProgress,
+    progress,
     [0, 1],
     [0, (totalCards - 1) * theta]
   );
@@ -204,21 +287,29 @@ function WheelCard({ event, index, scrollYProgress, totalCards }: WheelCardProps
   const rotate = useTransform(globalRotation, (v) => baseAngle - v);
 
   const opacity = useTransform(rotate, (angle) => {
-    const threshold = 28;
+    const threshold = 26;
     return Math.abs(angle) < threshold ? 1 - Math.abs(angle) / threshold : 0;
   });
 
   const scale = useTransform(rotate, (angle) => {
-    const threshold = 28;
+    const threshold = 26;
     const abs = Math.abs(angle);
-    return abs < threshold ? 1 - (abs / threshold) * 0.12 : 0.88;
+    return abs < threshold ? 1 - (abs / threshold) * 0.15 : 0.85;
   });
 
   const zIndex = useTransform(rotate, (angle) => 100 - Math.round(Math.abs(angle)));
   const pointerEvents = useTransform(opacity, (v) => (v > 0.6 ? "auto" : "none"));
 
   return (
-    <div className="absolute top-[32%] sm:top-[38%] md:top-1/2 left-1/2 md:left-[58%] lg:left-[60%] w-full max-w-[90%] sm:max-w-md md:max-w-xl lg:max-w-3xl xl:max-w-4xl -translate-x-1/2 -translate-y-1/2 pointer-events-none flex justify-center">
+    <div className="absolute 
+      /* Mobile Placement */
+      top-[26%] sm:top-[30%] -translate-y-1/2 left-1/2 -translate-x-1/2 
+      /* Desktop Placement with Safety Gap */
+      md:top-1/2 md:translate-x-0 md:left-[54%] lg:left-[56%] xl:left-[58%] 2xl:left-[60%] 
+      /* Responsive Width Constraints */
+      w-full max-w-[92%] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl 
+      pointer-events-none flex justify-center"
+    >
       <motion.div
         style={{
           rotate,
@@ -229,60 +320,61 @@ function WheelCard({ event, index, scrollYProgress, totalCards }: WheelCardProps
           transformOrigin: "var(--wheel-pivot)",
         }}
         className="will-change-transform w-full 
-          [--wheel-pivot:50%_850px] 
-          sm:[--wheel-pivot:50%_950px] 
-          md:[--wheel-pivot:clamp(-800px,-45vw,-450px)_50%]
-          lg:[--wheel-pivot:clamp(-1100px,-50vw,-700px)_50%]"
+          [--wheel-pivot:50%_750px] 
+          sm:[--wheel-pivot:50%_850px] 
+          md:[--wheel-pivot:clamp(-750px,-40vw,-400px)_50%]
+          lg:[--wheel-pivot:clamp(-950px,-45vw,-550px)_50%]
+          xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
       >
         <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full h-auto overflow-hidden">
           
-          {/* Glow Highlight Overlay */}
+          {/* Subtle Glow Border */}
           <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
           {/* Card Media Section */}
-          <div className="relative w-full sm:w-2/5 lg:w-[45%] h-28 sm:h-auto min-h-[110px] sm:min-h-[220px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
+          <div className="relative w-full sm:w-2/5 lg:w-[42%] h-28 sm:h-auto min-h-[100px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0">
             <Image
               src={event.image}
               alt={event.title}
               fill
               priority={index === 0}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 42vw"
               className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
             />
           </div>
 
-          {/* Card Content Section */}
-          <div className="p-3.5 sm:p-5 md:p-6 lg:p-7 flex flex-col justify-between flex-grow bg-brand-navy relative z-20 gap-2 sm:gap-3">
+          {/* Card Details Section */}
+          <div className="p-3 sm:p-4 md:p-5 lg:p-6 2xl:p-8 flex flex-col justify-between flex-grow bg-brand-navy relative z-20 gap-1.5 sm:gap-2.5 md:gap-3">
             
-            {/* Header: Title + Event Number */}
+            {/* Header: Title & Event ID */}
             <div>
-              <div className="flex items-start justify-between gap-2 mb-1">
-                <div className="flex items-center gap-2">
-                  <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-3.5 lg:h-3.5 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                  <h3 className="font-brand-competition text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-brand-white tracking-wider line-clamp-1">
+              <div className="flex items-start justify-between gap-2 mb-0.5 sm:mb-1">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
+                  <h3 className="font-brand-competition text-xs sm:text-base md:text-lg lg:text-xl 2xl:text-2xl font-bold text-brand-white tracking-wider line-clamp-1">
                     {event.title}
                   </h3>
                 </div>
-                <span className={`font-brand-heading font-bold text-xs sm:text-base md:text-lg lg:text-2xl shrink-0 ${event.colorCls.text}`}>
+                <span className={`font-brand-heading font-bold text-xs sm:text-base md:text-lg lg:text-xl 2xl:text-2xl shrink-0 ${event.colorCls.text}`}>
                   #{event.id}
                 </span>
               </div>
 
-              {/* Category Subtitle */}
-              <span className={`block font-brand-heading font-bold text-[9px] sm:text-xs lg:text-sm uppercase tracking-widest ${event.colorCls.text}`}>
+              {/* Category Tag */}
+              <span className={`block font-brand-heading font-bold text-[8px] sm:text-[10px] md:text-xs lg:text-sm uppercase tracking-widest ${event.colorCls.text}`}>
                 {event.category}
               </span>
             </div>
 
-            {/* Description Paragraph */}
-            <p className="text-brand-white/70 font-brand-body text-[11px] sm:text-xs md:text-sm lg:text-base leading-relaxed line-clamp-2 sm:line-clamp-3 lg:line-clamp-4">
+            {/* Description */}
+            <p className="text-brand-white/70 font-brand-body text-[10px] sm:text-xs md:text-sm lg:text-base leading-tight sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
               Initiate protocol {event.id}. Prepare your systems for the {event.title} challenge within the arena. Success requires strategy.
             </p>
 
-            {/* CTA Button */}
+            {/* Action Link */}
             <Link
               href={`/event/${event.slug}`}
-              className={`relative z-30 block text-center w-full py-2 sm:py-2.5 lg:py-3 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-[10px] sm:text-xs md:text-sm lg:text-base font-bold tracking-widest uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-1 sm:mt-2`}
+              className={`relative z-30 block text-center w-full py-1.5 sm:py-2 md:py-2.5 lg:py-3 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-[9px] sm:text-xs md:text-sm lg:text-base font-bold tracking-widest uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-1`}
             >
               [ View Details ]
             </Link>
