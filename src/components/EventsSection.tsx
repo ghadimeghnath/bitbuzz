@@ -44,7 +44,7 @@ interface WheelCardProps {
 // calculation) stays in sync automatically.
 // ---------------------------------------------------------------------------
 const STAGE_HUB_GAP = {
-  mobile: 150, // < 640px, flex-col layout (stage stacked above hub)
+  mobile: 140, // < 640px, flex-col layout (stage stacked above hub)
   tablet: 20, // >= 640px (sm) and < 768px (md), still flex-col
   desktop: 0, // >= 768px (md+), hub is absolutely positioned so this is inert
 } as const;
@@ -245,9 +245,18 @@ export default function EventsSection() {
     <section
       ref={containerRef}
       id="events"
-      style={{ height: isMobile ? "100dvh" : trackHeight }}
-      className="relative w-full bg-brand-navy"
+      style={{ height: isMobile ? "90dvh" : trackHeight }}
+      className="relative w-full bg-brand-navy "
     >
+      {/* Title chip */}
+      <div className="relative mt-8 sm:mt-10">
+        <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
+          <CornerMarks />
+          <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
+            Events & Rules
+          </h2>
+        </div>
+      </div>
       <div
         ref={stickyRef}
         style={{
@@ -257,32 +266,24 @@ export default function EventsSection() {
           ["--stage-hub-gap-tablet" as any]: `${STAGE_HUB_GAP.tablet}px`,
           ["--stage-hub-gap-desktop" as any]: `${STAGE_HUB_GAP.desktop}px`,
         }}
-        className="sticky top-0 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-between p-2 sm:p-4 md:p-8 lg:p-12
+        className="sticky top-0 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-start md:justify-between p-2 sm:p-4 md:p-8 lg:p-12
           gap-[var(--stage-hub-gap-mobile)] sm:gap-[var(--stage-hub-gap-tablet)] md:gap-[var(--stage-hub-gap-desktop)]"
       >
 
-        {/* Title chip */}
-              <div className="relative mt-8 sm:mt-10">
-                <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
-                  <CornerMarks />
-                  <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
-                   Events & Rules 
-                  </h2>
-                </div>
-              </div>
         {/* CAROUSEL WHEEL STAGE */}
         <motion.div
           onPanStart={handlePanStart}
           onPan={handlePan}
           onPanEnd={handlePanEnd}
           style={{
-            // Inline (not just a Tailwind class) so the browser is guaranteed to hand
-            // horizontal touch gestures to Framer Motion's pan recognizer instead of
-            // treating them as an ambiguous native scroll/gesture.
+            // Keeps touch gestures for Framer Motion
             touchAction: "pan-y",
-            ...(isMobile ? { height: stageHeight ?? undefined } : {}),
           }}
-          className="relative w-full md:h-full flex items-center justify-center z-20"
+          // 
+          // 1. h-[80vh] sets a fixed height (adjust as needed) for mobile/desktop fallback.
+          // 2. md:h-full keeps it full height on larger screens.
+          // 3. overflow-hidden ensures the stage itself never scrolls.
+          className="relative w-full h-[48dvh] md:h-full flex items-center justify-center z-20"
         >
           {events.map((event, index) => (
             <WheelCard
@@ -298,8 +299,8 @@ export default function EventsSection() {
         {/* LOGO & CATEGORY ARC HUB */}
         <div
           ref={hubRef}
-          className="relative md:absolute z-30 shrink-0
-            md:top-1/2 md:left-6 lg:left-12 xl:left-16 2xl:left-20 md:-translate-y-1/2"
+          className="relative z-30 shrink-0
+            md:absolute md:bottom-auto md:top-1/2 md:left-6 lg:left-12 xl:left-16 2xl:left-20 md:-translate-y-1/2 md:translate-x-0"
         >
           <LogoCategoryHub
             categories={categories}
@@ -346,10 +347,12 @@ function getLogoDiameter(width: number) {
 //    physically reach into the wheel stage next to it, regardless of count.
 // ---------------------------------------------------------------------------
 const PILL_ARC = {
-  minAngularGapDeg: 58,
+  minAngularGapDegDesktop: 30,
+  minAngularGapDegTablet: 30,
+  minAngularGapDegMobile: 56,
   baselinePillCount: 4,
   radiusGrowthPerExtraPill: 14, // px
-  bufferMobile: 42, // px clearance beyond logo radius, mobile (vertical arc)
+  bufferMobile: 50, // px clearance beyond logo radius, mobile (vertical arc)
   bufferDesktop: 96, // px clearance beyond logo radius, desktop (horizontal arc)
   maxRadiusRatioMobile: 0.42, // cap: fraction of viewport height
   maxRadiusRatioDesktop: 0.28, // cap: fraction of viewport width
@@ -358,17 +361,24 @@ const PILL_ARC = {
 function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobile }: LogoCategoryHubProps) {
   const total = categories.length;
 
+  const [pillRadius, setPillRadius] = useState(110);
+  const [angularGap, setAngularGap] = useState<number>(PILL_ARC.minAngularGapDegDesktop);
+
   // Fixed angular gap between pills → total spread grows with category count
   // instead of pills being squeezed together (mirrors justify-content: space-between).
-  const spread = total > 1 ? PILL_ARC.minAngularGapDeg * (total - 1) : 0;
-  const step = total > 1 ? PILL_ARC.minAngularGapDeg : 0;
-
-  // Pill orbit radius is derived from the ACTUAL logo size at the current breakpoint, not
-  // guessed vw units — this guarantees pills always clear the logo, at every screen size.
-  const [pillRadius, setPillRadius] = useState(110);
+  const spread = total > 1 ? angularGap * (total - 1) : 0;
+  const step = total > 1 ? angularGap : 0;
 
   useEffect(() => {
     const recalc = () => {
+      let currentGap: number = PILL_ARC.minAngularGapDegDesktop;
+      if (window.innerWidth < 640) {
+        currentGap = PILL_ARC.minAngularGapDegMobile;
+      } else if (window.innerWidth < 768) {
+        currentGap = PILL_ARC.minAngularGapDegTablet;
+      }
+      setAngularGap(currentGap);
+
       const diameter = getLogoDiameter(window.innerWidth);
       const logoR = diameter / 2;
       const buffer = window.innerWidth < 768 ? PILL_ARC.bufferMobile : PILL_ARC.bufferDesktop;
@@ -430,11 +440,10 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobil
                 // then translate() pushes it outward along that rotated axis.
                 transform: `translate(-50%, -50%) rotate(${angle}deg) ${translate}`,
               }}
-              className={`pointer-events-auto px-2 py-3 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${
-                isActive
+              className={`pointer-events-auto px-2 py-3 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive
                   ? "bg-brand-golden-yellow text-brand-navy border-brand-golden-yellow shadow-[0_0_12px_rgba(234,179,8,0.5)] scale-105"
                   : "bg-brand-navy/90 text-brand-white/80 border-brand-golden-yellow/40 hover:border-brand-golden-yellow hover:text-brand-white hover:scale-105"
-              }`}
+                }`}
             >
               {cat}
             </button>
