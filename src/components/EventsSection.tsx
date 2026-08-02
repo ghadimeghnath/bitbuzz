@@ -216,7 +216,7 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory }: LogoC
         
         {/* Central Circular Logo */}
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_25px_rgba(234,179,8,0.25)] z-20 transition-all">
-         <Image src={'/final-logo.png'} height={100} width={100} />
+         <Image src={'/final-logo.png'} height={100} width={100} alt="Logo" />
         </div>
 
         {/* Arced Category Pills Orbiting Logo */}
