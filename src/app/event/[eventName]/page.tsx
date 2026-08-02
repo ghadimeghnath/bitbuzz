@@ -3,23 +3,7 @@ import { notFound } from 'next/navigation';
 import fs from 'fs';
 import path from 'path';
 
-// Interfaces for Event Data
-interface Coordinator {
-  name: string;
-  phone?: string;
-}
-
-interface EventData {
-  slug: string;
-  title: string;
-  category: string;
-  about: string;
-  date: string;
-  teamSize: string;
-  rules: string[];
-  studentCoordinators: Coordinator[];
-  staffCoordinators: Coordinator[];
-}
+import { parseDocxEvent, EventData } from '@/lib/docxParser';
 
 interface PageProps {
   params: Promise<{
@@ -27,24 +11,19 @@ interface PageProps {
   }>;
 }
 
-const eventsDir = path.join(process.cwd(), 'src/data/events');
-
-function getEvent(slug: string): EventData | null {
-  const filePath = path.join(eventsDir, `${slug}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-}
+const eventsDir = path.join(process.cwd(), 'public/events');
 
 export async function generateStaticParams() {
+  if (!fs.existsSync(eventsDir)) return [];
   const files = fs.readdirSync(eventsDir);
-  return files.filter(f => f.endsWith('.json')).map((file) => ({
-    eventName: file.replace('.json', ''),
+  return files.filter(f => f.endsWith('.docx')).map((file) => ({
+    eventName: file.replace('.docx', ''),
   }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const { eventName } = await params;
-  const event = getEvent(eventName);
+  const event = await parseDocxEvent(eventName);
   
   if (!event) return { title: 'Event Not Found' };
   return { title: `${event.title} - Epitome Fest` };
@@ -53,8 +32,8 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function EventPage({ params }: PageProps) {
   const { eventName } = await params;
 
-  // Find event matching the dynamic dynamic route param
-  const event = getEvent(eventName);
+  // Find event matching the dynamic route param via DOCX
+  const event = await parseDocxEvent(eventName);
 
   if (!event) {
     notFound();
@@ -96,9 +75,9 @@ export default async function EventPage({ params }: PageProps) {
               {event.title}
             </h1>
             <div className="relative inline-block">
-              <span className="inline-block border-2 border-brand-orange bg-brand-orange/10 text-brand-orange text-xs sm:text-sm px-4 py-1.5 rounded font-brand-body tracking-widest uppercase font-bold shadow-[0_0_10px_rgba(255,107,0,0.2)]">
+              {/* <span className="inline-block border-2 border-brand-orange bg-brand-orange/10 text-brand-orange text-xs sm:text-sm px-4 py-1.5 rounded font-brand-body tracking-widest uppercase font-bold shadow-[0_0_10px_rgba(255,107,0,0.2)]">
                 {event.category}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>
@@ -110,13 +89,12 @@ export default async function EventPage({ params }: PageProps) {
           <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
             About This Event
           </h2>
-          <p className="text-sm md:text-base leading-relaxed text-brand-white/80 font-brand-body">
-            {event.about}
+          <p className="text-sm md:text-base leading-relaxed text-brand-white/80 font-brand-body" dangerouslySetInnerHTML={{ __html: event.about }}>
           </p>
         </section>
 
         {/* Section 2: Event Details */}
-        <section className="group relative mt-10 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-light-green/60 hover:shadow-[0_0_25px_rgba(9,209,199,0.15)] hover:bg-brand-navy/60">
+        {/* <section className="group relative mt-10 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-light-green/60 hover:shadow-[0_0_25px_rgba(9,209,199,0.15)] hover:bg-brand-navy/60">
           <div className="absolute top-6 right-0 w-1 h-8 bg-brand-light-green rounded-l shadow-[0_0_10px_rgba(9,209,199,0.8)]" />
           
           <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-light-green tracking-wider">
@@ -136,10 +114,10 @@ export default async function EventPage({ params }: PageProps) {
               <span className="font-bold text-brand-white text-lg">{event.category}</span>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Section 3: Event Rules */}
-        <section className="group relative mt-10 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-orange/60 hover:shadow-[0_0_25px_rgba(255,107,0,0.15)] hover:bg-brand-navy/60">
+        {/* <section className="group relative mt-10 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-orange/60 hover:shadow-[0_0_25px_rgba(255,107,0,0.15)] hover:bg-brand-navy/60">
           <div className="absolute top-6 left-0 w-1 h-8 bg-brand-orange rounded-r shadow-[0_0_10px_rgba(255,107,0,0.8)]" />
           
           <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-orange tracking-wider">
@@ -149,15 +127,34 @@ export default async function EventPage({ params }: PageProps) {
             {event.rules.map((rule, idx) => (
               <li key={idx} className="flex items-start gap-3">
                 <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-brand-orange shadow-[0_0_8px_rgba(255,107,0,0.8)]" />
-                <span>{rule}</span>
+                <span dangerouslySetInnerHTML={{ __html: rule }} />
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        {/* Section: Additional Info (if any) */}
+        {/* {event.additionalInfo && event.additionalInfo.length > 0 && event.additionalInfo.map((info, idx) => (
+          <section key={idx} className="group relative mt-10 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
+            <div className="absolute top-6 left-0 w-1 h-8 bg-brand-golden-yellow rounded-r shadow-[0_0_10px_rgba(255,184,0,0.8)]" />
+            
+            <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
+              {info.heading}
+            </h2>
+            <ul className="space-y-4 text-sm md:text-base text-brand-white/80 font-brand-body leading-relaxed">
+              {info.content.map((item, itemIdx) => (
+                <li key={itemIdx} className="flex items-start gap-3">
+                  <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-brand-golden-yellow shadow-[0_0_8px_rgba(255,184,0,0.8)]" />
+                  <span dangerouslySetInnerHTML={{ __html: item }} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))} */}
+
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10"> */}
           {/* Section 4: Student Coordinators */}
-          <section className="group relative border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
+          {/* <section className="group relative border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
             <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
               Student Coordinators
             </h2>
@@ -176,10 +173,10 @@ export default async function EventPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
-          </section>
+          </section> */}
 
           {/* Section 5: Staff Coordinators */}
-          <section className="group relative border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
+          {/* <section className="group relative border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
             <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
               Staff Coordinators
             </h2>
@@ -193,8 +190,8 @@ export default async function EventPage({ params }: PageProps) {
                 </div>
               ))}
             </div>
-          </section>
-        </div>
+          </section> */}
+        {/* </div> */}
 
       </div>
     </div>
