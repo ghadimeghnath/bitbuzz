@@ -26,7 +26,7 @@ export default function HeroSection() {
       id="hero"
       className="
 relative
-min-h-screen
+min-h-dvh
 w-full
 overflow-hidden
 bg-brand-navy
