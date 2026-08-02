@@ -157,7 +157,7 @@ drop-shadow-lg
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group cursor-pointer focus:outline-none"
+        className="absolute bottom-15 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group cursor-pointer focus:outline-none"
       >
         {/* Contextual Label */}
         <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-brand-golden-yellow/80 group-hover:text-brand-golden-yellow transition-colors duration-300">
