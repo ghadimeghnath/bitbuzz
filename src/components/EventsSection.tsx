@@ -14,6 +14,7 @@ import { useRef, useMemo, useState, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import events from "@/data/baseEvents.json";
+import { CornerMarks } from "./ui/CornerMarks";
 
 interface EventItem {
   id: string | number;
@@ -36,8 +37,17 @@ interface WheelCardProps {
   totalCards: number;
 }
 
-// Fixed px gap kept between the bottom of the card stage and the top of the hub on mobile.
-const MOBILE_STAGE_HUB_GAP = 0;
+// ---------------------------------------------------------------------------
+// SINGLE SOURCE OF TRUTH: gap between the CAROUSEL WHEEL STAGE and the
+// LOGO & CATEGORY ARC HUB. Adjust these px values per breakpoint and every
+// layout that reads from them (the flex gap AND the mobile stage-height
+// calculation) stays in sync automatically.
+// ---------------------------------------------------------------------------
+const STAGE_HUB_GAP = {
+  mobile: 150, // < 640px, flex-col layout (stage stacked above hub)
+  tablet: 20, // >= 640px (sm) and < 768px (md), still flex-col
+  desktop: 0, // >= 768px (md+), hub is absolutely positioned so this is inert
+} as const;
 
 export default function EventsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,7 +91,7 @@ export default function EventsSection() {
       // Account for category pills arcing ~60px above the hub container box on mobile
       const PILL_ARC_OVERSHOOT = 60;
       const available =
-        stickyContentHeight - hubHeight - PILL_ARC_OVERSHOOT - MOBILE_STAGE_HUB_GAP;
+        stickyContentHeight - hubHeight - PILL_ARC_OVERSHOOT - STAGE_HUB_GAP.mobile;
 
       setStageHeight(Math.max(140, available));
     };
@@ -240,8 +250,26 @@ export default function EventsSection() {
     >
       <div
         ref={stickyRef}
-        className="sticky top-0 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-between p-2 sm:p-4 md:p-8 lg:p-12 gap-2 md:gap-0"
+        style={{
+          // Expose STAGE_HUB_GAP as CSS vars so the same responsive Tailwind
+          // gap classes below can reference them at every breakpoint.
+          ["--stage-hub-gap-mobile" as any]: `${STAGE_HUB_GAP.mobile}px`,
+          ["--stage-hub-gap-tablet" as any]: `${STAGE_HUB_GAP.tablet}px`,
+          ["--stage-hub-gap-desktop" as any]: `${STAGE_HUB_GAP.desktop}px`,
+        }}
+        className="sticky top-0 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-between p-2 sm:p-4 md:p-8 lg:p-12
+          gap-[var(--stage-hub-gap-mobile)] sm:gap-[var(--stage-hub-gap-tablet)] md:gap-[var(--stage-hub-gap-desktop)]"
       >
+
+        {/* Title chip */}
+              <div className="relative mt-8 sm:mt-10">
+                <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
+                  <CornerMarks />
+                  <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
+                   Events & Rules 
+                  </h2>
+                </div>
+              </div>
         {/* CAROUSEL WHEEL STAGE */}
         <motion.div
           onPanStart={handlePanStart}
@@ -304,11 +332,36 @@ function getLogoDiameter(width: number) {
   return 64; // base
 }
 
+// ---------------------------------------------------------------------------
+// PILL ARC LAYOUT CONFIG
+// Instead of a fixed total spread that squeezes pills closer together as more
+// categories are added (which risks them overlapping each other, the logo,
+// or the wheel stage), the arc grows to keep spacing consistent:
+//  - minAngularGapDeg is the angle held between every adjacent pill.
+//    Total spread = minAngularGapDeg * (count - 1), so the arc widens
+//    automatically as categories are added — the "justify-between" of the arc.
+//  - Past baselinePillCount categories, the radius itself also grows a bit
+//    per extra pill, so a wider arc doesn't crowd the logo.
+//  - maxRadiusRatio caps how far the arc can extend outward so it can never
+//    physically reach into the wheel stage next to it, regardless of count.
+// ---------------------------------------------------------------------------
+const PILL_ARC = {
+  minAngularGapDeg: 58,
+  baselinePillCount: 4,
+  radiusGrowthPerExtraPill: 14, // px
+  bufferMobile: 42, // px clearance beyond logo radius, mobile (vertical arc)
+  bufferDesktop: 96, // px clearance beyond logo radius, desktop (horizontal arc)
+  maxRadiusRatioMobile: 0.42, // cap: fraction of viewport height
+  maxRadiusRatioDesktop: 0.28, // cap: fraction of viewport width
+} as const;
+
 function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobile }: LogoCategoryHubProps) {
   const total = categories.length;
-  // Tighter fan-spread so pills sit close together, matching reference art
-  const spread = total > 1 ? (total > 4 ? 100 : 70) : 0;
-  const step = total > 1 ? spread / (total - 1) : 0;
+
+  // Fixed angular gap between pills → total spread grows with category count
+  // instead of pills being squeezed together (mirrors justify-content: space-between).
+  const spread = total > 1 ? PILL_ARC.minAngularGapDeg * (total - 1) : 0;
+  const step = total > 1 ? PILL_ARC.minAngularGapDeg : 0;
 
   // Pill orbit radius is derived from the ACTUAL logo size at the current breakpoint, not
   // guessed vw units — this guarantees pills always clear the logo, at every screen size.
@@ -318,18 +371,29 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobil
     const recalc = () => {
       const diameter = getLogoDiameter(window.innerWidth);
       const logoR = diameter / 2;
-      // Mobile pills arc vertically (only pill HEIGHT matters for clearance) so need a
-      // smaller buffer. Desktop pills arc horizontally (pill WIDTH matters) so need more.
-      const buffer = window.innerWidth < 768 ? 42 : 96;
-      setPillRadius(logoR + buffer);
+      const buffer = window.innerWidth < 768 ? PILL_ARC.bufferMobile : PILL_ARC.bufferDesktop;
+
+      // Grow the radius as extra categories widen the arc, so pills spread
+      // outward rather than crowding closer to the logo/stage.
+      const extraPills = Math.max(0, total - PILL_ARC.baselinePillCount);
+      const grownRadius = logoR + buffer + extraPills * PILL_ARC.radiusGrowthPerExtraPill;
+
+      // Hard cap so the arc can never physically reach into the wheel stage,
+      // however many categories exist.
+      const maxRadius =
+        window.innerWidth < 768
+          ? window.innerHeight * PILL_ARC.maxRadiusRatioMobile
+          : window.innerWidth * PILL_ARC.maxRadiusRatioDesktop;
+
+      setPillRadius(Math.min(grownRadius, maxRadius));
     };
     recalc();
     window.addEventListener("resize", recalc);
     return () => window.removeEventListener("resize", recalc);
-  }, []);
+  }, [total]);
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div className="relative flex items-center justify-between">
 
       {/* Central Circular Logo */}
       <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_25px_rgba(234,179,8,0.25)] z-20 transition-all">
@@ -366,7 +430,7 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobil
                 // then translate() pushes it outward along that rotated axis.
                 transform: `translate(-50%, -50%) rotate(${angle}deg) ${translate}`,
               }}
-              className={`pointer-events-auto px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${
+              className={`pointer-events-auto px-2 py-3 sm:px-2.5 sm:py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 backdrop-blur-md border font-brand-heading text-[7px] sm:text-[9px] md:text-xs lg:text-sm font-bold tracking-widest uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${
                 isActive
                   ? "bg-brand-golden-yellow text-brand-navy border-brand-golden-yellow shadow-[0_0_12px_rgba(234,179,8,0.5)] scale-105"
                   : "bg-brand-navy/90 text-brand-white/80 border-brand-golden-yellow/40 hover:border-brand-golden-yellow hover:text-brand-white hover:scale-105"
