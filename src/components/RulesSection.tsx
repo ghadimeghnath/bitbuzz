@@ -10,31 +10,49 @@ import {
   Mail,
   Headphones,
 } from "lucide-react";
-import { CornerMarks } from "./ui/CornerMarks";
-import { CircuitDots } from "./ui/CircuitDots";
 
 /* ------------------------------------------------------------------ */
-/*  Shared building blocks                                            */
+/*  Clip-Path Definitions (Chamfered Cyber Angles)                   */
 /* ------------------------------------------------------------------ */
 
+// Outer Cut: 24px chamfered corners
+const MAIN_CARD_OUTER_CLIP = `polygon(
+  24px 0, calc(100% - 24px) 0,
+  100% 24px, 100% calc(100% - 24px),
+  calc(100% - 24px) 100%, 24px 100%,
+  0 calc(100% - 24px), 0 24px
+)`;
 
-/** Four small bright "HUD" corner brackets that sit on top of a dimmer
- *  chamfered border */
+// Inner Cut: 23px (1px padding gap offset for border effect)
+const MAIN_CARD_INNER_CLIP = `polygon(
+  23px 0, calc(100% - 23px) 0,
+  100% 23px, 100% calc(100% - 23px),
+  calc(100% - 23px) 100%, 23px 100%,
+  0 calc(100% - 23px), 0 23px
+)`;
 
+// Floating Header Badge Cut
+const BADGE_OUTER_CLIP = `polygon(16px 0, calc(100% - 16px) 0, 100% 100%, 0 100%)`;
+const BADGE_INNER_CLIP = `polygon(15px 0, calc(100% - 15px) 0, 100% 100%, 0 100%)`;
 
-/** Outer page shell shared by both posters. */
+// Icon Container Cut
+const ICON_BOX_OUTER = `polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)`;
+const ICON_BOX_INNER = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px)`;
+
+/* ------------------------------------------------------------------ */
+/*  Poster Shell Component                                            */
+/* ------------------------------------------------------------------ */
+
 function PosterShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-brand-grid relative z-10 mx-auto w-full max-w-4xl overflow-hidden bg-brand-navy px-4 py-8 font-brand-body text-brand-white sm:px-10 sm:py-10">
+    <div className="relative z-10 mx-auto w-full max-w-4xl bg-brand-navy px-3 py-6 font-brand-body text-brand-white sm:px-8 sm:py-10">
       {children}
     </div>
   );
 }
 
-
-
 /* ------------------------------------------------------------------ */
-/*  Poster 2 — General Rules                                          */
+/*  Rule Item Component with HUD Badge Icon                           */
 /* ------------------------------------------------------------------ */
 
 function RuleItem({
@@ -48,345 +66,382 @@ function RuleItem({
 }) {
   return (
     <li className="flex items-start gap-4 py-4 sm:gap-5 sm:py-5">
-      <Icon
-        className={`mt-0.5 h-7 w-7 shrink-0 sm:h-8 sm:w-8 ${iconColorClass}`}
-        strokeWidth={1.5}
-      />
-      <p className="text-xs leading-relaxed sm:text-sm font-brand-body text-brand-white/90">{children}</p>
+      {/* Sci-Fi Icon Outer Container */}
+      <div
+        className="shrink-0 bg-gradient-to-br from-brand-golden-yellow/80 via-brand-orange/40 to-brand-golden-yellow/20 p-[1.5px] drop-shadow-[0_0_8px_rgba(243,202,32,0.2)]"
+        style={{ clipPath: ICON_BOX_OUTER }}
+      >
+        {/* Sci-Fi Icon Inner Dark Box */}
+        <div
+          className="flex h-10 w-10 items-center justify-center bg-brand-navy p-2 sm:h-12 sm:w-12"
+          style={{ clipPath: ICON_BOX_INNER }}
+        >
+          <Icon
+            className={`h-5 w-5 sm:h-6 sm:w-6 ${iconColorClass}`}
+            strokeWidth={1.8}
+          />
+        </div>
+      </div>
+
+      {/* Text Content */}
+      <p className="pt-1 text-xs leading-relaxed text-brand-white/90 font-brand-body sm:text-sm">
+        {children}
+      </p>
     </li>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/*  General Rules Poster                                              */
+/* ------------------------------------------------------------------ */
+
 export function GeneralRulesPoster() {
-
-const generalRules = [
-  {
-    icon: Users,
-    color: "text-brand-orange",
-    content: (
-      <>
-        This competition is exclusively open to{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Higher Secondary School (HSS)
-        </span>{" "}
-        students.
-      </>
-    ),
-  },
-  {
-    icon: UserRound,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        Each{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Higher Secondary School
-        </span>{" "}
-        is permitted to register{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          only one team
-        </span>{" "}
-        per competition.
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        Each team may consist of a maximum of{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          35 participants
-        </span>
-        .
-      </>
-    ),
-  },
-  {
-    icon: Ban,
-    color: "text-brand-orange",
-    content: (
-      <>
-        There are{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          no registration charges
-        </span>{" "}
-        for participation.
-      </>
-    ),
-  },
-  {
-    icon: Building2,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        The competition will be conducted on the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          college campus
-        </span>
-        .
-      </>
-    ),
-  },
-  {
-    icon: CalendarDays,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        To avoid scheduling conflicts, Higher Secondary Schools are advised
-        to nominate{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          different participants
-        </span>{" "}
-        for different events, as some events may be conducted
-        simultaneously.
-      </>
-    ),
-  },
-  {
-    icon: UserRound,
-    color: "text-brand-orange",
-    content: (
-      <>
-        The{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Teacher-in-Charge
-        </span>{" "}
-        must register the institution through the official BitBuzz website.
-        The registration link (Google Form) will be available on the
-        website. The Teacher-in-Charge is responsible for submitting the
-        institution's registration along with the names of participants for
-        their respective events.
-      </>
-    ),
-  },
-  {
-    icon: CalendarDays,
-    color: "text-brand-orange",
-    content: (
-      <>
-        Kindly confirm your participation on or before{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          4th September 2026
-        </span>
-        .
-      </>
-    ),
-  },
-  {
-    icon: Mail,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        Important information and event-related updates will be
-        communicated via{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          email
-        </span>{" "}
-        to the registered Teacher-in-Charge and participants.
-      </>
-    ),
-  },
-  {
-    icon: Headphones,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        For event-specific rules and further details, please contact the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Student Coordinator
-        </span>{" "}
-        of the respective event mentioned in the brochure.
-      </>
-    ),
-  },
-  {
-    icon: CalendarDays,
-    color: "text-brand-orange",
-    content: (
-      <>
-        Participants are required to report to the venue on time. The
-        reporting time is{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          8:00 AM
-        </span>
-        .
-      </>
-    ),
-  },
-  {
-    icon: UserRound,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        Participants must carry their valid{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Higher Secondary School (HSS) ID Card
-        </span>{" "}
-        throughout the competition.
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        Points will be awarded based on participation and final placement
-        in each event.
-        <br />
-        <br />
-        <span className="font-bold text-brand-golden-yellow">
-          Winner (1st Place):
-        </span>{" "}
-        50 Points
-        <br />
-        <span className="font-bold text-brand-golden-yellow">
-          Runner-up (2nd Place):
-        </span>{" "}
-        30 Points
-        <br />
-        <span className="font-bold text-brand-golden-yellow">
-          Participation:
-        </span>{" "}
-        10 Points
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-orange",
-    content: (
-      <>
-        Winning entries may be featured on the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          College's official social media platforms
-        </span>
-        .
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        Trophies and certificates will be awarded to the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Overall Winner
-        </span>{" "}
-        and{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          Overall Runner-up
-        </span>{" "}
-        teams.
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        Individual trophies and certificates will be awarded to the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          1st
-        </span>{" "}
-        and{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          2nd
-        </span>{" "}
-        place winners of each event.
-      </>
-    ),
-  },
-  {
-    icon: Mail,
-    color: "text-brand-orange",
-    content: (
-      <>
-        All participants will receive an{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          e-certificate
-        </span>{" "}
-        of participation.
-      </>
-    ),
-  },
-  {
-    icon: Ban,
-    color: "text-brand-orange",
-    content: (
-      <>
-        The use of cigarettes, alcohol, abusive language, or any form of
-        inappropriate or vulgar behaviour is{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          strictly prohibited
-        </span>{" "}
-        and will result in immediate disqualification.
-      </>
-    ),
-  },
-  {
-    icon: Users,
-    color: "text-brand-light-green",
-    content: (
-      <>
-        The organizers will provide{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          snacks and a working lunch
-        </span>{" "}
-        to all registered participants and accompanying faculty members.
-      </>
-    ),
-  },
-  {
-    icon: Headphones,
-    color: "text-brand-golden-yellow",
-    content: (
-      <>
-        The decisions of the{" "}
-        <span className="font-bold text-brand-golden-yellow">
-          organizers and judges
-        </span>{" "}
-        shall be final and binding in all matters related to the
-        competition.
-      </>
-    ),
-  },
-  
-];
-
+  const generalRules = [
+    {
+      icon: Users,
+      color: "text-brand-orange",
+      content: (
+        <>
+          This competition is exclusively open to{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Higher Secondary School (HSS)
+          </span>{" "}
+          students.
+        </>
+      ),
+    },
+    {
+      icon: UserRound,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          Each{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Higher Secondary School
+          </span>{" "}
+          is permitted to register{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            only one team
+          </span>{" "}
+          per competition.
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          Each team may consist of a maximum of{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            35 participants
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      icon: Ban,
+      color: "text-brand-orange",
+      content: (
+        <>
+          There are{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            no registration charges
+          </span>{" "}
+          for participation.
+        </>
+      ),
+    },
+    {
+      icon: Building2,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          The competition will be conducted on the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            college campus
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      icon: CalendarDays,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          To avoid scheduling conflicts, Higher Secondary Schools are advised
+          to nominate{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            different participants
+          </span>{" "}
+          for different events, as some events may be conducted
+          simultaneously.
+        </>
+      ),
+    },
+    {
+      icon: UserRound,
+      color: "text-brand-orange",
+      content: (
+        <>
+          The{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Teacher-in-Charge
+          </span>{" "}
+          must register the institution through the official BitBuzz website.
+          The registration link (Google Form) will be available on the
+          website. The Teacher-in-Charge is responsible for submitting the
+          institution's registration along with the names of participants for
+          their respective events.
+        </>
+      ),
+    },
+    {
+      icon: CalendarDays,
+      color: "text-brand-orange",
+      content: (
+        <>
+          Kindly confirm your participation on or before{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            4th September 2026
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      icon: Mail,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          Important information and event-related updates will be
+          communicated via{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            email
+          </span>{" "}
+          to the registered Teacher-in-Charge and participants.
+        </>
+      ),
+    },
+    {
+      icon: Headphones,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          For event-specific rules and further details, please contact the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Student Coordinator
+          </span>{" "}
+          of the respective event mentioned in the brochure.
+        </>
+      ),
+    },
+    {
+      icon: CalendarDays,
+      color: "text-brand-orange",
+      content: (
+        <>
+          Participants are required to report to the venue on time. The
+          reporting time is{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            8:00 AM
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      icon: UserRound,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          Participants must carry their valid{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Higher Secondary School (HSS) ID Card
+          </span>{" "}
+          throughout the competition.
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          Points will be awarded based on participation and final placement
+          in each event.
+          <br />
+          <br />
+          <span className="font-bold text-brand-golden-yellow">
+            Winner (1st Place):
+          </span>{" "}
+          50 Points
+          <br />
+          <span className="font-bold text-brand-golden-yellow">
+            Runner-up (2nd Place):
+          </span>{" "}
+          30 Points
+          <br />
+          <span className="font-bold text-brand-golden-yellow">
+            Participation:
+          </span>{" "}
+          10 Points
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-orange",
+      content: (
+        <>
+          Winning entries may be featured on the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            College's official social media platforms
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          Trophies and certificates will be awarded to the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Overall Winner
+          </span>{" "}
+          and{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Overall Runner-up
+          </span>{" "}
+          teams.
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          Individual trophies and certificates will be awarded to the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            1st
+          </span>{" "}
+          and{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            2nd
+          </span>{" "}
+          place winners of each event.
+        </>
+      ),
+    },
+    {
+      icon: Mail,
+      color: "text-brand-orange",
+      content: (
+        <>
+          All participants will receive an{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            e-certificate
+          </span>{" "}
+          of participation.
+        </>
+      ),
+    },
+    {
+      icon: Ban,
+      color: "text-brand-orange",
+      content: (
+        <>
+          The use of cigarettes, alcohol, abusive language, or any form of
+          inappropriate or vulgar behaviour is{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            strictly prohibited
+          </span>{" "}
+          and will result in immediate disqualification.
+        </>
+      ),
+    },
+    {
+      icon: Users,
+      color: "text-brand-light-green",
+      content: (
+        <>
+          The organizers will provide{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            snacks and a working lunch
+          </span>{" "}
+          to all registered participants and accompanying faculty members.
+        </>
+      ),
+    },
+    {
+      icon: Headphones,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          The decisions of the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            organizers and judges
+          </span>{" "}
+          shall be final and binding in all matters related to the
+          competition.
+        </>
+      ),
+    },
+  ];
 
   return (
     <PosterShell>
-      {/* Title chip */}
-      <div className="relative mt-8 sm:mt-10">
-        <CircuitDots className="pointer-events-none absolute -right-4 -top-10 hidden h-24 w-40 text-brand-golden-yellow/25 sm:block" />
-        <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
-          <CornerMarks />
-          <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
-            General Rules
-          </h2>
+      <div className="relative mt-6 sm:mt-8">
+        
+        {/* ------------------------------------------------------------- */}
+        {/* Floating Header Badge sitting on top border                    */}
+        {/* ------------------------------------------------------------- */}
+        <div
+          className="absolute -top-4 left-1/2 z-20 -translate-x-1/2 bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_12px_rgba(243,202,32,0.4)]"
+          style={{ clipPath: BADGE_OUTER_CLIP }}
+        >
+          <div
+            className="bg-brand-navy px-6 py-1.5 text-center sm:px-10 sm:py-2"
+            style={{ clipPath: BADGE_INNER_CLIP }}
+          >
+            <h2 className="font-brand-heading text-sm italic font-extrabold uppercase tracking-widest text-brand-white sm:text-xl">
+              General Rules
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* Rule list */}
-      <div className="mt-8 border-t-2 border-r-2 border-brand-golden-yellow/50 rounded-tr-xl bg-brand-navy/30 px-5 sm:mt-10 sm:px-8">
-        <ul className="divide-y divide-brand-white/[0.06]">
-          <ul className="divide-y divide-brand-white/[0.06]">
-  {generalRules.map((rule, index) => (
-    <RuleItem
-      key={index}
-      icon={rule.icon}
-      iconColorClass={rule.color}
-    >
-      {rule.content}
-    </RuleItem>
-  ))}
-</ul>
-        </ul>
+        {/* ------------------------------------------------------------- */}
+        {/* Main Card Container (Outer Glowing Border)                    */}
+        {/* ------------------------------------------------------------- */}
+        <div
+          className="bg-gradient-to-b from-brand-golden-yellow via-brand-orange/40 to-brand-golden-yellow/80 p-[2px] transition-all duration-300 hover:drop-shadow-[0_0_16px_rgba(243,202,32,0.25)]"
+          style={{ clipPath: MAIN_CARD_OUTER_CLIP }}
+        >
+          {/* Main Card Container (Inner Navy Dark Background Box) */}
+          <div
+            className="bg-brand-navy px-4 pt-10 pb-6 sm:px-8 sm:pt-12 sm:pb-8"
+            style={{ clipPath: MAIN_CARD_INNER_CLIP }}
+          >
+            {/* Rules List */}
+            <ul className="divide-y divide-brand-golden-yellow/15">
+              {generalRules.map((rule, index) => (
+                <RuleItem
+                  key={index}
+                  icon={rule.icon}
+                  iconColorClass={rule.color}
+                >
+                  {rule.content}
+                </RuleItem>
+              ))}
+            </ul>
+          </div>
+        </div>
+
       </div>
     </PosterShell>
   );
@@ -398,7 +453,7 @@ const generalRules = [
 
 export default function RulesSection() {
   return (
-    <div className="flex flex-col gap-10 py-10">
+    <div className="flex flex-col gap-10 bg-brand-navy py-10">
       <GeneralRulesPoster />
     </div>
   );

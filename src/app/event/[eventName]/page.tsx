@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { parseDocxEvent, EventData } from '@/lib/docxParser';
+import { FloatingParticles } from '@/components/ui/FloatingParticles';
 
 interface PageProps {
   params: Promise<{
@@ -41,6 +42,8 @@ export default async function EventPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-hidden">
+      <FloatingParticles />
+
       {/* Enhanced glowing top banner */}
       <div 
         className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-brand-golden-yellow/10 via-brand-navy/5 to-transparent pointer-events-none"
@@ -49,13 +52,13 @@ export default async function EventPage({ params }: PageProps) {
         }}
       />
 
-      <div className="relative max-w-4xl mx-auto px-4 py-8 space-y-8 sm:px-10 sm:py-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-8 space-y-8 sm:px-10 sm:py-12">
         
         {/* Back Button */}
         <div className="mb-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded border border-brand-golden-yellow/40 bg-brand-navy/80 backdrop-blur-sm text-brand-white hover:bg-brand-golden-yellow hover:text-brand-navy text-xs font-brand-heading font-bold tracking-widest uppercase transition-all shadow-brand-soft hover:shadow-brand-yellow"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded border border-brand-golden-yellow/40 bg-brand-navy backdrop-blur-sm text-brand-white hover:bg-brand-golden-yellow hover:text-brand-navy text-xs font-brand-heading font-bold tracking-widest uppercase transition-all shadow-brand-soft hover:shadow-brand-yellow z-10"
           >
             &lt; BACK TO EVENTS
           </Link>
@@ -82,15 +85,34 @@ export default async function EventPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Section 1: About This Event */}
+        {/* Section 1: Full DOCX Content Rendering */}
         <section className="group relative mt-12 border border-brand-golden-yellow/30 rounded bg-brand-navy/40 backdrop-blur-sm p-6 sm:p-8 space-y-5 transition-all duration-300 hover:border-brand-golden-yellow/60 hover:shadow-[0_0_25px_rgba(255,184,0,0.15)] hover:bg-brand-navy/60">
           <div className="absolute top-6 left-0 w-1 h-8 bg-brand-golden-yellow rounded-r shadow-[0_0_10px_rgba(255,184,0,0.8)]" />
           
           <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
             About This Event
           </h2>
-          <p className="text-sm md:text-base leading-relaxed text-brand-white/80 font-brand-body" dangerouslySetInnerHTML={{ __html: event.about }}>
-          </p>
+          <div 
+            className="
+              font-brand-body text-sm md:text-base leading-relaxed text-brand-white/80 space-y-4
+              [&_h1]:text-2xl [&_h1]:sm:text-3xl [&_h1]:font-brand-heading [&_h1]:font-black [&_h1]:uppercase [&_h1]:text-brand-golden-yellow [&_h1]:mt-6 [&_h1]:mb-3 [&_h1]:tracking-wider
+              [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:font-brand-heading [&_h2]:font-black [&_h2]:uppercase [&_h2]:text-brand-golden-yellow [&_h2]:mt-6 [&_h2]:mb-3 [&_h2]:tracking-wider
+              [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-brand-orange [&_h3]:mt-4 [&_h3]:mb-2
+              [&_p]:mb-4 [&_p]:text-brand-white/80
+              [&_strong]:text-brand-golden-yellow [&_strong]:font-bold
+              [&_em]:text-brand-golden-yellow/90 [&_em]:italic
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:my-4 [&_ul]:text-brand-white/80
+              [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:my-4 [&_ol]:text-brand-white/80
+              [&_li]:pl-1
+              [&_a]:text-brand-golden-yellow [&_a]:underline [&_a]:hover:text-brand-orange [&_a]:transition-colors
+              [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_table]:overflow-x-auto [&_table]:block sm:[&_table]:table
+              [&_th]:border [&_th]:border-brand-golden-yellow/40 [&_th]:p-3 [&_th]:bg-brand-navy/90 [&_th]:text-brand-golden-yellow [&_th]:text-left [&_th]:font-bold
+              [&_td]:border [&_td]:border-brand-golden-yellow/20 [&_td]:p-3 [&_td]:bg-brand-navy/50 [&_td]:text-brand-white/80
+              [&_blockquote]:border-l-4 [&_blockquote]:border-brand-golden-yellow [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-4 [&_blockquote]:text-brand-white/70
+              [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded [&_img]:border [&_img]:border-brand-golden-yellow/30 [&_img]:my-4
+            "
+            dangerouslySetInnerHTML={{ __html: event.about }}
+          />
         </section>
 
         {/* Section 2: Event Details */}
@@ -181,15 +203,15 @@ export default async function EventPage({ params }: PageProps) {
               Staff Coordinators
             </h2>
             <div className="grid grid-cols-1 gap-4">
-              {event.staffCoordinators.map((coordinator, idx) => (
+            {event.staffCoordinators.map((coordinator, idx) => (
                 <div
-                  key={idx}
+                key={idx}
                   className="group/card flex items-center justify-between bg-brand-navy/60 border border-brand-golden-yellow/20 rounded-lg p-4 font-brand-body text-sm transition-all hover:bg-brand-golden-yellow/10 hover:border-brand-golden-yellow/50"
-                >
+                  >
                   <div className="text-brand-white font-bold group-hover/card:text-brand-golden-yellow transition-colors">{coordinator.name}</div>
-                </div>
+                  </div>
               ))}
-            </div>
+              </div>
           </section> */}
         {/* </div> */}
 
