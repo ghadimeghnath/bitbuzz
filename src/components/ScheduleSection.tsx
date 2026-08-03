@@ -26,6 +26,50 @@ import {
 } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
+/*  Clip-Path Definitions (Chamfered Cyber Angles)                            */
+/* -------------------------------------------------------------------------- */
+
+// Main Schedule Box Clips
+const MAIN_CARD_OUTER_CLIP = `polygon(
+  24px 0, calc(100% - 24px) 0,
+  100% 24px, 100% calc(100% - 24px),
+  calc(100% - 24px) 100%, 24px 100%,
+  0 calc(100% - 24px), 0 24px
+)`;
+const MAIN_CARD_INNER_CLIP = `polygon(
+  23px 0, calc(100% - 23px) 0,
+  100% 23px, 100% calc(100% - 23px),
+  calc(100% - 23px) 100%, 23px 100%,
+  0 calc(100% - 23px), 0 23px
+)`;
+
+// Header Badge Cut
+const HEADER_BADGE_OUTER = `polygon(16px 0, calc(100% - 16px) 0, 100% 100%, 0 100%)`;
+const HEADER_BADGE_INNER = `polygon(15px 0, calc(100% - 15px) 0, 100% 100%, 0 100%)`;
+
+// Info Meta Badges (Date / Location)
+const META_BADGE_OUTER = `polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)`;
+const META_BADGE_INNER = `polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px)`;
+
+// Individual Event Slot Box Cuts
+const EVENT_CARD_OUTER = `polygon(
+  14px 0, calc(100% - 14px) 0,
+  100% 14px, 100% calc(100% - 14px),
+  calc(100% - 14px) 100%, 14px 100%,
+  0 calc(100% - 14px), 0 14px
+)`;
+const EVENT_CARD_INNER = `polygon(
+  13px 0, calc(100% - 13px) 0,
+  100% 13px, 100% calc(100% - 13px),
+  calc(100% - 13px) 100%, 13px 100%,
+  0 calc(100% - 13px), 0 13px
+)`;
+
+// HUD Icon Frame Cuts
+const HUD_ICON_OUTER = `polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px)`;
+const HUD_ICON_INNER = `polygon(5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 5px)`;
+
+/* -------------------------------------------------------------------------- */
 /*  Data                                                                      */
 /* -------------------------------------------------------------------------- */
 
@@ -53,38 +97,47 @@ interface ScheduleSlot {
 
 const categoryStyles: Record<
   Category,
-  { dot: string; badge: string; icon: string }
+  { dot: string; badge: string; icon: string; borderGradient: string }
 > = {
   ceremony: {
     dot: "bg-brand-light-green border-brand-light-green",
-    badge: "bg-brand-light-green/10 text-brand-light-green border-brand-light-green/30",
+    badge:
+      "bg-brand-light-green/10 text-brand-light-green border-brand-light-green/30",
     icon: "text-brand-light-green",
+    borderGradient: "from-brand-light-green/60 to-brand-light-green/20",
   },
   competitions: {
     dot: "bg-brand-golden-yellow border-brand-golden-yellow",
-    badge: "bg-brand-golden-yellow/10 text-brand-golden-yellow border-brand-golden-yellow/30",
+    badge:
+      "bg-brand-golden-yellow/10 text-brand-golden-yellow border-brand-golden-yellow/30",
     icon: "text-brand-golden-yellow",
+    borderGradient: "from-brand-golden-yellow/60 to-brand-golden-yellow/20",
   },
   technical: {
     dot: "bg-brand-coral border-brand-coral",
     badge: "bg-brand-coral/10 text-brand-coral border-brand-coral/30",
     icon: "text-brand-coral",
+    borderGradient: "from-brand-coral/60 to-brand-coral/20",
   },
   creative: {
     dot: "bg-brand-mustard-yellow border-brand-mustard-yellow",
     badge:
       "bg-brand-mustard-yellow/10 text-brand-mustard-yellow border-brand-mustard-yellow/30",
     icon: "text-brand-mustard-yellow",
+    borderGradient: "from-brand-mustard-yellow/60 to-brand-mustard-yellow/20",
   },
   gaming: {
     dot: "bg-brand-bright-orange border-brand-bright-orange",
-    badge: "bg-brand-bright-orange/10 text-brand-bright-orange border-brand-bright-orange/30",
+    badge:
+      "bg-brand-bright-orange/10 text-brand-bright-orange border-brand-bright-orange/30",
     icon: "text-brand-bright-orange",
+    borderGradient: "from-brand-bright-orange/60 to-brand-bright-orange/20",
   },
   sports: {
     dot: "bg-brand-orange border-brand-orange",
     badge: "bg-brand-orange/10 text-brand-orange border-brand-orange/30",
     icon: "text-brand-orange",
+    borderGradient: "from-brand-orange/60 to-brand-orange/20",
   },
 };
 
@@ -293,10 +346,10 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative w-full py-20 sm:py-28 lg:py-32 px-4 sm:px-6 md:px-12 flex items-center justify-center bg-brand-navy"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-brand-navy px-4 py-20 sm:px-6 sm:py-28 lg:px-12 lg:py-32"
     >
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0">
+      <div className="pointer-events-none absolute inset-0 z-0">
         <Image
           src="/schedule_bg_1785160513858"
           alt="Schedule Background"
@@ -306,124 +359,197 @@ export default function ScheduleSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/80 to-brand-navy" />
       </div>
 
-      <div className="w-full max-w-5xl mx-auto relative z-10">
+      <div className="relative z-10 mx-auto w-full max-w-5xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 sm:mb-14 text-center"
+          className="mb-12 text-center sm:mb-16"
         >
-          <div className="inline-block border border-brand-golden-yellow/30 bg-brand-navy/80 px-4 py-3 sm:p-4 backdrop-blur-sm rounded shadow-brand-soft">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-brand-heading font-bold uppercase tracking-widest text-brand-white">
-              TIMETABLE // <span className="text-brand-golden-yellow">SYNC</span>
-            </h2>
+          {/* Cyber Chamfered Header Box */}
+          <div className="flex justify-center">
+            <div
+              className="bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_15px_rgba(243,202,32,0.35)]"
+              style={{ clipPath: HEADER_BADGE_OUTER }}
+            >
+              <div
+                className="bg-brand-navy px-6 py-3.5 sm:px-10 sm:py-4"
+                style={{ clipPath: HEADER_BADGE_INNER }}
+              >
+                <h2 className="font-brand-heading text-2xl font-extrabold uppercase tracking-widest text-brand-white sm:text-4xl md:text-5xl">
+                  TIMETABLE //{" "}
+                  <span className="text-brand-golden-yellow drop-shadow-[0_0_8px_rgba(243,202,32,0.6)]">
+                    SYNC
+                  </span>
+                </h2>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-            <span className="flex items-center gap-2 text-xs sm:text-sm font-brand-small font-bold uppercase tracking-widest text-brand-white bg-brand-navy/80 border border-brand-golden-yellow/30 rounded-full px-4 py-2">
-              <Calendar className="w-4 h-4 text-brand-golden-yellow shrink-0" />
-              12 September 2026
-            </span>
-            <span className="flex items-center gap-2 text-xs sm:text-sm font-brand-small font-bold uppercase tracking-widest text-brand-white bg-brand-navy/80 border border-brand-golden-yellow/30 rounded-full px-4 py-2 text-center">
-              <MapPin className="w-4 h-4 text-brand-golden-yellow shrink-0" />
-              VVM&apos;s Shree Damodar College, Margao
-            </span>
+          {/* Meta Info Badges */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3.5">
+            {/* Date Badge */}
+            <div
+              className="bg-gradient-to-r from-brand-golden-yellow/60 via-brand-orange/40 to-brand-golden-yellow/60 p-[1px] drop-shadow-[0_0_8px_rgba(243,202,32,0.2)]"
+              style={{ clipPath: META_BADGE_OUTER }}
+            >
+              <div
+                className="flex items-center gap-2 bg-brand-navy/90 px-4 py-2 font-brand-small text-xs font-bold uppercase tracking-widest text-brand-white backdrop-blur-md sm:text-sm"
+                style={{ clipPath: META_BADGE_INNER }}
+              >
+                <Calendar className="h-4 w-4 shrink-0 text-brand-golden-yellow" />
+                12 September 2026
+              </div>
+            </div>
+
+            {/* Location Badge */}
+            <div
+              className="bg-gradient-to-r from-brand-golden-yellow/60 via-brand-orange/40 to-brand-golden-yellow/60 p-[1px] drop-shadow-[0_0_8px_rgba(243,202,32,0.2)]"
+              style={{ clipPath: META_BADGE_OUTER }}
+            >
+              <div
+                className="flex items-center gap-2 bg-brand-navy/90 px-4 py-2 font-brand-small text-xs font-bold uppercase tracking-widest text-brand-white backdrop-blur-md sm:text-sm"
+                style={{ clipPath: META_BADGE_INNER }}
+              >
+                <MapPin className="h-4 w-4 shrink-0 text-brand-golden-yellow" />
+                VVM&apos;s Shree Damodar College, Margao
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="bg-brand-navy/90 border border-brand-golden-yellow/40 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded relative shadow-brand-soft">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-golden-yellow to-transparent opacity-50" />
+        {/* Outer Main Cyber Timeline Container Card */}
+        <div
+          className="bg-gradient-to-b from-brand-golden-yellow via-brand-orange/40 to-brand-golden-yellow/80 p-[2px] transition-all duration-300 drop-shadow-[0_0_18px_rgba(243,202,32,0.2)]"
+          style={{ clipPath: MAIN_CARD_OUTER_CLIP }}
+        >
+          {/* Inner Navy Background Box */}
+          <div
+            className="relative bg-brand-navy p-4 backdrop-blur-md sm:p-8 md:p-12"
+            style={{ clipPath: MAIN_CARD_INNER_CLIP }}
+          >
+            {/* Top Glowing Beam Strip */}
+            <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-golden-yellow to-transparent opacity-80" />
 
-          <div>
-            {schedule.map((slot, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="relative flex items-start gap-3 sm:gap-6 group"
-              >
-                {/* Time rail */}
-                <div className="w-16 sm:w-28 md:w-32 shrink-0 pt-1 sm:pt-3 text-right">
-                  <div className="font-brand-date text-xs sm:text-base font-bold tracking-wide text-brand-golden-yellow leading-tight">
-                    {slot.timeSlot}
+            {/* Timeline Loop */}
+            <div className="pt-2">
+              {schedule.map((slot, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="group relative flex items-start gap-3 sm:gap-6"
+                >
+                  {/* Time Rail */}
+                  <div className="w-16 shrink-0 pt-1 text-right sm:w-28 sm:pt-3 md:w-32">
+                    <div className="font-brand-date text-xs font-bold tracking-wide text-brand-golden-yellow leading-tight drop-shadow-[0_0_6px_rgba(243,202,32,0.3)] sm:text-base">
+                      {slot.timeSlot}
+                    </div>
+                    <div className="font-brand-date text-[10px] text-brand-white/50 leading-tight sm:text-xs">
+                      Onwards
+                    </div>
                   </div>
-                  <div className="font-brand-date text-[10px] sm:text-xs text-brand-white/50 leading-tight">
-                    Onwards
+
+                  {/* Cyber Timeline Trace / Node */}
+                  <div className="relative flex shrink-0 flex-col items-center pt-2 sm:pt-4">
+                    {/* Glowing HUD Diamond Marker */}
+                    <div className="relative flex h-3 w-3 items-center justify-center rotate-45 border border-brand-golden-yellow bg-brand-navy transition-all duration-300 group-hover:bg-brand-golden-yellow group-hover:drop-shadow-[0_0_8px_rgba(243,202,32,0.8)] sm:h-3.5 sm:w-3.5">
+                      <div className="h-1 w-1 bg-brand-golden-yellow group-hover:bg-brand-navy" />
+                    </div>
+
+                    {/* Connecting Vertical Beam Line */}
+                    {index !== schedule.length - 1 && (
+                      <div className="min-h-[3.5rem] w-[1px] flex-1 bg-gradient-to-b from-brand-golden-yellow/50 via-brand-golden-yellow/20 to-brand-golden-yellow/5 transition-colors group-hover:from-brand-golden-yellow sm:min-h-[4.5rem]" />
+                    )}
                   </div>
-                </div>
 
-                {/* Timeline trace */}
-                <div className="relative flex flex-col items-center shrink-0 pt-2 sm:pt-4">
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rotate-45 border-2 border-brand-golden-yellow/60 bg-brand-navy group-hover:border-brand-golden-yellow transition-colors" />
-                  {index !== schedule.length - 1 && (
-                    <div className="absolute top-2.5 sm:top-3 w-px flex-1 min-h-[3.5rem] sm:min-h-[4.5rem] bg-brand-golden-yellow/30 group-hover:bg-brand-golden-yellow/60 transition-colors" />
-                  )}
-                </div>
-
-                {/* Event card(s) */}
-                <div className="flex-1 min-w-0 pb-8 sm:pb-10">
-                  <div className="bg-brand-navy/50 border border-brand-golden-yellow/20 rounded divide-y divide-brand-golden-yellow/10 group-hover:border-brand-golden-yellow/50 transition-colors shadow-sm overflow-hidden">
-                    {slot.events.map((evt, evtIndex) => {
-                      const styles = categoryStyles[evt.category];
-                      const Icon = evt.icon;
-                      return (
-                        <div
-                          key={evtIndex}
-                          className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 p-3 sm:p-4"
-                        >
-                          <div className="flex items-center gap-3 min-w-0">
-                            <span
-                              className={`shrink-0 w-2 h-2 rounded-full border ${styles.dot}`}
-                            />
-                            <Icon
-                              className={`w-4 h-4 sm:w-5 sm:h-5 shrink-0 ${styles.icon}`}
-                            />
-                            <h4 className="text-sm sm:text-base md:text-lg font-brand-heading font-bold uppercase tracking-wide text-brand-white truncate">
-                              {evt.title}
-                            </h4>
-                          </div>
-
-                          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto shrink-0">
-                            {/* Duration Badge */}
-                            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-brand-date font-semibold text-brand-golden-yellow/90 bg-brand-golden-yellow/10 border border-brand-golden-yellow/20 rounded px-2 py-1">
-                              <Clock className="w-3 h-3" />
-                              {evt.startTime} – {evt.endTime}
-                            </span>
-
-                            {/* Location Badge */}
-                            <span
-                              className={`inline-flex items-center gap-1 text-[10px] sm:text-xs font-brand-small font-bold uppercase tracking-widest border rounded px-2 py-1 ${styles.badge}`}
+                  {/* Event Group Shell Container */}
+                  <div className="min-w-0 flex-1 pb-8 sm:pb-10">
+                    <div
+                      className="bg-gradient-to-r from-brand-golden-yellow/30 via-brand-orange/20 to-brand-golden-yellow/10 p-[1.5px] transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(243,202,32,0.25)]"
+                      style={{ clipPath: EVENT_CARD_OUTER }}
+                    >
+                      <div
+                        className="divide-y divide-brand-golden-yellow/15 bg-brand-navy/90 backdrop-blur-md"
+                        style={{ clipPath: EVENT_CARD_INNER }}
+                      >
+                        {slot.events.map((evt, evtIndex) => {
+                          const styles = categoryStyles[evt.category];
+                          const Icon = evt.icon;
+                          return (
+                            <div
+                              key={evtIndex}
+                              className="flex flex-col justify-between gap-2 p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-4 transition-colors hover:bg-brand-golden-yellow/[0.03]"
                             >
-                              <MapPin className="w-3 h-3" />
-                              {evt.location}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                              {/* Left Info (Dot + HUD Icon + Title) */}
+                              <div className="flex min-w-0 items-center gap-3">
+                                <span
+                                  className={`h-2 w-2 shrink-0 rounded-full border ${styles.dot}`}
+                                />
 
-          {/* Category legend */}
-          <div className="mt-2 pt-6 sm:pt-8 border-t border-brand-golden-yellow/20 flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-            {categoryLegend.map(({ label, category }) => (
-              <span
-                key={category}
-                className="flex items-center gap-2 text-[10px] sm:text-xs font-brand-small font-bold uppercase tracking-widest text-brand-white/70"
-              >
+                                {/* Mini HUD Icon Frame */}
+                                <div
+                                  className={`shrink-0 bg-gradient-to-br ${styles.borderGradient} p-[1px]`}
+                                  style={{ clipPath: HUD_ICON_OUTER }}
+                                >
+                                  <div
+                                    className="flex h-7 w-7 items-center justify-center bg-brand-navy p-1 sm:h-8 sm:w-8"
+                                    style={{ clipPath: HUD_ICON_INNER }}
+                                  >
+                                    <Icon
+                                      className={`h-3.5 w-3.5 shrink-0 ${styles.icon} sm:h-4 sm:w-4`}
+                                    />
+                                  </div>
+                                </div>
+
+                                <h4 className="truncate font-brand-heading text-sm font-bold uppercase tracking-wide text-brand-white sm:text-base md:text-lg">
+                                  {evt.title}
+                                </h4>
+                              </div>
+
+                              {/* Right Badges (Time Slot + Location) */}
+                              <div className="flex flex-wrap items-center gap-2 self-start shrink-0 sm:self-auto">
+                                {/* Duration Badge */}
+                                <span className="inline-flex items-center gap-1 border border-brand-golden-yellow/30 bg-brand-golden-yellow/10 px-2.5 py-1 font-brand-date text-[10px] font-semibold text-brand-golden-yellow/90 sm:text-xs">
+                                  <Clock className="h-3 w-3" />
+                                  {evt.startTime} – {evt.endTime}
+                                </span>
+
+                                {/* Location Badge */}
+                                <span
+                                  className={`inline-flex items-center gap-1 border px-2.5 py-1 font-brand-small text-[10px] font-bold uppercase tracking-widest sm:text-xs ${styles.badge}`}
+                                >
+                                  <MapPin className="h-3 w-3" />
+                                  {evt.location}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Category Legend */}
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-3.5 border-t border-brand-golden-yellow/20 pt-6 sm:pt-8">
+              {categoryLegend.map(({ label, category }) => (
                 <span
-                  className={`w-2.5 h-2.5 rounded-full border ${categoryStyles[category].dot}`}
-                />
-                {label}
-              </span>
-            ))}
+                  key={category}
+                  className="flex items-center gap-2 font-brand-small text-[10px] font-bold uppercase tracking-widest text-brand-white/80 sm:text-xs"
+                >
+                  <span
+                    className={`h-2.5 w-2.5 rounded-full border ${categoryStyles[category].dot}`}
+                  />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
