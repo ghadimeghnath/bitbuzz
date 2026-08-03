@@ -322,12 +322,7 @@ export default function EventsSection() {
 /* =========================================================================
    LOGO & CATEGORY ARC HUB COMPONENT
    ========================================================================= */
-interface LogoCategoryHubProps {
-  categories: string[];
-  activeCategory?: string;
-  onSelectCategory: (category: string) => void;
-  isMobile: boolean;
-}
+
 
 // Logo diameter (px) at each Tailwind breakpoint — matches the w-16/sm:w-20/md:w-28/lg:w-36/xl:w-40 classes below.
 function getLogoDiameter(width: number) {
