@@ -358,72 +358,152 @@ const PILL_ARC = {
   baselinePillCount: 4,
   radiusGrowthPerExtraPill: 14, // px
   bufferMobile: 50, // px clearance beyond logo radius, mobile (vertical arc)
-  bufferDesktop: 96, // px clearance beyond logo radius, desktop (horizontal arc)
+  bufferDesktop: 150, // px clearance beyond logo radius, desktop (horizontal arc)
   maxRadiusRatioMobile: 0.42, // cap: fraction of viewport height
   maxRadiusRatioDesktop: 0.28, // cap: fraction of viewport width
 } as const;
 
-function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobile }: LogoCategoryHubProps) {
+/* -------------------------------------------------------------------------- */
+/*  Clip-Path Definitions (Chamfered Cyber Angles)                            */
+/* -------------------------------------------------------------------------- */
+
+// Central HUD Logo Octagon Frame
+const LOGO_OCTAGON_OUTER = `polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)`;
+const LOGO_OCTAGON_INNER = `polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)`;
+
+// Arced Category Pill Chamfered Cuts
+const PILL_OUTER_CLIP = `polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)`;
+const PILL_INNER_CLIP = `polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px)`;
+
+/* -------------------------------------------------------------------------- */
+/*  Fallback Constants / Helpers (If not imported globally)                   */
+/* -------------------------------------------------------------------------- */
+
+const PILL_ARC_DEFAULTS = {
+  minAngularGapDegDesktop:30,
+  minAngularGapDegTablet: 18,
+  minAngularGapDegMobile: 15,
+  bufferDesktop: 40,
+  bufferMobile: 25,
+  baselinePillCount: 4,
+  radiusGrowthPerExtraPill: 12,
+  maxRadiusRatioDesktop: 0.22,
+  maxRadiusRatioMobile: 0.28,
+};
+
+function defaultGetLogoDiameter(width: number): number {
+  if (width < 640) return 64;
+  if (width < 768) return 80;
+  if (width < 1024) return 112;
+  if (width < 1280) return 144;
+  return 160;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Component Interfaces                                                      */
+/* -------------------------------------------------------------------------- */
+
+export interface LogoCategoryHubProps {
+  categories: string[];
+  activeCategory: string;
+  onSelectCategory: (category: string) => void;
+  isMobile?: boolean;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  LogoCategoryHub Component                                                 */
+/* -------------------------------------------------------------------------- */
+
+export function LogoCategoryHub({
+  categories,
+  activeCategory,
+  onSelectCategory,
+  isMobile = false,
+}: LogoCategoryHubProps) {
   const total = categories.length;
 
   const [pillRadius, setPillRadius] = useState(110);
-  const [angularGap, setAngularGap] = useState<number>(PILL_ARC.minAngularGapDegDesktop);
+  // Safely fallback to defined defaults if global PILL_ARC is not in scope
+  const arcConfig =
+    typeof PILL_ARC !== "undefined" ? PILL_ARC : PILL_ARC_DEFAULTS;
+  const logoDiameterFn =
+    typeof getLogoDiameter !== "undefined"
+      ? getLogoDiameter
+      : defaultGetLogoDiameter;
 
-  // Fixed angular gap between pills → total spread grows with category count
-  // instead of pills being squeezed together (mirrors justify-content: space-between).
+  const [angularGap, setAngularGap] = useState<number>(
+    arcConfig.minAngularGapDegDesktop
+  );
+
+  // Fixed angular gap between pills -> total spread grows with category count
   const spread = total > 1 ? angularGap * (total - 1) : 0;
   const step = total > 1 ? angularGap : 0;
 
   useEffect(() => {
     const recalc = () => {
-      let currentGap: number = PILL_ARC.minAngularGapDegDesktop;
+      let currentGap: number = arcConfig.minAngularGapDegDesktop;
       if (window.innerWidth < 640) {
-        currentGap = PILL_ARC.minAngularGapDegMobile;
+        currentGap = arcConfig.minAngularGapDegMobile;
       } else if (window.innerWidth < 768) {
-        currentGap = PILL_ARC.minAngularGapDegTablet;
+        currentGap = arcConfig.minAngularGapDegTablet;
       }
       setAngularGap(currentGap);
 
-      const diameter = getLogoDiameter(window.innerWidth);
+      const diameter = logoDiameterFn(window.innerWidth);
       const logoR = diameter / 2;
-      const buffer = window.innerWidth < 768 ? PILL_ARC.bufferMobile : PILL_ARC.bufferDesktop;
+      const buffer =
+        window.innerWidth < 768
+          ? arcConfig.bufferMobile
+          : arcConfig.bufferDesktop;
 
-      // Grow the radius as extra categories widen the arc, so pills spread
-      // outward rather than crowding closer to the logo/stage.
-      const extraPills = Math.max(0, total - PILL_ARC.baselinePillCount);
-      const grownRadius = logoR + buffer + extraPills * PILL_ARC.radiusGrowthPerExtraPill;
+      const extraPills = Math.max(0, total - arcConfig.baselinePillCount);
+      const grownRadius =
+        logoR + buffer + extraPills * arcConfig.radiusGrowthPerExtraPill;
 
-      // Hard cap so the arc can never physically reach into the wheel stage,
-      // however many categories exist.
       const maxRadius =
         window.innerWidth < 768
-          ? window.innerHeight * PILL_ARC.maxRadiusRatioMobile
-          : window.innerWidth * PILL_ARC.maxRadiusRatioDesktop;
+          ? window.innerHeight * arcConfig.maxRadiusRatioMobile
+          : window.innerWidth * arcConfig.maxRadiusRatioDesktop;
 
       setPillRadius(Math.min(grownRadius, maxRadius));
     };
+
     recalc();
     window.addEventListener("resize", recalc);
     return () => window.removeEventListener("resize", recalc);
-  }, [total]);
+  }, [total, arcConfig, logoDiameterFn]);
 
   return (
     <div className="relative flex items-center justify-between">
+      {/* Central Cyber Octagon HUD Logo Hub */}
+      <div className="relative z-20 flex items-center justify-center">
+        {/* Outer Dual-Layer Glowing Cyber Frame */}
+        <div
+          className="bg-gradient-to-br from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] transition-all duration-300 drop-shadow-[0_0_20px_rgba(243,202,32,0.35)]"
+          style={{ clipPath: LOGO_OCTAGON_OUTER }}
+        >
+          {/* Inner Navy Container */}
+          <div
+            className="relative flex h-16 w-16 items-center justify-center bg-brand-navy p-2 backdrop-blur-md sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40"
+            style={{ clipPath: LOGO_OCTAGON_INNER }}
+          >
+            {/* Top Glowing Beam Accent */}
+            <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-golden-yellow to-transparent opacity-80" />
 
-      {/* Central Circular Logo */}
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 rounded-full bg-brand-navy border-2 border-brand-golden-yellow/70 flex flex-col items-center justify-center shadow-[0_0_25px_rgba(234,179,8,0.25)] z-20 transition-all">
-        <Image
-          src={'/final-logo.png'}
-          height={80}
-          width={80}
-          alt="Logo"
-          draggable={false}
-          className="select-none"
-        />
+            <Image
+              src="/final-logo.png"
+              height={80}
+              width={80}
+              alt="Logo"
+              draggable={false}
+              className="h-full w-full select-none object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]"
+            />
+          </div>
+        </div>
       </div>
 
-      {/* Arced Category Pills Orbiting Logo — plain inline-style transforms, no Tailwind arbitrary-value chains */}
-      <div className="absolute inset-0 pointer-events-none z-30">
+      {/* Arced Category Pills Orbiting Logo */}
+      <div className="pointer-events-none absolute inset-0 z-30">
         {categories.map((cat, idx) => {
           const angle = total > 1 ? -spread / 2 + idx * step : 0;
           const isActive = activeCategory === cat;
@@ -441,25 +521,38 @@ function LogoCategoryHub({ categories, activeCategory, onSelectCategory, isMobil
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                // rotate() first tilts the pill to follow the arc (fan-of-cards look),
-                // then translate() pushes it outward along that rotated axis.
                 transform: `translate(-50%, -50%) rotate(${angle}deg) ${translate}`,
               }}
-              className={`pointer-events-auto px-3 py-1.5 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 backdrop-blur-md border font-brand-heading text-[10px] sm:text-xs md:text-sm lg:text-base font-bold tracking-wider uppercase rounded-full shadow-md transition-all duration-300 whitespace-nowrap cursor-pointer ${isActive
-                  ? "bg-brand-golden-yellow text-brand-navy border-brand-golden-yellow shadow-[0_0_12px_rgba(234,179,8,0.5)] scale-105"
-                  : "bg-brand-navy/90 text-brand-white/80 border-brand-golden-yellow/40 hover:border-brand-golden-yellow hover:text-brand-white hover:scale-105"
-                }`}
+              className="pointer-events-auto cursor-pointer focus:outline-none"
             >
-              {cat}
+              {/* Outer Dual-Layer Cyber Pill Outer Frame */}
+              <div
+                className={`p-[1.5px] transition-all duration-300 ${
+                  isActive
+                    ? "bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow drop-shadow-[0_0_12px_rgba(243,202,32,0.6)] scale-105"
+                    : "bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/20 to-brand-golden-yellow/30 hover:bg-brand-golden-yellow hover:drop-shadow-[0_0_10px_rgba(243,202,32,0.35)] hover:scale-105"
+                }`}
+                style={{ clipPath: PILL_OUTER_CLIP }}
+              >
+                {/* Inner Pill Card Content */}
+                <div
+                  className={`px-3 py-1.5 font-brand-heading text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 sm:text-xs md:text-sm lg:text-base ${
+                    isActive
+                      ? "bg-brand-golden-yellow text-brand-navy"
+                      : "bg-brand-navy/90 text-brand-white/80 backdrop-blur-md hover:text-brand-white"
+                  }`}
+                  style={{ clipPath: PILL_INNER_CLIP }}
+                >
+                  {cat}
+                </div>
+              </div>
             </button>
           );
         })}
       </div>
-
     </div>
   );
 }
-
 /* =========================================================================
    WHEEL CARD COMPONENT
    ========================================================================= */
