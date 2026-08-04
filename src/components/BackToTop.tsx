@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 
 export default function BackToTop() {
+  const lenis = useLenis();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -21,10 +23,14 @@ export default function BackToTop() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (

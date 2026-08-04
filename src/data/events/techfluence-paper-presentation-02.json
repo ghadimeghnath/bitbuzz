@@ -1,0 +1,36 @@
+{
+  "id": "techfluence-paper-presentation-02",
+  "title": "TECHFLUENCE (PAPER PRESENTATION)",
+  "about": "",
+  "type": "On Stage",
+  "participants": "Individual or Team of 2 members allowed.",
+  "rounds": "One",
+  "rules": "<ol><li><strong>Presentation Duration: </strong>Each team will be allotted a maximum 10 minutes for their presentation.</li><li><strong>Topic Allocation</strong></li></ol><ul><li>Presentation topics will be assigned from a predefined list provided by the organizers.</li><li>Topics will be allotted only after confirmation of team registration.</li><li>Participants will receive the topic list and their assigned topic via email or WhatsApp, as per the communication details provided during registration.</li></ul><ol><li><strong>Topic Selection Process:</strong></li></ol><ul><li>Once registered, the participating team or their teacher-in-charge will receive a communication (via email or WhatsApp) regarding topic selection.</li><li>Topic options will be shared based on the order of registration (first-come, first-served).</li><li><strong>Teams must confirm their selected topic (within 5 to 6 hours)</strong> by replying via email to both the student and faculty coordinators of the event.</li></ul><ol><li><strong>Originality &amp; Ethics:</strong></li></ol><ul><li>The content of the presentation <strong>must not be copied.</strong></li><li>References or sources of information should be clearly cited where applicable.</li><li>Plagiarism in any form will result in immediate disqualification.</li></ul><ol><li><strong>Final Authority:</strong></li></ol><ul><li>The decision of the judges will be final and binding on all participants.</li><li>Objections or Appeals of any type regarding the judgment <strong>will not be entertained.</strong></li></ul>",
+  "judging": "<ul><li>Quality &amp; clarity of content and structure [20 points]</li><li>Originality, Relevance and Creativity [20 points]</li><li>Presentation skills and confidence [20 points]</li><li>Technical Understanding [20 points] </li><li>Ability to answer questions effectively [10 points]</li><li>Judges’ Discretionary [10 points]</li></ul>",
+  "additionalSections": [
+    {
+      "title": "Presentation Submission Guidelines",
+      "content": "<ul><li>Each team must prepare a PowerPoint presentation of 10 to 12 slides in pptx format only.</li><li>The final presentation file should be emailed in advance to the student coordinator and faculty in-charge.</li><li><strong>Last date</strong> for Paper Presentation submission via an email:<strong> 06<sup>th</sup> September 2026 (by 11:30 AM)</strong></li></ul>"
+    },
+    {
+      "title": "Submission on Event Day",
+      "content": "<ul><li>On the day of the event, participants must submit a copy of their presentation in a Pen Drive at the registration desk.</li><li>The Pen Drive should be retrieved immediately after the team’s presentation.</li></ul>"
+    },
+    {
+      "title": "Requirements & Q&A",
+      "content": "<ul><li><strong>Language Requirement</strong>: The presentation must be delivered in<strong> English</strong>.</li><li><strong>Question &amp; Answer Session:</strong> A brief Q&amp;A session (5 to 7 minutes) will follow each presentation. Participants should be prepared to respond to questions from the judges.</li></ul>"
+    }
+  ],
+  "studentCoordinators": [
+    {
+      "name": "Miss. Muskhan Kagneli",
+      "details": "Email: 2508037.muskhan.sdcce@vvm.edu.in Phone: 9657077430"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Mr. Sumit Kumar",
+      "details": "Email: sumit.kumar@vvm.edu.in Phone: 9822167259"
+    }
+  ]
+}

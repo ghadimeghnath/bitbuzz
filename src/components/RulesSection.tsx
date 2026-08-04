@@ -45,7 +45,9 @@ const ICON_BOX_INNER = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(1
 
 function PosterShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative z-10 mx-auto w-full max-w-4xl bg-brand-navy px-3 py-6 font-brand-body text-brand-white sm:px-8 sm:py-10">
+    <div
+    id="rules"
+    className="relative z-10 mx-auto w-full max-w-4xl bg-brand-navy px-3 py-6 font-brand-body text-brand-white sm:px-8 sm:py-10">
       {children}
     </div>
   );
@@ -190,9 +192,7 @@ export function GeneralRulesPoster() {
           <span className="font-bold text-brand-golden-yellow">
             Teacher-in-Charge
           </span>{" "}
-          must register the institution through the official BitBuzz website.
-          The registration link (Google Form) will be available on the
-          website. The Teacher-in-Charge is responsible for submitting the
+          is responsible for submitting the
           institution's registration along with the names of participants for
           their respective events.
         </>

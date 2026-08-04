@@ -1,0 +1,32 @@
+{
+  "id": "typing-titans-speed-typing-09",
+  "title": "TYPING TITANS (SPEED TYPING)",
+  "about": "",
+  "type": "Off Stage",
+  "participants": "1",
+  "rounds": "2",
+  "rules": "<h3>Competition Format</h3><p>The competition consists of two rounds. Each round carries 10 marks, making a total of 20 marks.</p><h3>Round 1: Monkey Typing</h3><p><strong>Description:</strong> Participants will be provided with a short and simple text passage to type within the allotted time.</p><ul><li>The duration of this round is 2 minutes.</li><li>Participants must type the given passage as accurately and as quickly as possible.</li><li>Use of the Backspace key is strictly prohibited.</li><li>Spell-check, auto-correct, predictive text, grammar correction, or any similar assistance must be disabled.</li><li>Participants are expected to be familiar with the Monkey Typing format before the competition begins.</li><li>Any use of unauthorised typing assistance or violation of the rules will result in immediate disqualification.</li></ul><h3>Round 2: Blind Typing</h3><p><strong>Description:</strong> Participants will be provided with a text passage containing letters, numbers, punctuation marks, and special characters.</p><ul><li>The duration of this round is 2 minutes.</li><li>During typing, the display/monitor will remain blank, and participants will not be able to view the text being typed.</li><li>Participants must rely solely on their typing skills and memory.</li><li>The passage must be typed exactly as provided, including:<ul><li>Uppercase and lowercase letters</li><li>Numbers</li><li>Punctuation marks</li><li>Special characters</li></ul></li><li>Any attempt to bypass the blank screen or use unauthorised tools or techniques will result in immediate disqualification.</li></ul><h3>General Rules</h3><ol><li>Each participant will be given 2 minutes for each round.</li><li>Participants must use only the keyboard provided by the organisers.</li><li>The use of Backspace is strictly prohibited in Round 1.</li><li>Spell-check, auto-correct, predictive text, grammar assistance, macros, or any other typing aid must remain disabled throughout the competition.</li><li>Participants must not use mobile phones, notes, smart devices, or any external assistance during the competition.</li><li>Any attempt to manipulate the system, bypass the blank screen, or use unauthorised software or hardware will result in immediate disqualification.</li><li>Participants are expected to maintain discipline and follow the instructions of the event coordinators at all times.</li><li>Any technical issue must be reported immediately to the event officials. The organisers' decision regarding technical matters shall be final.</li><li>Failure to comply with any of the above rules may lead to disqualification.</li></ol>",
+  "judging": "<p>Each round carries 10 marks, distributed as follows:</p><table><thead><tr><th>Criteria</th><th>Marks</th></tr></thead><tbody><tr><td>Speed</td><td>4 Marks</td></tr><tr><td>Accuracy</td><td>6 Marks</td></tr><tr><td><strong>Total</strong></td><td><strong>10 Marks</strong></td></tr></tbody></table><h3>Speed (4 Marks)</h3><ul><li>Marks will be awarded based on the number of words or characters correctly typed within the 2-minute time limit.</li></ul><h3>Accuracy (6 Marks)</h3><ul><li>Marks will be awarded based on the correctness of the typed text when compared with the original passage.</li><li>Accuracy includes:<ul><li>Correct spelling</li><li>Correct sequence of characters</li><li>Correct punctuation</li><li>Correct use of numbers and special characters (where applicable)</li></ul></li></ul>",
+  "additionalSections": [
+    {
+      "title": "Winner Selection",
+      "content": "<ul><li>The combined score from Round 1 and Round 2 (out of 20 marks) will determine the final rankings.</li><li>The top two participants with the highest overall scores will be declared the Winner and Runner-up.</li><li>In the event of a tie, the participant with the higher overall accuracy score will be given preference. If the tie still persists, the judges may conduct a tie-breaker round or decide based on additional criteria determined by the organising committee.</li></ul>"
+    },
+    {
+      "title": "Decision of the Judges",
+      "content": "<p>The decision of the judges and the organising committee shall be final and binding in all matters related to the competition. No requests for re-evaluation or appeals will be entertained.</p>"
+    }
+  ],
+  "studentCoordinators": [
+    {
+      "name": "Pratistha Joshi",
+      "details": "Email: 2508045.pratistha.sdcce@vvm.edu.in Phone: 9321769043"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Dr. Sameer P. Patil",
+      "details": "Email: Sameer.patil@vvm.edu.in"
+    }
+  ]
+}

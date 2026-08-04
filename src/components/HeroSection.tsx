@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Hand } from "lucide-react";
 import GlowingLogo from "./GlowingLogo";
+import { useLenis } from "lenis/react";
 
 export default function HeroSection() {
+  const lenis = useLenis();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,10 +17,14 @@ export default function HeroSection() {
 
   // Smooth scroll handler for the indicator
   const handleScrollDown = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
+    if (lenis) {
+      lenis.scrollTo(window.innerHeight);
+    } else {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (

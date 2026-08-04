@@ -1,0 +1,32 @@
+{
+  "id": "iq-buster-quiz-01",
+  "title": "IQ BUSTER (QUIZ)",
+  "about": "",
+  "type": "Onstage",
+  "participants": "02",
+  "rounds": "2 (Round 3 only incase of a tie)",
+  "rules": "<h3>General Rules</h3><ul><li>Each team must consist of <strong>2 participants</strong>.</li><li>Participants must report to the venue <strong>15 minutes before</strong> the event begins.</li><li>Mobile phones, smartwatches, or any electronic devices are <strong>strictly prohibited</strong> during the event.</li><li>Any form of unfair means, prompting, or misconduct will result in <strong>disqualification</strong>.</li></ul>",
+  "judging": "<p><strong>Winners will be decided based on the highest total score in Round 2.</strong></p><p><strong>In case of a tie, a sudden-death question will determine the final rankings.</strong></p>",
+  "additionalSections": [
+    {
+      "title": "Round 1: MCQ Round (Elimination Round)",
+      "content": "<ul><li>All registered teams will participate in this round.</li><li>Each team will receive a <strong>question paper</strong> containing <strong>20 multiple-choice questions (MCQs)</strong>.</li><li>Teams must select the correct option and submit the answer sheet within the allotted time.</li><li>Each correct answer carries 1 point and there will be no negative marking.</li><li>Top <strong>five teams</strong> with the highest scores will qualify for Round 2.</li><li><strong>In case of a tie, the team that submits the answer sheet earlier will be ranked higher.</strong> Submission time will be considered only when teams have the same score.</li><li><strong>Questions will be based on Current Affairs, General Knowledge, Science &amp; Technology, Basic Computer Awareness, Indian History &amp; Geography, Indian politics &amp; Constitution (basic level) or Sports.</strong></li></ul>"
+    },
+    {
+      "title": "Round 2: Picture Perfect (Visual Round)",
+      "content": "<ul><li>Only the <strong>top five qualified teams</strong> will participate.</li><li>Images or visual clues will be displayed on the screen.</li><li>Teams must identify within 30 seconds based on the displayed visual.</li><li>Questions will be asked to each team in turn.</li><li>10 Points will be awarded for every correct answer.</li><li>The cumulative score of this round will determine the winners.</li><li>No negative marking</li><li><strong>Visual clues may be based on Famous personalities, National &amp; International Monuments, Logos of brands, Applications, Organizations, Flags, Maps, Countries, Current Affairs through Images, Indian Culture &amp; Heritage &amp; Sports personalities.</strong></li></ul>"
+    }
+  ],
+  "studentCoordinators": [
+    {
+      "name": "Ms. Sarvangi Bhangle",
+      "details": "Email: 2408032.sarvangi.sdcce@vvm.edu.in Phone: 9422892305"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Ms. Ankita naik",
+      "details": "Email: ankita.naik@vvm.edu.in"
+    }
+  ]
+}

@@ -17,6 +17,7 @@ import events from "@/data/baseEvents.json";
 import { CornerMarks } from "./ui/CornerMarks";
 import { Hand } from "lucide-react";
 import { CircuitDots } from "./ui/CircuitDots";
+import { useLenis } from "lenis/react";
 
 interface EventItem {
   id: string | number;
@@ -51,7 +52,12 @@ const STAGE_HUB_GAP = {
   desktop: 0, // >= 768px (md+), hub is absolutely positioned so this is inert
 } as const;
 
+// Header Badge Cut
+const HEADER_BADGE_OUTER = `polygon(16px 0, calc(100% - 16px) 0, 100% 100%, 0 100%)`;
+const HEADER_BADGE_INNER = `polygon(15px 0, calc(100% - 15px) 0, 100% 100%, 0 100%)`;
+
 export default function EventsSection() {
+  const lenis = useLenis();
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const hubRef = useRef<HTMLDivElement>(null);
@@ -234,10 +240,14 @@ export default function EventsSection() {
 
       const targetScrollY = containerStart + totalScrollableHeight * targetProgress;
 
-      window.scrollTo({
-        top: targetScrollY,
-        behavior: "smooth",
-      });
+      if (lenis) {
+        lenis.scrollTo(targetScrollY);
+      } else {
+        window.scrollTo({
+          top: targetScrollY,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
@@ -250,18 +260,21 @@ export default function EventsSection() {
       style={{ height: isMobile ? "90dvh" : trackHeight }}
       className="relative w-full bg-brand-navy "
     >
-      {/* Title chip */}
-      <div className="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-10">
-        <div className="relative mt-8 sm:mt-10">
-          <CircuitDots className="pointer-events-none absolute -right-4 -top-10 hidden h-24 w-40 text-brand-golden-yellow/25 sm:block" />
-          <div className="rounded shadow-brand-yellow relative border border-brand-golden-yellow/40 bg-brand-navy/90 px-5 py-5 sm:py-6">
-            <CornerMarks />
-            <h2 className="text-center font-brand-heading text-xl italic font-black uppercase text-brand-white sm:text-4xl">
-              Events & Rules
-            </h2>
+      <div className="flex justify-center">
+            <div
+              className="bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_15px_rgba(243,202,32,0.35)]"
+              style={{ clipPath: HEADER_BADGE_OUTER }}
+            >
+              <div
+                className="bg-brand-navy px-6 py-3.5 sm:px-10 sm:py-4"
+                style={{ clipPath: HEADER_BADGE_INNER }}
+              >
+                <h2 className="font-brand-heading text-2xl font-extrabold uppercase tracking-widest text-brand-white sm:text-4xl md:text-5xl">
+                  EVENTS & RULES
+                </h2>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
       <div
         ref={stickyRef}
         style={{
@@ -578,7 +591,9 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
   const pointerEvents = useTransform(opacity, (v) => (v > 0.6 ? "auto" : "none"));
 
   return (
-    <div className="absolute inset-0
+    <div
+    id="events"
+     className="absolute inset-0
       /* Mobile Placement: flush against the bottom of the stage box, right above the hub */
       flex items-end justify-center
       /* Desktop Placement: revert to centered-with-offset, own bounding box */
