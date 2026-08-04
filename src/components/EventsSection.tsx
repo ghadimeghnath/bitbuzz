@@ -620,7 +620,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
           <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full aspect-square sm:aspect-auto sm:h-auto overflow-hidden">
             
 {/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
-{index < 1 && (
+{index < 2 && (
   <div className="sm:hidden absolute top-1/2 right-4 -translate-y-1/2 z-50 pointer-events-none flex items-center gap-1.5">
     
     {/* Swipe Left Text Message */}

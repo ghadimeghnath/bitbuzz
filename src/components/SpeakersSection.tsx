@@ -9,6 +9,9 @@ import { AnimatedBeam } from "@/components/ui/animated-beam";
 // 1. Reusable Styled Components
 // ==========================================
 
+const LOGO_OCTAGON_OUTER = `polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)`;
+const LOGO_OCTAGON_INNER = `polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)`;
+
 const MainHeaderBox = forwardRef<
   HTMLDivElement,
   { src: string; alt?: string; className?: string; imageClassName?: string }
@@ -144,13 +147,32 @@ export default function SpeakersSection() {
       >
         {/* LEVEL 1: BITBUZZ 8.0 IMAGE */}
         <div className="flex justify-center w-full">
-         <MainHeaderBox
-  ref={topLogoRef}
-  src="/final-logo.png"
-  alt="BITBUZZ 8.0"
-  className=""
-  imageClassName="h-15 md:h-20" // Increase height here (default was h-8 md:h-12)
-/>
+          {/* Central Cyber Octagon HUD Logo Hub */}
+          <div ref={topLogoRef} className="relative z-20 flex items-center justify-center">
+            {/* Outer Dual-Layer Glowing Cyber Frame */}
+            <div
+              className="bg-gradient-to-br from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] transition-all duration-300 drop-shadow-[0_0_20px_rgba(243,202,32,0.35)]"
+              style={{ clipPath: LOGO_OCTAGON_OUTER }}
+            >
+              {/* Inner Navy Container */}
+              <div
+                className="relative flex h-16 w-16 items-center justify-center bg-brand-navy p-2 backdrop-blur-md sm:h-20 sm:w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 xl:h-40 xl:w-40"
+                style={{ clipPath: LOGO_OCTAGON_INNER }}
+              >
+                {/* Top Glowing Beam Accent */}
+                <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-transparent via-brand-golden-yellow to-transparent opacity-80" />
+
+                <Image
+                  src="/final-logo.png"
+                  height={80}
+                  width={80}
+                  alt="Logo"
+                  draggable={false}
+                  className="h-full w-full select-none object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* LEVEL 2: CORE TEAM */}

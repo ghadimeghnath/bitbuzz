@@ -109,34 +109,64 @@ export default function RegistrationSection() {
             festival before slots run out.
           </p>
 
-          {/* High-Tech Cyber CTA Link Button */}
-          <a
-            href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] transition-all duration-300 hover:scale-[1.02] hover:drop-shadow-[0_0_18px_rgba(243,202,32,0.6)]"
-            style={{ clipPath: BUTTON_OUTER_CLIP }}
-          >
-            <div
-              className="flex w-full items-center justify-center gap-2 bg-brand-golden-yellow px-8 py-4 font-brand-heading text-base font-bold uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white sm:text-lg"
-              style={{ clipPath: BUTTON_INNER_CLIP }}
+          {/* Action Buttons Container */}
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+            {/* High-Tech Cyber CTA Link Button */}
+            <a
+              href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] transition-all duration-300 hover:scale-[1.02] hover:drop-shadow-[0_0_18px_rgba(243,202,32,0.6)]"
+              style={{ clipPath: BUTTON_OUTER_CLIP }}
             >
-              <span>Register Now</span>
-              <svg
-                className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              <div
+                className="flex w-full items-center justify-center gap-2 bg-brand-golden-yellow px-8 py-4 font-brand-heading text-base font-bold uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white sm:text-lg"
+                style={{ clipPath: BUTTON_INNER_CLIP }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-            </div>
-          </a>
+                <span>Register Now</span>
+                <svg
+                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+            </a>
+
+            {/* Download Brochure Button */}
+            <a
+              href="#"
+              className="group relative block w-full bg-gradient-to-r from-slate-500 via-slate-300 to-slate-500 p-[2px] transition-all duration-300 hover:scale-[1.02] hover:drop-shadow-[0_0_18px_rgba(255,255,255,0.3)]"
+              style={{ clipPath: BUTTON_OUTER_CLIP }}
+            >
+              <div
+                className="flex w-full items-center justify-center gap-2 bg-brand-navy px-8 py-4 font-brand-heading text-base font-bold uppercase tracking-widest text-brand-white transition-colors duration-300 group-hover:bg-slate-800 sm:text-lg"
+                style={{ clipPath: BUTTON_INNER_CLIP }}
+              >
+                <span>Brochure</span>
+                <svg
+                  className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+              </div>
+            </a>
+          </div>
         </div>
       </motion.div>
     </section>
