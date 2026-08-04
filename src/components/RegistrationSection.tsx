@@ -110,7 +110,7 @@ export default function RegistrationSection() {
           </p>
 
           {/* Action Buttons Container */}
-          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex w-full flex-col items-center justify-center gap-4">
             {/* High-Tech Cyber CTA Link Button */}
             <a
               href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
