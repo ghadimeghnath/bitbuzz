@@ -1,0 +1,18 @@
+{
+  "id": "debate-competition-argument-arena-03",
+  "title": "Argument Arena",
+  "about": "",
+  "type": "On Stage",
+  "participants": "2(Per Team)",
+  "rounds": "3",
+  "rules": "<h3>Team Composition</h3><ul><li><strong>Two Teams:</strong> Each debate consists of two teams—one supporting the topic (For) and the other opposing it (Against). </li></ul><h3>Topic and Preparation</h3><ul><li><strong>Debate Topic:</strong> Topics will be given 10 minutes in advance. Lots will be drawn for opponent selection and For/Against. </li><li>An elimination round will be conducted if the number of teams is odd. </li><li>For the elimination round, topics will be given on the spot, and participants must speak on the given topic for 2 minutes. </li></ul><h3>Speaking Order and Time Limits</h3><h3>Opening Statements:</h3><ul><li>For Team: 4 minutes to present their arguments. </li><li>Against Team: 4 minutes to present their counterarguments. </li></ul><h3>Response</h3><p>The Response and Rebuttal Round will be an open-format segment lasting 8 minutes, where both teams may freely engage with and challenge each other’s opening statements.</p><p>Participants are encouraged to present counterarguments, clarify positions, and respond directly to points raised by the opposing team.</p><h3>Closing Statements</h3><ul><li>Teams will be given 2 minutes each to present their closing statements. </li></ul><h3>In Case of an Odd Number of Teams</h3><p>A presentation round will be conducted in which all teams will present for 2 minutes each on the provided topics. The team with the least points will be eliminated.</p><h3>Conduct Rules</h3><ul><li><strong>Respect:</strong> Speakers must maintain respect for each other and avoid personal attacks or rude language. </li><li><strong>No Interruptions:</strong> Team members should not interrupt the speaker except during the designated response time. </li><li><strong>Fact-check:</strong> Use accurate and reliable information to support your argument. </li></ul>",
+  "judging": "<ul><li><strong>Content:</strong> Quality, relevance, and depth of the arguments. <strong>[10 Points]</strong> </li><li><strong>Delivery:</strong> Clarity, confidence, and persuasiveness of the speech. <strong>[10 Points]</strong> </li><li><strong>Rebuttal:</strong> Ability to effectively counter the opposing team’s points. <strong>[10 Points]</strong> </li><li><strong>Team Coordination:</strong> How well the team members support each other and present a unified argument. <strong>[10 Points]</strong> </li><li><strong>Structure:</strong> Logical flow and organization of the speech. <strong>[10 Points]</strong> </li></ul><h3>Scoring and Feedback</h3><ul><li><strong>Points:</strong> Judges will score based on the criteria above. </li><li><strong>Tie-Breaker:</strong> If there is a tie, an additional round or question may be used to determine the winner. </li><li><strong>Judge’s Decision:</strong> The decision of the judges is final and cannot be challenged. </li></ul><h3>Penalties</h3><ul><li><strong>Time Overrun:</strong> Exceeding the time limit may result in point deductions. </li><li><strong>Rule Violations:</strong> Breach of any rules may lead to penalties or disqualification. </li></ul>",
+  "additionalSections": [],
+  "studentCoordinators": [
+    {
+      "name": "Sumit Sawant",
+      "details": "Email: 24011021.sumit.sdcce@vvm.edu.in Phone: 9359391148"
+    }
+  ],
+  "staffCoordinators": []
+}

@@ -1,0 +1,23 @@
+{
+  "id": "cube-craze-rubiks-cube-16",
+  "title": "CUBE CRAZE",
+  "about": "",
+  "type": "OFFSTAGE",
+  "participants": "2",
+  "rounds": "3",
+  "rules": "<h3>Game Setup</h3><ul><li>Participants will compete in teams of <strong>two</strong>.</li><li>Every team will receive <strong>one Rubik's Cube</strong> with the <strong>same predetermined scramble</strong>.</li><li>One teammate will be the <strong>Director</strong>, and the other will be the <strong>Solver</strong>.</li><li>The <strong>Solver</strong> must wear a blindfold throughout Rounds 1 and 2.</li><li>If the Solver removes the blindfold at any time during these rounds, the team will be <strong>disqualified</strong>.</li><li>Team members <strong>cannot switch roles</strong> during the competition. The Director must remain the Director, and the Solver must remain the Solver.</li><li>Once the cube is solved, the Solver must <strong>place the cube on the table</strong> to stop the timer.</li><li>The competition consists of <strong>three rounds</strong>.</li></ul><h3>Round 1 – Verbal Guidance Round</h3><h3>How to Play</h3><ul><li>The <strong>Director</strong> may look at the cube.</li><li>The Director must verbally guide the blindfolded <strong>Solver</strong> to solve the cube.</li><li>The Director <strong>must not touch the cube</strong> at any time.</li><li>The Solver may act only on the Director's verbal instructions.</li><li>Each team will have <strong>15 minutes</strong> to solve the cube.</li><li>Teams that do not solve the cube within the time limit will be <strong>eliminated</strong>.</li><li>The <strong>top 5 teams</strong> with the shortest solving times will advance to <strong>Round 2</strong>.</li></ul><h3>Round 2 – Opposite Direction Round</h3><h3>How to Play</h3><ul><li>The <strong>Director</strong> may look at the cube.</li><li>The Director must guide the blindfolded Solver using <strong>opposite or misleading verbal instructions</strong> (reverse psychology).</li><li>The Solver must continue to follow the Director's instructions.</li><li>The Director <strong>must not touch the cube</strong>.</li><li>Each team will have <strong>20 minutes</strong> to solve the cube.</li><li>The <strong>top 3 teams</strong> with the shortest solving times will qualify for the <strong>Final Round</strong>.</li></ul><h3>Round 3 – Final Round – Pyraminx Showdown</h3><ul><li>Each qualifying team will receive a <strong>Pyraminx</strong>.</li><li><strong>No blindfold</strong> will be used in this round.</li><li><strong>Only one member</strong> from each team may participate.</li><li>The participating member must be chosen by the team before the round begins.</li><li>Each participant will have <strong>10 minutes</strong> to solve the Pyraminx.</li><li>The team whose participating member solves the Pyraminx in the <strong>shortest time</strong> will be declared the <strong>winner</strong> of Cube Craze.</li></ul><h3>General Rules</h3><ul><li>The decisions of the organizers will be <strong>final and binding</strong>.</li><li>Unsportsmanlike behavior, cheating, or any violation of the rules may result in <strong>disqualification</strong>.</li><li>Participants are expected to follow all instructions given by the event coordinators throughout the competition.</li></ul>",
+  "judging": "",
+  "additionalSections": [],
+  "studentCoordinators": [
+    {
+      "name": "Mr. Tejas Naik",
+      "details": "Email: 2508073.tejas@vvms.sddce.edu.in Phone: 8975985673"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Mr. Sarth Shanbhag",
+      "details": "Email: sarth.shanbhag@vvm.edu.in Phone: 99753 88868"
+    }
+  ]
+}

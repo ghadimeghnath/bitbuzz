@@ -1,0 +1,32 @@
+{
+  "id": "paper-presentations-techfluence-02",
+  "title": "TechFluence (Paper Presentation)",
+  "about": "",
+  "type": "On Stage",
+  "participants": "Individual or Team of 2 members allowed.",
+  "rounds": "One",
+  "rules": "<ol><li><strong>Presentation Duration: </strong>Each team will be allotted a maximum 10 minutes for their presentation.</li><li><strong>Topic Allocation</strong></li></ol><ul><li>Presentation topics will be assigned from a predefined list provided by the organizers.</li><li>Topics will be allotted only after confirmation of team registration.</li><li>Participants will receive the topic list and their assigned topic via email or WhatsApp, as per the communication details provided during registration.</li></ul><h3><li><strong>Topic Selection Process</strong></li></h3>",
+  "judging": "<ul><li>Quality &amp; clarity of content and structure [20 points]</li><li>Originality, Relevance and Creativity [20 points]</li><li>Presentation skills and confidence [20 points]</li><li>Technical Understanding [20 points] </li><li>Ability to answer questions effectively [10 points]</li><li>Judges’ Discretionary [10 points]</li></ul><ol><li><strong>Originality &amp; Ethics</strong></li></ol><ul><li>The content of the presentation <strong>must not be copied.</strong></li><li>References or sources of information should be clearly cited where applicable.</li><li>Plagiarism in any form will result in immediate disqualification.</li></ul><h3><li><strong>Final Authority</strong></li></h3><ul><li>The decision of the judges will be final and binding on all participants.</li><li>Objections or Appeals of any type regarding the judgment <strong>will not be entertained.</strong></li></ul>",
+  "additionalSections": [
+    {
+      "title": "Submission Guidelines",
+      "content": "<ul><li>Presentation submission deadline: 06th September 2026 (by 11:30 AM)</li><li>On the day of the event, participants must submit a copy of their presentation in a Pen Drive at the registration desk.</li><li>The Pen Drive should be retrieved immediately after the team's presentation.</li><li>Language Requirement: The presentation must be delivered in English.</li></ul>"
+    },
+    {
+      "title": "Q&A Session",
+      "content": "<p>A brief Q&A session (5 to 7 minutes) will follow each presentation. Participants should be prepared to respond to questions from the judges.</p>"
+    }
+  ],
+  "studentCoordinators": [
+    {
+      "name": "Miss. Muskhan Kagneli",
+      "details": "Email: 2508037.muskhan.sdcce@vvm.edu.in Phone: 9657077430"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Mr. Sumit Kumar",
+      "details": "Email: sumit.kumar@vvm.edu.in Phone: 9822167259"
+    }
+  ]
+}

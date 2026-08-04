@@ -1,0 +1,13 @@
+{
+  "id": "grid-rush-tic-tac-toe-15",
+  "title": "Relay Tic Tac Toe",
+  "about": "",
+  "type": "OFFSTAGE",
+  "participants": "3 per Higher Secondary",
+  "rounds": "2",
+  "rules": "<ul><li>Each team consists of 3 players</li><li>Each team will be assigned a specific colored marker.</li><li>Tournament follows a knockout format.If there is an odd number of teams, one team is chosen by lot to get a Bye (skips the round).</li><li>The lot is repeated in later rounds if the number of teams is still odd.</li><li>Each match between 2 teams consists of exactly 3 rounds.</li><li>Team that wins majority of rounds (best out of 3) wins and advances to the next stage of the bracket.</li><li>Position 3 markers in a row (horizontal, vertical, or diagonal).Leave the grid untouched for the referee to check.</li><li>False Start: Run only after being tagged.</li><li>Touch Opponent's Marker: Round lost.</li><li>Disturb Grid: Intentional disturbance - Round lost.</li></ul><p>GAME SETUP:</p><ul><li>The grid: A 3x3 grid with 9 hoops.</li><li>Straight line: A designated straight line approx (20-30 feet) away from grid. Teams stand behind the marked line.</li><li>Markers: Each team gets 3 identical markers.</li><li>On the whistle, Player 1 runs, places a marker, returns, and tags Player 2.</li><li>Player 2 does the same, then tags Player 3.</li><li>Player 3 places the last marker and returns.</li><li>If no team gets 3 in a row, the next player in rotation (player 1,2,3) continue the game in order.</li><li>Players move one of their own markers to an empty spot.</li><li>Tag the next player after returning.Continue until a team wins</li><li>The Final round will be played on a 4x4 grid. The wining team must make 4 in a row(horizontal, vertical or diagonal). </li></ul>",
+  "judging": "",
+  "additionalSections": [],
+  "studentCoordinators": [],
+  "staffCoordinators": []
+}
