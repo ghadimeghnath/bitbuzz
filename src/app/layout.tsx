@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
+import NextTopLoader from 'nextjs-toploader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,6 +33,17 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", montserrat.variable, "font-sans")}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-brand-golden-yellow selection:text-brand-navy">
+        <NextTopLoader
+          color="#FFB800"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #FFB800,0 0 5px #FFB800"
+        />
         <LenisProvider>
           {children}
           <BackToTop />

@@ -40,18 +40,27 @@ const buttonVariants = cva(
   }
 )
 
+import { CyberLoader } from "./CyberLoader"
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  isLoading = false,
+  children,
+  disabled,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { isLoading?: boolean }) {
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, className }), isLoading && "opacity-70 pointer-events-none")}
+      disabled={disabled || isLoading}
       {...props}
-    />
+    >
+      {isLoading && <CyberLoader size="sm" className="mr-2" />}
+      {children}
+    </ButtonPrimitive>
   )
 }
 

@@ -592,7 +592,6 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
 
   return (
     <div
-    id="events"
      className="absolute inset-0
       /* Mobile Placement: flush against the bottom of the stage box, right above the hub */
       flex items-end justify-center
@@ -729,6 +728,8 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
               {/* Action Link */}
               <Link
                 href={`/event/${event.slug}`}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
                 className={`relative z-30 block text-center w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-wider uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-2`}
               >
                 [ View Details ]

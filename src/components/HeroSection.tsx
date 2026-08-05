@@ -7,6 +7,10 @@ import { Hand } from "lucide-react";
 import GlowingLogo from "./GlowingLogo";
 import { useLenis } from "lenis/react";
 
+// Arced Category Pill Chamfered Cuts
+const PILL_OUTER_CLIP = `polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)`;
+const PILL_INNER_CLIP = `polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px)`;
+
 export default function HeroSection() {
   const lenis = useLenis();
   const [mounted, setMounted] = useState(false);
@@ -93,8 +97,25 @@ lg:px-16
           transition={{ duration: 1, ease: "easeOut" }}
           className="flex flex-col items-center justify-center text-center mb-2"
         >
-          <div className="relative group">
+          <div className="relative group flex flex-col items-center">
             <GlowingLogo className=" w-60 sm:w-72 md:w-80 lg:w-[380px] xl:w-[440px] p-0 m-0 transition-all duration-300" />
+            
+            {/* Tagline Frame */}
+            <div className="mt-4 sm:mt-6 transition-transform duration-300 hover:scale-105">
+              <div
+                className="p-[1.5px] bg-brand-golden-yellow/50 transition-all duration-300 group-hover:bg-brand-golden-yellow"
+                style={{ clipPath: PILL_OUTER_CLIP }}
+              >
+                <div
+                  className="px-6 py-2 sm:px-8 sm:py-2.5 bg-brand-navy backdrop-blur-md"
+                  style={{ clipPath: PILL_INNER_CLIP }}
+                >
+                  <p className="text-white bg-transparent font-bold italic uppercase tracking-[0.15em] sm:tracking-[0.2em] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] z-10 m-0">
+                    Think : Create : Transform
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -103,7 +124,7 @@ lg:px-16
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center gap-3 sm:gap-5 text-brand-golden-yellow my-6 max-w-2xl"
+          className="flex items-center justify-center gap-3 sm:gap-5 text-brand-golden-yellow my-6 max-w-2xl sm:mt-12"
         >
           <span className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-brand-golden-yellow/60 shrink-0" />
           <p className="

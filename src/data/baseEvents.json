@@ -87,7 +87,7 @@
     "title": "NAUTANKI (TECHNICAL SKIT)",
     "category": "ONSTAGE",
     "difficulty": "Medium",
-    "image": "/event_ai_1785160115853.png",
+    "image": "/nautanki.png",
     "colorCls": {
       "text": "text-brand-light-green",
       "bg": "bg-brand-light-green",
@@ -101,7 +101,7 @@
     "title": "ARTCLUSIVE (E-POSTER MAKING)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Easy",
-    "image": "/event_quiz_1785160445597.png",
+    "image": "/artclusive.png",
     "colorCls": {
       "text": "text-brand-lime-yellow",
       "bg": "bg-brand-lime-yellow",
@@ -115,7 +115,7 @@
     "title": "TYPING TITANS (SPEED TYPING)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Medium",
-    "image": "/event_ai_1785160115853.png",
+    "image": "/typing_titans.png",
     "colorCls": {
       "text": "text-brand-light-green",
       "bg": "bg-brand-light-green",
@@ -129,7 +129,7 @@
     "title": "BATTLE ARENA (FIFA)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Expert",
-    "image": "/event_coding_1785160138095.png",
+    "image": "/battle_arena_fifa.png",
     "colorCls": {
       "text": "text-brand-coral",
       "bg": "bg-brand-coral",
@@ -143,7 +143,7 @@
     "title": "BATTLE ARENA (FREE FIRE)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Expert",
-    "image": "/event_coding_1785160138095.png",
+    "image": "/battle_arena_freefire.png",
     "colorCls": {
       "text": "text-brand-coral",
       "bg": "bg-brand-coral",
@@ -157,7 +157,7 @@
     "title": "EUREKA (REEL MAKING)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Easy",
-    "image": "/event_gaming_1785160312866.png",
+    "image": "/eureka_reel.png",
     "colorCls": {
       "text": "text-brand-bright-orange",
       "bg": "bg-brand-bright-orange",
@@ -171,7 +171,7 @@
     "title": "TECH TRAIL HUNT (E TREASURE HUNT)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Hard",
-    "image": "/event_coding_1785160138095.png",
+    "image": "/tech_trail_hunt.png",
     "colorCls": {
       "text": "text-brand-coral",
       "bg": "bg-brand-coral",
@@ -185,7 +185,7 @@
     "title": "MIND SYNC (MEMORY MANIA)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Medium",
-    "image": "/event_cyber_1785160263055.png",
+    "image": "/mind_sync.png",
     "colorCls": {
       "text": "text-brand-mustard-yellow",
       "bg": "bg-brand-mustard-yellow",
@@ -199,7 +199,7 @@
     "title": "ENCRYPTED ESCAPE (TECH ESCAPE ROOM)",
     "category": "OFF STAGE / LAB",
     "difficulty": "Hard",
-    "image": "/event_robotics_1785160294163.png",
+    "image": "/encrypted_escape.png",
     "colorCls": {
       "text": "text-brand-orange",
       "bg": "bg-brand-orange",
@@ -213,7 +213,7 @@
     "title": "GRID RUSH (TIC TAC TOE)",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/event_cyber_1785160263055.png",
+    "image": "/grid_rush.png",
     "colorCls": {
       "text": "text-brand-mustard-yellow",
       "bg": "bg-brand-mustard-yellow",
@@ -227,7 +227,7 @@
     "title": "CUBE CRAZE (RUBIKS CUBE)",
     "category": "SPORTS",
     "difficulty": "Medium",
-    "image": "/event_robotics_1785160294163.png",
+    "image": "/cube_craze.png",
     "colorCls": {
       "text": "text-brand-orange",
       "bg": "bg-brand-orange",
@@ -241,7 +241,7 @@
     "title": "ROLL ROYAL (LUDO)",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/event_gaming_1785160312866.png",
+    "image": "/roll_royal.png",
     "colorCls": {
       "text": "text-brand-bright-orange",
       "bg": "bg-brand-bright-orange",
@@ -255,7 +255,7 @@
     "title": "TOWER TUMBLE (JENGA)",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/event_quiz_1785160445597.png",
+    "image": "/tower_tumble.png",
     "colorCls": {
       "text": "text-brand-lime-yellow",
       "bg": "bg-brand-lime-yellow",

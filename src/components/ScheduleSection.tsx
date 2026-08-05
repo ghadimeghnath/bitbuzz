@@ -207,7 +207,7 @@ export default function ScheduleGrid() {
   };
 
   return (
-    <section className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-brand-navy px-2 py-10 sm:px-4 md:px-6 lg:py-24">
+    <section id="schedule" className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-brand-navy px-2 py-10 sm:px-4 md:px-6 lg:py-24">
       {/* Header Title */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

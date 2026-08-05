@@ -101,7 +101,7 @@ export default function GlowingLogo({
         <svg
           viewBox="0 0 1000 1000"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full block overflow-visible"
+          className="w-full h-full overflow-visible"
         >
           <defs>
             {/* Halo glow filter */}

@@ -52,28 +52,47 @@ const HubBadge = forwardRef<HTMLDivElement, { title: string; className?: string 
 );
 HubBadge.displayName = "HubBadge";
 
-const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; className?: string }>(
-  ({ name, role, className }, ref) => (
+const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; email?: string; phone?: string; image?: string; className?: string }>(
+  ({ name, role, email, phone, image, className }, ref) => (
     <div
       ref={ref}
       className={cn(
-        "relative z-10 w-full flex flex-col items-center justify-center p-3 md:p-4 rounded-xl border border-brand-golden-yellow/30 bg-brand-navy/80 backdrop-blur-md shadow-sm transition-all duration-300 hover:border-brand-golden-yellow hover:bg-brand-navy/95 hover:shadow-brand-soft hover:-translate-y-0.5",
+        "relative z-10 w-full aspect-[3/4] max-w-[240px] mx-auto flex flex-col justify-end p-0 rounded-xl border border-brand-golden-yellow/30 bg-brand-navy overflow-hidden shadow-sm transition-all duration-300 hover:border-brand-golden-yellow hover:shadow-brand-soft hover:-translate-y-1 group",
         className
       )}
     >
-      <div className="w-10 h-10 md:w-14 md:h-14 mb-2 rounded-full border border-brand-golden-yellow/50 bg-brand-navy flex items-center justify-center shadow-inner">
-        <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-brand-golden-yellow/20 flex items-center justify-center text-brand-golden-yellow font-brand-heading text-xs font-bold">
-          {name.charAt(0)}
-        </div>
+      {/* Background Image Container */}
+      <div className="absolute inset-0 w-full h-full bg-brand-navy flex items-center justify-center">
+        {image ? (
+          <Image src={image} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <div className="text-brand-golden-yellow/10 font-brand-heading text-6xl md:text-8xl font-bold select-none">
+            {name.charAt(0)}
+          </div>
+        )}
       </div>
-      <h3 className="text-xs md:text-sm font-bold font-brand-small text-brand-white uppercase tracking-wider text-center">
-        {name}
-      </h3>
-      {role && (
-        <p className="text-brand-golden-yellow/70 text-[10px] md:text-xs font-brand-small text-center mt-0.5">
-          {role}
-        </p>
-      )}
+
+      {/* Details Container with gradient fade (Constrained to bottom 35%) */}
+      <div className="absolute bottom-0 left-0 w-full h-[50%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[45%]">
+        <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
+          {name}
+        </h3>
+        {role && (
+          <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+            {role}
+          </p>
+        )}
+        {email && (
+          <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+            {email}
+          </p>
+        )}
+        {phone && (
+          <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+            {phone}
+          </p>
+        )}
+      </div>
     </div>
   )
 );
@@ -100,7 +119,6 @@ export default function SpeakersSection() {
   const designHubRef = useRef<HTMLDivElement>(null);
   const sumitRef = useRef<HTMLDivElement>(null);
   const rafiaRef = useRef<HTMLDivElement>(null);
-  const daneshwariRef = useRef<HTMLDivElement>(null);
   const meghnathRef = useRef<HTMLDivElement>(null);
   const surajRef = useRef<HTMLDivElement>(null);
 
@@ -120,7 +138,6 @@ export default function SpeakersSection() {
     // Designing Hub -> Design Members
     { from: designHubRef, to: sumitRef },
     { from: designHubRef, to: rafiaRef },
-    { from: designHubRef, to: daneshwariRef },
     { from: designHubRef, to: meghnathRef },
     { from: designHubRef, to: surajRef },
   ];
@@ -191,12 +208,11 @@ export default function SpeakersSection() {
         <div className="flex flex-col items-center gap-6 md:gap-8 w-full">
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
-          <div className="grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
+          <div className="grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
             <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" />
             <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" />
-            <MemberCard ref={daneshwariRef} name="Daneshwari Jingade" role="Graphic Designer" />
             <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" />
-            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" role="Web Developer" />
+            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath_don.jpeg" />
             
           </div>
         </div>

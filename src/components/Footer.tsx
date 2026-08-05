@@ -27,9 +27,9 @@ export default function Footer() {
         </div>
         
         <div className="flex items-center gap-6 font-brand-small font-bold text-sm uppercase tracking-widest">
-          <a href="#" className="text-brand-golden-yellow hover:text-brand-white transition-all">Twitter</a>
-          <a href="#" className="text-brand-golden-yellow hover:text-brand-white transition-all">Discord</a>
-          <a href="#" className="text-brand-golden-yellow hover:text-brand-white transition-all">Instagram</a>
+          <a href="https://x.com/damodar_college" className="text-brand-golden-yellow hover:text-brand-white transition-all">Twitter</a>
+          <a href="https://www.facebook.com/p/VVMs-Shree-Damodar-College-100064036413651/" className="text-brand-golden-yellow hover:text-brand-white transition-all">Facebook</a>
+          <a href="https://www.instagram.com/damodar_college/" className="text-brand-golden-yellow hover:text-brand-white transition-all">Instagram</a>
         </div>
       </div>
       

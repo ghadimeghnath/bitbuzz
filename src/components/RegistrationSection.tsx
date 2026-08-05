@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { CyberButton } from "./ui/CyberButton";
 
 /* -------------------------------------------------------------------------- */
 /*  Clip-Path Definitions (Chamfered Cyber Angles)                            */
@@ -35,6 +37,9 @@ const BUTTON_INNER_CLIP = `polygon(13px 0, calc(100% - 13px) 0, 100% 13px, 100% 
 /* -------------------------------------------------------------------------- */
 
 export default function RegistrationSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFormLoading, setIsFormLoading] = useState(false);
+
   return (
     <section
       id="register"
@@ -112,63 +117,97 @@ export default function RegistrationSection() {
           {/* Action Buttons Container */}
           <div className="flex w-full flex-col items-center justify-center gap-4">
             {/* High-Tech Cyber CTA Link Button */}
-            <a
-              href="https://forms.gle/XtWS4UM4BQ7qDw9m8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] transition-all duration-300 hover:scale-[1.02] hover:drop-shadow-[0_0_18px_rgba(243,202,32,0.6)]"
-              style={{ clipPath: BUTTON_OUTER_CLIP }}
-            >
-              <div
-                className="flex w-full items-center justify-center gap-2 bg-brand-golden-yellow px-8 py-4 font-brand-heading text-base font-bold uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white sm:text-lg"
-                style={{ clipPath: BUTTON_INNER_CLIP }}
-              >
-                <span>Register Now</span>
-                <svg
-                  className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
+            <CyberButton
+              onClick={() => setIsModalOpen(true)}
+              icon={
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-              </div>
-            </a>
+              }
+            >
+              Register Now
+            </CyberButton>
 
             {/* Download Brochure Button */}
-            <a
-              href="#"
-              className="group relative block w-full bg-gradient-to-r from-slate-500 via-slate-300 to-slate-500 p-[2px] transition-all duration-300 hover:scale-[1.02] hover:drop-shadow-[0_0_18px_rgba(255,255,255,0.3)]"
-              style={{ clipPath: BUTTON_OUTER_CLIP }}
-            >
-              <div
-                className="flex w-full items-center justify-center gap-2 bg-brand-navy px-8 py-4 font-brand-heading text-base font-bold uppercase tracking-widest text-brand-white transition-colors duration-300 group-hover:bg-slate-800 sm:text-lg"
-                style={{ clipPath: BUTTON_INNER_CLIP }}
-              >
-                <span>Brochure</span>
-                <svg
-                  className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                  />
+            <CyberButton
+              variant="secondary"
+              onClick={() => {
+                window.open("https://drive.google.com/uc?export=download&id=1-4DkuVG2OdReR4jwGt4ocLuViJNaKsN_", "_blank");
+              }}
+              icon={
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-              </div>
-            </a>
+              }
+            >
+              Brochure
+            </CyberButton>
           </div>
         </div>
       </motion.div>
+
+      {/* Registration Modal Overlay */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative w-full max-w-lg bg-gradient-to-b from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] drop-shadow-[0_0_20px_rgba(243,202,32,0.25)]"
+              style={{ clipPath: CARD_OUTER_CLIP }}
+            >
+              <div
+                className="relative flex flex-col items-center bg-brand-navy p-8 text-center sm:p-12"
+                style={{ clipPath: CARD_INNER_CLIP }}
+              >
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-6 right-6 text-brand-cream transition-colors hover:text-brand-white"
+                >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                
+                <div className="mb-4 text-brand-golden-yellow drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]">
+                  <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                <h3 className="mb-4 font-brand-heading text-xl font-bold uppercase tracking-wide text-brand-white">
+                  Important Note
+                </h3>
+                
+                <p className="mb-8 font-brand-body text-sm leading-relaxed text-brand-cream md:text-base">
+                  After submitting this form, you will be given a link to download an Excel sheet. This sheet must be filled and emailed to <a href="mailto:amogh.pairaiturkar@vvm.edu.in" className="text-brand-golden-yellow font-semibold hover:underline hover:decoration-brand-golden-yellow/50 hover:underline-offset-4">amogh.pairaiturkar@vvm.edu.in</a> to complete your registration.
+                </p>
+                
+                <CyberButton
+                  isLoading={isFormLoading}
+                  onClick={() => {
+                    setIsFormLoading(true);
+                    // Simulate loading for 1.5 seconds before redirecting
+                    setTimeout(() => {
+                      setIsFormLoading(false);
+                      setIsModalOpen(false);
+                      window.open("https://forms.gle/XtWS4UM4BQ7qDw9m8", "_blank", "noopener,noreferrer");
+                    }, 1500);
+                  }}
+                  icon={
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  }
+                >
+                  Get the Form
+                </CyberButton>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
