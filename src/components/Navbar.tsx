@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { CyberButton } from "@/components/ui/CyberButton";
 
 /* -------------------------------------------------------------------------- */
 /*  Clip-Path Definitions (Chamfered Cyber Angles)                            */
@@ -22,6 +23,20 @@ const NAV_INNER_CLIP = `polygon(
   100% 15px, 100% calc(100% - 15px),
   calc(100% - 15px) 100%, 15px 100%,
   0 calc(100% - 15px), 0 15px
+)`;
+
+// Card Clips (For Modal)
+const CARD_OUTER_CLIP = `polygon(
+  24px 0, calc(100% - 24px) 0,
+  100% 24px, 100% calc(100% - 24px),
+  calc(100% - 24px) 100%, 24px 100%,
+  0 calc(100% - 24px), 0 24px
+)`;
+const CARD_INNER_CLIP = `polygon(
+  23px 0, calc(100% - 23px) 0,
+  100% 23px, 100% calc(100% - 23px),
+  calc(100% - 23px) 100%, 23px 100%,
+  0 calc(100% - 23px), 0 23px
 )`;
 
 // Mobile Menu Container Clips
@@ -50,6 +65,8 @@ const BTN_INNER_CLIP = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(1
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFormLoading, setIsFormLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -132,8 +149,8 @@ export default function Navbar() {
               ))}
 
               {/* Cyber Desktop CTA Button */}
-              <a
-                href="#register"
+              <button
+                onClick={() => setIsModalOpen(true)}
                 className="group relative inline-block bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_12px_rgba(243,202,32,0.6)]"
                 style={{ clipPath: BTN_OUTER_CLIP }}
               >
@@ -143,7 +160,7 @@ export default function Navbar() {
                 >
                   Register
                 </div>
-              </a>
+              </button>
             </div>
 
             {/* Hamburger Toggle Button (Mobile) */}
@@ -203,9 +220,11 @@ export default function Navbar() {
                     ))}
 
                     {/* Cyber Mobile CTA Button */}
-                    <a
-                      href="#register"
-                      onClick={() => setIsOpen(false)}
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsModalOpen(true);
+                      }}
                       className="group relative mt-2 block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(243,202,32,0.6)]"
                       style={{ clipPath: BTN_OUTER_CLIP }}
                     >
@@ -215,7 +234,7 @@ export default function Navbar() {
                       >
                         Register
                       </div>
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -223,6 +242,69 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Registration Modal Overlay */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 p-4 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="relative w-full max-w-lg bg-gradient-to-b from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[2px] drop-shadow-[0_0_20px_rgba(243,202,32,0.25)]"
+              style={{ clipPath: CARD_OUTER_CLIP }}
+            >
+              <div
+                className="relative flex flex-col items-center bg-brand-navy p-8 text-center sm:p-12"
+                style={{ clipPath: CARD_INNER_CLIP }}
+              >
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-6 right-6 text-brand-cream transition-colors hover:text-brand-white"
+                >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                
+                <div className="mb-4 text-brand-golden-yellow drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]">
+                  <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                
+                <h3 className="mb-4 font-brand-heading text-xl font-bold uppercase tracking-wide text-brand-white">
+                  Important Note
+                </h3>
+                
+                <p className="mb-8 font-brand-body text-sm leading-relaxed text-brand-cream md:text-base">
+                  After submitting this form, you will be given a link to download an Excel sheet. This sheet must be filled and emailed to <a href="mailto:amogh.pairaiturkar@vvm.edu.in" className="text-brand-golden-yellow font-semibold hover:underline hover:decoration-brand-golden-yellow/50 hover:underline-offset-4">amogh.pairaiturkar@vvm.edu.in</a> to complete your registration.
+                </p>
+                
+                <CyberButton
+                  isLoading={isFormLoading}
+                  onClick={() => {
+                    setIsFormLoading(true);
+                    // Simulate loading for 1.5 seconds before redirecting
+                    setTimeout(() => {
+                      setIsFormLoading(false);
+                      setIsModalOpen(false);
+                      window.open("https://forms.gle/XtWS4UM4BQ7qDw9m8", "_blank", "noopener,noreferrer");
+                    }, 1500);
+                  }}
+                  icon={
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  }
+                >
+                  Get the Form
+                </CyberButton>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
