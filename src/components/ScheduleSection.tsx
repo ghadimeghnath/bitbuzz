@@ -345,7 +345,7 @@ export default function ScheduleGrid() {
                 </div>
                 {/* line-clamp prevents massive text overflows on small screens */}
                 <span className="line-clamp-2 text-[9px] font-bold uppercase leading-tight tracking-wider text-slate-200 md:text-xs">
-                  {row.title}
+                  {row.items[0]?.title || row.title}
                 </span>
               </div>
 
@@ -366,25 +366,27 @@ export default function ScheduleGrid() {
                 {row.items.map((item, j) => (
                   <div
                     key={j}
-                    className={`relative z-10 flex flex-col items-center justify-center rounded text-white shadow-md transition-transform hover:scale-[1.02] hover:shadow-lg p-1 md:rounded-md ${item.bg}`}
+                    className={`relative z-10 flex flex-col items-center justify-center rounded text-white shadow-md transition-transform hover:scale-[1.02] hover:shadow-lg p-1.5 md:p-2 md:rounded-md ${item.bg}`}
                     style={{
                       gridColumnStart: item.start,
                       gridColumnEnd: `span ${item.span}`,
                     }}
                   >
-                    <span className="text-center text-[8px] font-extrabold uppercase leading-tight tracking-wide md:text-[10px]">
-                      {item.title}
-                    </span>
-                    
+                    {/* Time snippet - Sticky left so it slides */}
                     {'time' in item && typeof item.time === 'string' && (
-                      <span className="mt-0.5 text-center text-[7px] font-medium text-white/90 md:text-[9px]">
-                        {item.time}
-                      </span>
+                      <div className="absolute top-1 bottom-1 left-0 right-0 pointer-events-none">
+                        <div className="sticky left-1 md:left-2 top-0 flex h-full w-max items-start">
+                          <span className="rounded bg-black/25 px-1.5 py-0.5 text-[7px] font-bold text-white/90 backdrop-blur-sm md:text-[9px]">
+                            {item.time}
+                          </span>
+                        </div>
+                      </div>
                     )}
                     
+                    {/* Location snippet - prominent typography */}
                     {'location' in item && item.location && (
-                      <span className="mt-0.5 flex items-center justify-center gap-0.5 text-center text-[7px] font-medium text-white/90 md:gap-1 md:text-[9px]">
-                        <MapPin className="h-2 w-2 shrink-0 md:h-2.5 md:w-2.5" />
+                      <span className="flex items-center justify-center gap-1 text-center text-[9px] font-extrabold tracking-widest text-white md:gap-1.5 md:text-xs">
+                        <MapPin className="h-3 w-3 shrink-0 md:h-3.5 md:w-3.5" />
                         <span className="truncate">{item.location}</span>
                       </span>
                     )}

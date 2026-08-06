@@ -2,17 +2,30 @@
 
 import * as React from "react";
 import {
+  GraduationCap,
+  UserCheck,
   Users,
-  Ban,
-  Building2,
-  UserRound,
-  CalendarDays,
-  Mail,
-  Headphones,
+  CircleDollarSign,
+  School,
+  CalendarSync,
+  Briefcase,
+  CalendarCheck,
+  MailCheck,
+  PhoneCall,
+  AlarmClock,
+  IdCard,
+  Trophy,
+  Share2,
+  Award,
+  Medal,
+  FileCheck,
+  ShieldAlert,
+  Utensils,
+  Gavel,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Clip-Path Definitions (Chamfered Cyber Angles)                   */
+/*  Clip-Path Definitions (Chamfered Cyber Angles)                    */
 /* ------------------------------------------------------------------ */
 
 // Outer Cut: 24px chamfered corners
@@ -46,8 +59,9 @@ const ICON_BOX_INNER = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(1
 function PosterShell({ children }: { children: React.ReactNode }) {
   return (
     <div
-    id="rules"
-    className="relative z-10 mx-auto w-full max-w-4xl bg-brand-navy px-3 py-6 font-brand-body text-brand-white sm:px-8 sm:py-10">
+      id="rules"
+      className="relative z-10 mx-auto w-full max-w-4xl bg-brand-navy px-3 py-6 font-brand-body text-brand-white sm:px-8 sm:py-10"
+    >
       {children}
     </div>
   );
@@ -100,7 +114,7 @@ function RuleItem({
 export function GeneralRulesPoster() {
   const generalRules = [
     {
-      icon: Users,
+      icon: GraduationCap,
       color: "text-brand-orange",
       content: (
         <>
@@ -113,7 +127,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: UserRound,
+      icon: UserCheck,
       color: "text-brand-light-green",
       content: (
         <>
@@ -143,7 +157,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Ban,
+      icon: CircleDollarSign,
       color: "text-brand-orange",
       content: (
         <>
@@ -156,7 +170,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Building2,
+      icon: School,
       color: "text-brand-golden-yellow",
       content: (
         <>
@@ -169,7 +183,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: CalendarDays,
+      icon: CalendarSync,
       color: "text-brand-light-green",
       content: (
         <>
@@ -184,7 +198,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: UserRound,
+      icon: Briefcase,
       color: "text-brand-orange",
       content: (
         <>
@@ -192,14 +206,13 @@ export function GeneralRulesPoster() {
           <span className="font-bold text-brand-golden-yellow">
             Teacher-in-Charge
           </span>{" "}
-          is responsible for submitting the
-          institution's registration along with the names of participants for
-          their respective events.
+          is responsible for submitting the institution's registration along
+          with the names of participants for their respective events.
         </>
       ),
     },
     {
-      icon: CalendarDays,
+      icon: CalendarCheck,
       color: "text-brand-orange",
       content: (
         <>
@@ -212,12 +225,12 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Mail,
+      icon: MailCheck,
       color: "text-brand-golden-yellow",
       content: (
         <>
-          Important information and event-related updates will be
-          communicated via{" "}
+          Important information and event-related updates will be communicated
+          via{" "}
           <span className="font-bold text-brand-golden-yellow">
             email
           </span>{" "}
@@ -226,7 +239,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Headphones,
+      icon: PhoneCall,
       color: "text-brand-light-green",
       content: (
         <>
@@ -239,7 +252,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: CalendarDays,
+      icon: AlarmClock,
       color: "text-brand-orange",
       content: (
         <>
@@ -253,7 +266,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: UserRound,
+      icon: IdCard,
       color: "text-brand-light-green",
       content: (
         <>
@@ -266,12 +279,12 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Users,
+      icon: Trophy,
       color: "text-brand-golden-yellow",
       content: (
         <>
-          Points will be awarded based on participation and final placement
-          in each event.
+          Points will be awarded based on participation and final placement in
+          each event.
           <br />
           <br />
           <span className="font-bold text-brand-golden-yellow">
@@ -292,7 +305,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Users,
+      icon: Share2,
       color: "text-brand-orange",
       content: (
         <>
@@ -305,7 +318,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Users,
+      icon: Award,
       color: "text-brand-light-green",
       content: (
         <>
@@ -322,7 +335,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Users,
+      icon: Medal,
       color: "text-brand-golden-yellow",
       content: (
         <>
@@ -339,7 +352,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Mail,
+      icon: FileCheck,
       color: "text-brand-orange",
       content: (
         <>
@@ -352,7 +365,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Ban,
+      icon: ShieldAlert,
       color: "text-brand-orange",
       content: (
         <>
@@ -366,7 +379,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Users,
+      icon: Utensils,
       color: "text-brand-light-green",
       content: (
         <>
@@ -379,7 +392,7 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: Headphones,
+      icon: Gavel,
       color: "text-brand-golden-yellow",
       content: (
         <>
@@ -387,8 +400,7 @@ export function GeneralRulesPoster() {
           <span className="font-bold text-brand-golden-yellow">
             organizers and judges
           </span>{" "}
-          shall be final and binding in all matters related to the
-          competition.
+          shall be final and binding in all matters related to the competition.
         </>
       ),
     },
@@ -397,10 +409,7 @@ export function GeneralRulesPoster() {
   return (
     <PosterShell>
       <div className="relative mt-6 sm:mt-8">
-        
-        {/* ------------------------------------------------------------- */}
-        {/* Floating Header Badge sitting on top border                    */}
-        {/* ------------------------------------------------------------- */}
+        {/* Floating Header Badge sitting on top border */}
         <div
           className="absolute -top-4 left-1/2 z-20 -translate-x-1/2 bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_12px_rgba(243,202,32,0.4)]"
           style={{ clipPath: BADGE_OUTER_CLIP }}
@@ -409,25 +418,21 @@ export function GeneralRulesPoster() {
             className="bg-brand-navy px-6 py-1.5 text-center sm:px-10 sm:py-2"
             style={{ clipPath: BADGE_INNER_CLIP }}
           >
-            <h2 className="font-brand-heading text-sm italic font-extrabold uppercase tracking-widest text-brand-white sm:text-xl">
+            <h2 className="font-brand-heading text-sm font-extrabold italic uppercase tracking-widest text-brand-white sm:text-xl">
               General Rules
             </h2>
           </div>
         </div>
 
-        {/* ------------------------------------------------------------- */}
-        {/* Main Card Container (Outer Glowing Border)                    */}
-        {/* ------------------------------------------------------------- */}
+        {/* Main Card Container */}
         <div
           className="bg-gradient-to-b from-brand-golden-yellow via-brand-orange/40 to-brand-golden-yellow/80 p-[2px] transition-all duration-300 hover:drop-shadow-[0_0_16px_rgba(243,202,32,0.25)]"
           style={{ clipPath: MAIN_CARD_OUTER_CLIP }}
         >
-          {/* Main Card Container (Inner Navy Dark Background Box) */}
           <div
             className="bg-brand-navy px-4 pt-10 pb-6 sm:px-8 sm:pt-12 sm:pb-8"
             style={{ clipPath: MAIN_CARD_INNER_CLIP }}
           >
-            {/* Rules List */}
             <ul className="divide-y divide-brand-golden-yellow/15">
               {generalRules.map((rule, index) => (
                 <RuleItem
@@ -441,15 +446,10 @@ export function GeneralRulesPoster() {
             </ul>
           </div>
         </div>
-
       </div>
     </PosterShell>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Default export — quick preview                                    */
-/* ------------------------------------------------------------------ */
 
 export default function RulesSection() {
   return (

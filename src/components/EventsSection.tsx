@@ -47,7 +47,7 @@ interface WheelCardProps {
 // calculation) stays in sync automatically.
 // ---------------------------------------------------------------------------
 const STAGE_HUB_GAP = {
-  mobile: 140, // < 640px, flex-col layout (stage stacked above hub)
+  mobile: 60, // < 640px, flex-col layout (stage stacked above hub)
   tablet: 20, // >= 640px (sm) and < 768px (md), still flex-col
   desktop: 0, // >= 768px (md+), hub is absolutely positioned so this is inert
 } as const;
@@ -258,9 +258,9 @@ export default function EventsSection() {
       ref={containerRef}
       id="events"
       style={{ height: isMobile ? "90dvh" : trackHeight }}
-      className="relative w-full bg-brand-navy "
+      className="relative w-full bg-brand-navy flex flex-col"
     >
-      <div className="flex justify-center">
+      <div className="flex justify-center shrink-0">
             <div
               className="bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_15px_rgba(243,202,32,0.35)]"
               style={{ clipPath: HEADER_BADGE_OUTER }}
@@ -284,7 +284,7 @@ export default function EventsSection() {
           ["--stage-hub-gap-tablet" as any]: `${STAGE_HUB_GAP.tablet}px`,
           ["--stage-hub-gap-desktop" as any]: `${STAGE_HUB_GAP.desktop}px`,
         }}
-        className="sticky top-0 z-10 h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-start md:justify-between p-2 sm:p-4 md:p-8 lg:p-12
+        className="sticky top-0 z-10 flex-1 md:flex-none h-auto md:h-dvh w-full overflow-hidden flex flex-col md:flex-row items-center justify-start md:justify-between p-2 sm:p-4 md:p-8 lg:p-12
           gap-[var(--stage-hub-gap-mobile)] sm:gap-[var(--stage-hub-gap-tablet)] md:gap-[var(--stage-hub-gap-desktop)]"
       >
 
@@ -296,12 +296,13 @@ export default function EventsSection() {
           style={{
             // Keeps touch gestures for Framer Motion
             touchAction: "pan-y",
+            ...(isMobile && stageHeight ? { height: stageHeight } : {}),
           }}
           // 
           // 1. h-[80vh] sets a fixed height (adjust as needed) for mobile/desktop fallback.
           // 2. md:h-full keeps it full height on larger screens.
           // 3. overflow-hidden ensures the stage itself never scrolls.
-          className="relative w-full h-[48dvh] md:h-full flex items-center justify-center z-20"
+          className="relative w-full h-[50dvh] md:h-full flex items-center justify-center z-20"
         >
           {events.map((event, index) => (
             <WheelCard
@@ -592,14 +593,14 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
 
   return (
     <div
-     className="absolute inset-0
-      /* Mobile Placement: flush against the bottom of the stage box, right above the hub */
-      flex items-end justify-center
+     className="absolute inset-0 p-2 sm:p-0
+      /* Mobile Placement: centered in the stage box */
+      flex items-center justify-center
       /* Desktop Placement: revert to centered-with-offset, own bounding box */
       md:inset-auto md:items-center md:top-1/2 md:-translate-y-1/2 md:left-[40%] lg:left-[40%] xl:left-[40%] 2xl:left-[40%] 
       pointer-events-none"
     >
-      <div className="w-full max-w-[92%] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl flex justify-center">
+      <div className="w-full max-w-[92%] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-3xl flex justify-center max-h-full">
         <motion.div
           style={{
             rotate,
@@ -609,14 +610,14 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             pointerEvents,
             transformOrigin: "var(--wheel-pivot)",
           }}
-          className="will-change-transform w-full 
+          className="will-change-transform w-full max-h-full flex justify-center
             [--wheel-pivot:50%_750px] 
             sm:[--wheel-pivot:50%_850px] 
             md:[--wheel-pivot:clamp(-750px,-40vw,-400px)_50%]
             lg:[--wheel-pivot:clamp(-950px,-45vw,-550px)_50%]
             xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
         >
-          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full aspect-square sm:aspect-auto sm:h-auto overflow-hidden">
+          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full sm:h-auto overflow-hidden max-h-full">
             
 {/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
 {index < 2 && (
@@ -685,7 +686,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
             {/* Card Media Section */}
-            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-1/2 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black shrink-0 ">
+            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-[180px] shrink-0 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black ">
               <Image
                 src={event.image}
                 alt={event.title}
@@ -698,30 +699,30 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             </div>
 
             {/* Card Details Section */}
-            <div className="p-3 sm:p-4 md:p-5 lg:p-6 2xl:p-8 flex flex-col justify-between flex-grow bg-brand-navy relative z-20 gap-1.5 sm:gap-2.5 md:gap-3">
+            <div className="p-3 sm:p-4 md:p-5 lg:p-6 2xl:p-8 flex flex-col justify-between flex-grow bg-brand-navy relative z-20 gap-1.5 sm:gap-2.5 md:gap-3 overflow-y-auto min-h-0">
 
               {/* Header: Title & Event ID */}
               <div>
                 <div className="flex items-start justify-between gap-2 mb-0.5 sm:mb-1">
                   <div className="flex items-center gap-2 sm:gap-2.5">
                     <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                    <h3 className="font-brand-competition text-base sm:text-lg md:text-lg lg:text-lg 2xl:text-3xl font-bold text-brand-white tracking-wider line-clamp-2">
+                    <h3 className="font-brand-competition text-xs  sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-brand-white tracking-wider line-clamp-2">
                       {event.title}
                     </h3>
                   </div>
-                  <span className={`font-brand-heading font-bold text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl shrink-0 ${event.colorCls.text}`}>
+                  <span className={`font-brand-heading font-bold text-sm sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl shrink-0 ${event.colorCls.text}`}>
                     #{event.id}
                   </span>
                 </div>
 
                 {/* Category Tag */}
-                <span className={`block font-brand-heading font-bold text-[10px] sm:text-xs md:text-sm lg:text-base uppercase tracking-wider ${event.colorCls.text}`}>
+                <span className={`block font-brand-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-wider ${event.colorCls.text}`}>
                   {event.category}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-brand-white/80 font-brand-body text-xs sm:text-sm md:text-base lg:text-lg leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
+              <p className="text-brand-white/80 font-brand-body text-xs sm:text-base md:text-lg lg:text-xl leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
                 Initiate protocol {event.id}. Prepare your systems for the {event.title} challenge within the arena. Success requires strategy.
               </p>
 
@@ -730,7 +731,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
                 href={`/event/${event.slug}`}
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
-                className={`relative z-30 block text-center w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-wider uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-2`}
+                className={`relative z-30 block text-center w-full py-2.5 sm:py-3 md:py-3.5 lg:py-4 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-wider uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-auto`}
               >
                 [ View Details ]
               </Link>

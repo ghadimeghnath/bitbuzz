@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { FloatingParticles } from '@/components/ui/FloatingParticles';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 
 /* -------------------------------------------------------------------------- */
 /*  Clip-Path Definitions (Chamfered Cyber Angles)                            */
@@ -161,6 +162,7 @@ export default async function EventPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-hidden">
+      <ScrollToTop />
       <FloatingParticles />
 
       {/* Enhanced glowing top banner */}
