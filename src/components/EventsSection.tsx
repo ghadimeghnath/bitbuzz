@@ -23,6 +23,7 @@ interface EventItem {
   id: string | number;
   title: string;
   category: string;
+  difficulty: string;
   image: string;
   slug: string;
   colorCls: {
@@ -617,7 +618,8 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             lg:[--wheel-pivot:clamp(-950px,-45vw,-550px)_50%]
             xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
         >
-          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full sm:h-auto overflow-hidden max-h-full">
+          <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full overflow-hidden
+            h-auto sm:h-[260px] md:h-[300px] lg:h-[340px] xl:h-[380px] 2xl:h-[420px]">
             
 {/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
 {index < 2 && (
@@ -685,53 +687,63 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             {/* Subtle Glow Border */}
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
-            {/* Card Media Section */}
-            <div className="relative w-full sm:w-2/5 lg:w-[42%] h-[180px] shrink-0 sm:h-auto min-h-[160px] sm:min-h-[200px] md:min-h-[240px] lg:min-h-[280px] border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black ">
+            {/* Card Media Section — fixed 45% width on desktop */}
+            <div className="relative w-full sm:w-[45%] shrink-0 grow-0 h-[200px] sm:h-full border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black">
               <Image
                 src={event.image}
                 alt={event.title}
                 fill
                 draggable={false}
                 priority={index === 0}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, 42vw"
+                loading={index < 3 ? "eager" : "lazy"}
+                sizes="(max-width: 640px) 100vw, 45vw"
                 className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 select-none"
               />
             </div>
 
-            {/* Card Details Section */}
-            <div className="p-3 sm:p-4 md:p-5 lg:p-6 2xl:p-8 flex flex-col justify-between flex-grow bg-brand-navy relative z-20 gap-1.5 sm:gap-2.5 md:gap-3 overflow-y-auto min-h-0">
+            {/* Card Details Section — fixed 55% width, content pinned top/bottom */}
+            <div className="w-full sm:w-[55%] shrink-0 grow-0 p-3 sm:p-3 md:p-4 lg:p-5 xl:p-6 2xl:p-7
+              flex flex-col justify-between
+              bg-brand-navy relative z-20 overflow-hidden">
 
-              {/* Header: Title & Event ID */}
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-0.5 sm:mb-1">
-                  <div className="flex items-center gap-2 sm:gap-2.5">
-                    <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                    <h3 className="font-brand-competition text-xs  sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-brand-white tracking-wider line-clamp-2">
+              {/* TOP: Event ID + Title + Badges */}
+              <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5 overflow-hidden">
+
+                {/* Title row with ID pinned top-right */}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 overflow-hidden">
+                    <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full shrink-0 ${event.colorCls.bg}`} />
+                    <h3 className="font-brand-competition text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-brand-white tracking-wide leading-tight line-clamp-3 overflow-hidden">
                       {event.title}
                     </h3>
                   </div>
-                  <span className={`font-brand-heading font-bold text-sm sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl shrink-0 ${event.colorCls.text}`}>
+                  <span className={`font-brand-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl shrink-0 ${event.colorCls.text}`}>
                     #{event.id}
                   </span>
                 </div>
 
-                {/* Category Tag */}
-                <span className={`block font-brand-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg uppercase tracking-wider ${event.colorCls.text}`}>
-                  {event.category}
-                </span>
+                {/* Category & Difficulty badges */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className={`font-brand-heading font-bold text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest px-2 py-0.5 sm:py-1 rounded border ${event.colorCls.border} ${event.colorCls.text} bg-transparent whitespace-nowrap`}>
+                    {event.category}
+                  </span>
+                  <span className="font-brand-heading font-bold text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest px-2 py-0.5 sm:py-1 rounded border border-brand-white/20 text-brand-white/60 whitespace-nowrap">
+                    {event.difficulty}
+                  </span>
+                </div>
               </div>
 
-              {/* Description */}
-              <p className="text-brand-white/80 font-brand-body text-xs sm:text-base md:text-lg lg:text-xl leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
-                Initiate protocol {event.id}. Prepare your systems for the {event.title} challenge within the arena. Success requires strategy.
-              </p>
-
-              {/* Action Link */}
+              {/* BOTTOM: View Details button — always pinned to bottom via mt-auto */}
               <Link
                 href={`/event/${event.slug}`}
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
-                className={`relative z-30 block text-center w-full py-2.5 sm:py-3 md:py-3.5 lg:py-4 border ${event.colorCls.border} ${event.colorCls.text} font-brand-heading text-sm sm:text-base md:text-lg lg:text-xl font-bold tracking-wider uppercase ${event.colorCls.hoverBg} hover:text-brand-navy transition-colors rounded-md lg:rounded-lg cursor-pointer mt-auto`}
+                className={`relative z-30 mt-auto block text-center w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5
+                  border ${event.colorCls.border} ${event.colorCls.text}
+                  font-brand-heading text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg
+                  font-bold tracking-wider uppercase whitespace-nowrap
+                  ${event.colorCls.hoverBg} hover:text-brand-navy
+                  transition-colors rounded-md cursor-pointer`}
               >
                 [ View Details ]
               </Link>

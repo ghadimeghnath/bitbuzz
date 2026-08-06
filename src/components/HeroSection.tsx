@@ -60,6 +60,7 @@ lg:px-16
           alt="Desktop Background"
           fill
           priority
+          sizes="(min-width: 1024px) 100vw, 1px"
           className="hidden lg:block object-cover object-center"
         />
 
@@ -69,6 +70,7 @@ lg:px-16
           alt="Tablet Background"
           fill
           priority
+          sizes="(min-width: 640px) and (max-width: 1023px) 100vw, 1px"
           className="hidden sm:block lg:hidden object-cover object-center"
         />
 
@@ -78,6 +80,7 @@ lg:px-16
           alt="Mobile Background"
           fill
           priority
+          sizes="(max-width: 639px) 100vw, 1px"
           className="block sm:hidden object-cover object-center"
         />
 

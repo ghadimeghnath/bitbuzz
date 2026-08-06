@@ -154,7 +154,7 @@ export default async function EventPage({ params }: PageProps) {
     [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2.5 [&_ol]:my-5 [&_ol]:text-brand-white/85
     [&_li]:pl-2 [&_li]:py-0.5
     [&_a]:text-brand-golden-yellow [&_a]:underline [&_a]:hover:text-brand-orange [&_a]:transition-colors
-    [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:overflow-x-auto [&_table]:block sm:[&_table]:table
+    [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:block [&_table]:overflow-x-auto sm:[&_table]:table sm:[&_table]:overflow-visible
     [&_th]:border [&_th]:border-brand-golden-yellow/40 [&_th]:p-3.5 [&_th]:bg-brand-navy/90 [&_th]:text-brand-golden-yellow [&_th]:text-left [&_th]:font-bold
     [&_td]:border [&_td]:border-brand-golden-yellow/20 [&_td]:p-3.5 [&_td]:bg-brand-navy/50 [&_td]:text-brand-white/85
     [&_blockquote]:border-l-4 [&_blockquote]:border-brand-golden-yellow [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-brand-white/75
