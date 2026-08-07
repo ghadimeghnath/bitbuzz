@@ -262,20 +262,20 @@ export default function EventsSection() {
       className="relative w-full bg-brand-navy flex flex-col"
     >
       <div className="flex justify-center shrink-0">
-            <div
-              className="bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_15px_rgba(243,202,32,0.35)]"
-              style={{ clipPath: HEADER_BADGE_OUTER }}
-            >
-              <div
-                className="bg-brand-navy px-6 py-3.5 sm:px-10 sm:py-4"
-                style={{ clipPath: HEADER_BADGE_INNER }}
-              >
-                <h2 className="font-brand-heading text-2xl font-extrabold uppercase tracking-widest text-brand-white sm:text-4xl md:text-5xl">
-                  EVENTS & RULES
-                </h2>
-              </div>
-            </div>
+        <div
+          className="bg-gradient-to-r from-brand-orange via-brand-golden-yellow to-brand-orange p-[1.5px] drop-shadow-[0_0_15px_rgba(243,202,32,0.35)]"
+          style={{ clipPath: HEADER_BADGE_OUTER }}
+        >
+          <div
+            className="bg-brand-navy px-6 py-3.5 sm:px-10 sm:py-4"
+            style={{ clipPath: HEADER_BADGE_INNER }}
+          >
+            <h2 className="font-brand-heading text-2xl font-extrabold uppercase tracking-widest text-brand-white sm:text-4xl md:text-5xl">
+              EVENTS & RULES
+            </h2>
           </div>
+        </div>
+      </div>
       <div
         ref={stickyRef}
         style={{
@@ -390,7 +390,7 @@ const PILL_INNER_CLIP = `polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(
 /* -------------------------------------------------------------------------- */
 
 const PILL_ARC_DEFAULTS = {
-  minAngularGapDegDesktop:30,
+  minAngularGapDegDesktop: 30,
   minAngularGapDegTablet: 18,
   minAngularGapDegMobile: 15,
   bufferDesktop: 40,
@@ -537,20 +537,18 @@ export function LogoCategoryHub({
             >
               {/* Outer Dual-Layer Cyber Pill Outer Frame */}
               <div
-                className={`p-[1.5px] transition-all duration-300 ${
-                  isActive
-                    ? "bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow drop-shadow-[0_0_12px_rgba(243,202,32,0.6)] scale-105"
-                    : "bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/20 to-brand-golden-yellow/30 hover:bg-brand-golden-yellow hover:drop-shadow-[0_0_10px_rgba(243,202,32,0.35)] hover:scale-105"
-                }`}
+                className={`p-[1.5px] transition-all duration-300 ${isActive
+                  ? "bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow drop-shadow-[0_0_12px_rgba(243,202,32,0.6)] scale-105"
+                  : "bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/20 to-brand-golden-yellow/30 hover:bg-brand-golden-yellow hover:drop-shadow-[0_0_10px_rgba(243,202,32,0.35)] hover:scale-105"
+                  }`}
                 style={{ clipPath: PILL_OUTER_CLIP }}
               >
                 {/* Inner Pill Card Content */}
                 <div
-                  className={`px-3 py-1.5 font-brand-heading text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 sm:text-xs md:text-sm lg:text-base ${
-                    isActive
-                      ? "bg-brand-golden-yellow text-brand-navy"
-                      : "bg-brand-navy/90 text-brand-white/80 backdrop-blur-md hover:text-brand-white"
-                  }`}
+                  className={`px-3 py-1.5 font-brand-heading text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 sm:text-xs md:text-sm lg:text-base ${isActive
+                    ? "bg-brand-golden-yellow text-brand-navy"
+                    : "bg-brand-navy/90 text-brand-white/80 backdrop-blur-md hover:text-brand-white"
+                    }`}
                   style={{ clipPath: PILL_INNER_CLIP }}
                 >
                   {cat}
@@ -594,7 +592,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
 
   return (
     <div
-     className="absolute inset-0 p-2 sm:p-0
+      className="absolute inset-0 p-2 sm:p-0
       /* Mobile Placement: centered in the stage box */
       flex items-center justify-center
       /* Desktop Placement: revert to centered-with-offset, own bounding box */
@@ -620,69 +618,69 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
         >
           <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full overflow-hidden
             h-auto sm:h-[250px] md:h-[265px] lg:h-[280px] xl:h-[295px] 2xl:h-[310px]">
-            
-{/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
-{index < 2 && (
-  <div className="sm:hidden absolute top-1/2 right-4 -translate-y-1/2 z-50 pointer-events-none flex items-center gap-1.5">
-    
-    {/* Swipe Left Text Message */}
-    <motion.span
-      animate={{
-        x: [10, 10, -15, -15, 10],       // Moves left in tandem with the hand
-        opacity: [0, 0.9, 0.9, 0, 0],     // Fades in and out with the gesture
-      }}
-      transition={{
-        duration: 2.2,
-        repeat: Infinity,
-        repeatDelay: 0.6,
-        times: [0, 0.2, 0.65, 0.85, 1],
-        ease: "easeInOut",
-      }}
-      className="text-[11px] font-medium tracking-wide uppercase text-brand-golden-yellow/90 drop-shadow-[0_0_6px_rgba(255,215,0,0.3)] whitespace-nowrap select-none"
-    >
-      Swipe left
-    </motion.span>
 
-    {/* Hand & Ripple Container */}
-    <div className="relative flex items-center justify-center">
-      {/* Touch Point Ripple Effect */}
-      <motion.div
-        animate={{
-          scale: [0.6, 1.5, 0.6],
-          opacity: [0, 0.6, 0],
-        }}
-        transition={{
-          duration: 2.2,
-          repeat: Infinity,
-          repeatDelay: 0.6,
-          times: [0, 0.25, 0.5],
-          ease: "easeOut",
-        }}
-        className="absolute right-0 w-8 h-8 rounded-full bg-brand-golden-yellow/20 border border-brand-golden-yellow/50"
-      />
+            {/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
+            {index < 2 && (
+              <div className="sm:hidden absolute top-1/2 right-4 -translate-y-1/2 z-50 pointer-events-none flex items-center gap-1.5">
 
-      {/* Hand Gesture Animation */}
-      <motion.div
-        animate={{
-          x: [16, 16, -20, -20, 16],
-          scale: [1, 0.85, 0.85, 1, 1],
-          opacity: [0, 1, 1, 0, 0],
-        }}
-        transition={{
-          duration: 2.2,
-          repeat: Infinity,
-          repeatDelay: 0.6,
-          times: [0, 0.2, 0.65, 0.85, 1],
-          ease: "easeInOut",
-        }}
-        className="relative text-brand-golden-yellow drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
-      >
-        <Hand className="w-6 h-6" />
-      </motion.div>
-    </div>
+                {/* Swipe Left Text Message */}
+                <motion.span
+                  animate={{
+                    x: [10, 10, -15, -15, 10],       // Moves left in tandem with the hand
+                    opacity: [0, 0.9, 0.9, 0, 0],     // Fades in and out with the gesture
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    repeatDelay: 0.6,
+                    times: [0, 0.2, 0.65, 0.85, 1],
+                    ease: "easeInOut",
+                  }}
+                  className="text-[11px] font-medium tracking-wide uppercase text-brand-golden-yellow/90 drop-shadow-[0_0_6px_rgba(255,215,0,0.3)] whitespace-nowrap select-none"
+                >
+                  Swipe left
+                </motion.span>
 
-  </div>
-)}
+                {/* Hand & Ripple Container */}
+                <div className="relative flex items-center justify-center">
+                  {/* Touch Point Ripple Effect */}
+                  <motion.div
+                    animate={{
+                      scale: [0.6, 1.5, 0.6],
+                      opacity: [0, 0.6, 0],
+                    }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      repeatDelay: 0.6,
+                      times: [0, 0.25, 0.5],
+                      ease: "easeOut",
+                    }}
+                    className="absolute right-0 w-8 h-8 rounded-full bg-brand-golden-yellow/20 border border-brand-golden-yellow/50"
+                  />
+
+                  {/* Hand Gesture Animation */}
+                  <motion.div
+                    animate={{
+                      x: [16, 16, -20, -20, 16],
+                      scale: [1, 0.85, 0.85, 1, 1],
+                      opacity: [0, 1, 1, 0, 0],
+                    }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      repeatDelay: 0.6,
+                      times: [0, 0.2, 0.65, 0.85, 1],
+                      ease: "easeInOut",
+                    }}
+                    className="relative text-brand-golden-yellow drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]"
+                  >
+                    <Hand className="w-6 h-6" />
+                  </motion.div>
+                </div>
+
+              </div>
+            )}
 
             {/* Subtle Glow Border */}
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
