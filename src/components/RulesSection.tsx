@@ -100,7 +100,7 @@ function RuleItem({
       </div>
 
       {/* Text Content */}
-      <p className="pt-1 text-xs leading-relaxed text-brand-white/90 font-brand-body sm:text-sm">
+      <p className="pt-1 text-sm leading-relaxed text-brand-white/90 font-brand-body sm:text-base">
         {children}
       </p>
     </li>

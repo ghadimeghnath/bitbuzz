@@ -151,7 +151,7 @@ export default async function EventPage({ params }: PageProps) {
     [&_strong]:text-brand-golden-yellow [&_strong]:font-bold
     [&_em]:text-brand-golden-yellow/90 [&_em]:italic
     [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2.5 [&_ul]:my-5 [&_ul]:text-brand-white/85
-    [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2.5 [&_ol]:my-5 [&_ol]:text-brand-white/85
+    [&_ol]:text-brand-white/85
     [&_li]:pl-2 [&_li]:py-0.5
     [&_a]:text-brand-golden-yellow [&_a]:underline [&_a]:hover:text-brand-orange [&_a]:transition-colors
     [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:block [&_table]:overflow-x-auto sm:[&_table]:table sm:[&_table]:overflow-visible
@@ -228,7 +228,7 @@ export default async function EventPage({ params }: PageProps) {
                   About This Event
                 </h2>
                 <div
-                  className={htmlContentStyles}
+                  className={`event-content ${htmlContentStyles}`}
                   dangerouslySetInnerHTML={{ __html: event.about }}
                 />
               </div>
@@ -289,7 +289,7 @@ export default async function EventPage({ params }: PageProps) {
                   Rules & Regulations
                 </h2>
                 <div
-                  className={htmlContentStyles}
+                  className={`event-content ${htmlContentStyles}`}
                   dangerouslySetInnerHTML={{ __html: event.rules }}
                 />
               </div>
@@ -314,7 +314,7 @@ export default async function EventPage({ params }: PageProps) {
                   Judging Criteria
                 </h2>
                 <div
-                  className={htmlContentStyles}
+                  className={`event-content ${htmlContentStyles}`}
                   dangerouslySetInnerHTML={{ __html: event.judging }}
                 />
               </div>
@@ -343,7 +343,7 @@ export default async function EventPage({ params }: PageProps) {
                         {section.title}
                       </h2>
                       <div
-                        className={htmlContentStyles}
+                        className={`event-content ${htmlContentStyles}`}
                         dangerouslySetInnerHTML={{ __html: section.content }}
                       />
                     </div>
