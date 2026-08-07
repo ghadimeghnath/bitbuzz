@@ -97,22 +97,22 @@ const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; ema
           </div>
 
           {/* Details Container with gradient fade */}
-          <div className="absolute bottom-0 left-0 w-full h-[50%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[45%]">
-            <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
+          <div className="absolute bottom-0 left-0 w-full h-[60%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[65%]">
+            <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center drop-shadow-md line-clamp-2 leading-tight">
               {name}
             </h3>
             {role && (
-              <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 drop-shadow-md leading-tight">
                 {role}
               </p>
             )}
             {email && (
-              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 break-all drop-shadow-md leading-tight">
                 {email}
               </p>
             )}
             {phone && (
-              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 drop-shadow-md leading-tight">
                 {phone}
               </p>
             )}
@@ -225,8 +225,8 @@ export default function SpeakersSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
             <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Faculty Lead" image="/amogh.jpeg" email="amogh.pairaiturkar@vvm.edu.in" phone="+91 9765856958" />
             <MemberCard ref={samuelRef} name="Samuel Godinho" role="Faculty Lead" image="/samuel.jpeg" email="samuel.godinho@vvm.edu.in" phone="+91 8975868065" />
-            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/simran-1.png" />
-            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/saniya-1.png" />
+            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411020.simran.sdcce@vvm.edu.in" phone="+91 9270193714" image="/simran-1.png" />
+            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2508061.saniya.sdcce@vvm.edu.in" phone="+91 9634443009" image="/saniya-1.png" />
           </div>
         </div>
 
@@ -235,10 +235,10 @@ export default function SpeakersSection() {
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
           <div className="grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
-            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/rafia-1.png" />
-            <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Sumit.png" />
+            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" email="2411016.rafia.sdcce@vvm.edu.in" phone="+91 7249007174" image="/rafia-1.png" />
+            <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" email="2411021.sumit.sdcce@vvm.edu.in" phone="+91 9359391148" image="/Sumit.png" />
             <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath-1.png" />
-            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/suraj-1.png" />
+            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" email="2411022.suraj.sdcce@vvm.edu.in" phone="+91 9309288086" image="/suraj-1.png" />
 
           </div>
         </div>

@@ -139,7 +139,7 @@ tracking-[0.22em]
 text-white
 drop-shadow-lg
 ">
-            State Level IT Fest for{" "}
+            State Level IT Fest for <br />
             <span className="text-brand-golden-yellow">Higher Secondary Students</span>
           </p>
           <span className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-brand-golden-yellow/60 shrink-0" />
