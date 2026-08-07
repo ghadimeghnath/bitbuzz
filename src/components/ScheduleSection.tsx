@@ -23,6 +23,7 @@ import {
   MapPin,
   ArrowRight,
   Hand,
+  Gift,
 } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */
@@ -48,7 +49,14 @@ const scheduleRows = [
     title: "INAUGURAL",
     icon: Trophy,
     items: [
-      { title: "INAUGURAL FUNCTION", location: "HALL 1", start: 1, span: 1, bg: "bg-[#2ea043]" },
+      { title: "INAUGURAL FUNCTION", location: "HALL 1", start: 1, span: 2, bg: "bg-[#2ea043]" },
+    ],
+  },
+  {
+    title: "SURPRISE EVENT",
+    icon: Gift,
+    items: [
+      { title: "SURPRISE EVENT", location: "TBA", start: 3, span: 10, bg: "bg-[#f59e0b]" },
     ],
   },
   {
