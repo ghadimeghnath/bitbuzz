@@ -42,7 +42,7 @@ const HubBadge = forwardRef<HTMLDivElement, { title: string; className?: string 
     <div
       ref={ref}
       className={cn(
-        "z-10 px-6 py-2.5 md:px-8 md:py-3 rounded-xl bg-brand-navy/90 border border-brand-golden-yellow/60 text-brand-golden-yellow font-brand-heading font-bold text-xs md:text-base uppercase tracking-widest text-center shadow-brand-soft backdrop-blur-md transition-all duration-300 hover:border-brand-golden-yellow hover:shadow-brand-yellow",
+        "z-10 px-6 py-2.5 md:px-8 md:py-3 rounded-xl bg-brand-navy/90 border border-brand-golden-yellow/60 text-brand-golden-yellow font-brand-heading font-bold text-sm md:text-lg uppercase tracking-widest text-center shadow-brand-soft backdrop-blur-md transition-all duration-300 hover:border-brand-golden-yellow hover:shadow-brand-yellow",
         className
       )}
     >
@@ -98,21 +98,21 @@ const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; ema
 
           {/* Details Container with gradient fade */}
           <div className="absolute bottom-0 left-0 w-full h-[50%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[45%]">
-            <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
+            <h3 className="w-full text-xs sm:text-sm md:text-base font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
               {name}
             </h3>
             {role && (
-              <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-golden-yellow text-[10px] sm:text-xs md:text-sm font-brand-small text-center mt-0.5 truncate drop-shadow-md">
                 {role}
               </p>
             )}
             {email && (
-              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-white/90 text-[9px] sm:text-[10px] md:text-xs font-brand-small text-center mt-0.5 truncate drop-shadow-md">
                 {email}
               </p>
             )}
             {phone && (
-              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+              <p className="w-full text-brand-white/90 text-[9px] sm:text-[10px] md:text-xs font-brand-small text-center mt-0.5 truncate drop-shadow-md">
                 {phone}
               </p>
             )}

@@ -109,7 +109,7 @@ export default function RegistrationSection() {
           </h2>
 
           {/* Subheading Text */}
-          <p className="mx-auto mb-10 max-w-sm font-brand-body text-xs leading-relaxed tracking-wide uppercase text-brand-cream md:text-sm">
+          <p className="mx-auto mb-10 max-w-sm font-brand-body text-sm leading-relaxed tracking-wide uppercase text-brand-cream md:text-base">
             Next iteration begins soon. Secure your place in the ultimate IT
             festival before slots run out.
           </p>
@@ -176,11 +176,11 @@ export default function RegistrationSection() {
                   </svg>
                 </div>
                 
-                <h3 className="mb-4 font-brand-heading text-xl font-bold uppercase tracking-wide text-brand-white">
+                <h3 className="mb-4 font-brand-heading text-2xl font-bold uppercase tracking-wide text-brand-white">
                   Important Note
                 </h3>
                 
-                <p className="mb-8 font-brand-body text-sm leading-relaxed text-brand-cream md:text-base">
+                <p className="mb-8 font-brand-body text-base leading-relaxed text-brand-cream md:text-lg">
                   After submitting this form, you will be given a link to download an Excel sheet. This sheet must be filled and emailed to <a href="mailto:amogh.pairaiturkar@vvm.edu.in" className="text-brand-golden-yellow font-semibold hover:underline hover:decoration-brand-golden-yellow/50 hover:underline-offset-4">amogh.pairaiturkar@vvm.edu.in</a> to complete your registration.
                 </p>
                 

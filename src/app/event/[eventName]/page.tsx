@@ -142,7 +142,7 @@ export default async function EventPage({ params }: PageProps) {
 
   // Shared styling for rich-text HTML rendering with spacing & typography adjustments
   const htmlContentStyles = `
-    p-3 sm:p-5 space-y-5 font-brand-body text-sm md:text-base leading-relaxed text-brand-white/80
+    p-3 sm:p-5 space-y-5 font-brand-body text-base md:text-lg leading-relaxed text-brand-white/80
     [&_h1]:text-2xl [&_h1]:sm:text-3xl [&_h1]:font-brand-heading [&_h1]:font-black [&_h1]:uppercase [&_h1]:text-brand-golden-yellow [&_h1]:mt-8 [&_h1]:mb-6 [&_h1]:tracking-wider
     [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:font-brand-heading [&_h2]:font-black [&_h2]:uppercase [&_h2]:text-brand-golden-yellow [&_h2]:mt-8 [&_h2]:mb-6 [&_h2]:tracking-wider
     [&_h3]:text-lg [&_h3]:font-brand-heading [&_h3]:font-bold [&_h3]:text-brand-orange [&_h3]:mt-6 [&_h3]:mb-4 [&_h3]:tracking-wide [&_h3]:uppercase
@@ -183,7 +183,7 @@ export default async function EventPage({ params }: PageProps) {
             style={{ clipPath: BTN_OUTER_CLIP }}
           >
             <div
-              className="flex items-center gap-2 bg-brand-navy px-5 py-2 font-brand-heading text-xs font-bold tracking-widest uppercase text-brand-white transition-colors duration-300 group-hover:bg-brand-golden-yellow group-hover:text-brand-navy"
+              className="flex items-center gap-2 bg-brand-navy px-5 py-2 font-brand-heading text-sm font-bold tracking-widest uppercase text-brand-white transition-colors duration-300 group-hover:bg-brand-golden-yellow group-hover:text-brand-navy"
               style={{ clipPath: BTN_INNER_CLIP }}
             >
               &lt; BACK TO EVENTS
@@ -204,7 +204,7 @@ export default async function EventPage({ params }: PageProps) {
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-golden-yellow to-transparent opacity-70" />
               <div className="absolute inset-0 bg-gradient-to-br from-brand-golden-yellow/5 via-transparent to-brand-orange/5 opacity-50 pointer-events-none" />
 
-              <h1 className="relative font-brand-heading text-3xl italic font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-brand-white via-brand-golden-yellow to-brand-orange sm:text-5xl md:text-6xl drop-shadow-lg tracking-wide">
+              <h1 className="relative font-brand-heading text-4xl italic font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-brand-white via-brand-golden-yellow to-brand-orange sm:text-5xl md:text-6xl drop-shadow-lg tracking-wide">
                 {event.title}
               </h1>
             </div>
@@ -224,7 +224,7 @@ export default async function EventPage({ params }: PageProps) {
               >
                 <div className="absolute top-6 left-0 w-1 h-8 bg-brand-golden-yellow shadow-[0_0_10px_rgba(255,184,0,0.8)]" />
 
-                <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider pl-2">
+                <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider pl-2">
                   About This Event
                 </h2>
                 <div
@@ -248,24 +248,24 @@ export default async function EventPage({ params }: PageProps) {
             >
               <div className="absolute top-6 right-0 w-1 h-8 bg-brand-light-green shadow-[0_0_10px_rgba(9,209,199,0.8)]" />
 
-              <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-light-green tracking-wider">
+              <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-light-green tracking-wider">
                 Event Details
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 text-sm md:text-base font-brand-body text-brand-white/90">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 text-base md:text-lg font-brand-body text-brand-white/90">
                 <div className="bg-brand-navy/60 border border-brand-light-green/20 p-4 rounded-lg flex flex-col justify-center transition-all hover:border-brand-light-green/50 hover:bg-brand-navy/80">
-                  <strong className="block text-brand-light-green/70 uppercase text-xs tracking-widest mb-1">Event Type</strong>
-                  <span className="font-bold text-brand-white text-base sm:text-lg">{event.type}</span>
+                  <strong className="block text-brand-light-green/70 uppercase text-sm tracking-widest mb-1">Event Type</strong>
+                  <span className="font-bold text-brand-white text-lg sm:text-xl">{event.type}</span>
                 </div>
 
                 <div className="bg-brand-navy/60 border border-brand-light-green/20 p-4 rounded-lg flex flex-col justify-center transition-all hover:border-brand-light-green/50 hover:bg-brand-navy/80">
-                  <strong className="block text-brand-light-green/70 uppercase text-xs tracking-widest mb-1">Participants</strong>
-                  <span className="font-bold text-brand-white text-base sm:text-lg">{event.participants}</span>
+                  <strong className="block text-brand-light-green/70 uppercase text-sm tracking-widest mb-1">Participants</strong>
+                  <span className="font-bold text-brand-white text-lg sm:text-xl">{event.participants}</span>
                 </div>
 
                 <div className="bg-brand-navy/60 border border-brand-light-green/20 p-4 rounded-lg flex flex-col justify-center sm:col-span-2 md:col-span-1 transition-all hover:border-brand-light-green/50 hover:bg-brand-navy/80">
-                  <strong className="block text-brand-light-green/70 uppercase text-xs tracking-widest mb-1">Rounds</strong>
-                  <span className="font-bold text-brand-white text-base sm:text-lg">{event.rounds}</span>
+                  <strong className="block text-brand-light-green/70 uppercase text-sm tracking-widest mb-1">Rounds</strong>
+                  <span className="font-bold text-brand-white text-lg sm:text-xl">{event.rounds}</span>
                 </div>
               </div>
             </div>
@@ -285,7 +285,7 @@ export default async function EventPage({ params }: PageProps) {
               >
                 <div className="absolute top-6 left-0 w-1 h-8 bg-brand-orange shadow-[0_0_10px_rgba(255,107,0,0.8)]" />
 
-                <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-orange tracking-wider pl-2">
+                <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-orange tracking-wider pl-2">
                   Rules & Regulations
                 </h2>
                 <div
@@ -310,7 +310,7 @@ export default async function EventPage({ params }: PageProps) {
               >
                 <div className="absolute top-6 left-0 w-1 h-8 bg-brand-light-green shadow-[0_0_10px_rgba(9,209,199,0.8)]" />
 
-                <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-light-green tracking-wider pl-2">
+                <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-light-green tracking-wider pl-2">
                   Judging Criteria
                 </h2>
                 <div
@@ -339,7 +339,7 @@ export default async function EventPage({ params }: PageProps) {
                     >
                       <div className={`absolute top-6 left-0 w-1 h-8 ${accent.bar} ${accent.barShadow}`} />
 
-                      <h2 className={`text-xl sm:text-2xl font-brand-heading italic font-black uppercase ${accent.heading} tracking-wider pl-2`}>
+                      <h2 className={`text-2xl sm:text-3xl font-brand-heading italic font-black uppercase ${accent.heading} tracking-wider pl-2`}>
                         {section.title}
                       </h2>
                       <div
@@ -357,41 +357,9 @@ export default async function EventPage({ params }: PageProps) {
         {/* Coordinators Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
 
-          {/* Section 5: Student Coordinators */}
-          {event.studentCoordinators && event.studentCoordinators.length > 0 && (
-            <section className="relative">
-              <div
-                className="bg-gradient-to-r from-brand-golden-yellow/40 to-brand-orange/40 p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(255,184,0,0.15)] h-full"
-                style={{ clipPath: CARD_OUTER_CLIP }}
-              >
-                <div
-                  className="relative bg-brand-navy/90 backdrop-blur-md p-6 sm:p-8 space-y-5 h-full"
-                  style={{ clipPath: CARD_INNER_CLIP }}
-                >
-                  <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
-                    Student Coordinators
-                  </h2>
-                  <div className="grid grid-cols-1 gap-4">
-                    {event.studentCoordinators.map((coordinator, idx) => (
-                      <div
-                        key={idx}
-                        className="group/card flex flex-col gap-1 bg-brand-navy/60 border border-brand-golden-yellow/20 rounded-lg p-4 font-brand-body text-sm transition-all hover:bg-brand-golden-yellow/10 hover:border-brand-golden-yellow/50"
-                      >
-                        <div className="text-brand-white font-bold group-hover/card:text-brand-golden-yellow transition-colors">{coordinator.name}</div>
-                        {coordinator.details && (
-                          <div className="text-brand-white/70 text-xs tracking-wider whitespace-pre-line">
-                            {coordinator.details}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
-          )}
 
-          {/* Section 6: Staff Coordinators */}
+
+          {/* Section 5: Staff Coordinators */}
           {event.staffCoordinators && event.staffCoordinators.length > 0 && (
             <section className="relative">
               <div
@@ -402,18 +370,51 @@ export default async function EventPage({ params }: PageProps) {
                   className="relative bg-brand-navy/90 backdrop-blur-md p-6 sm:p-8 space-y-5 h-full"
                   style={{ clipPath: CARD_INNER_CLIP }}
                 >
-                  <h2 className="text-xl sm:text-2xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
+                  <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
                     Staff Coordinators
                   </h2>
                   <div className="grid grid-cols-1 gap-4">
                     {event.staffCoordinators.map((coordinator, idx) => (
                       <div
                         key={idx}
-                        className="group/card flex flex-col gap-1 bg-brand-navy/60 border border-brand-golden-yellow/20 rounded-lg p-4 font-brand-body text-sm transition-all hover:bg-brand-golden-yellow/10 hover:border-brand-golden-yellow/50"
+                        className="group/card flex flex-col gap-1 bg-brand-navy/60 border border-brand-golden-yellow/20 rounded-lg p-4 font-brand-body text-base transition-all hover:bg-brand-golden-yellow/10 hover:border-brand-golden-yellow/50"
                       >
                         <div className="text-brand-white font-bold group-hover/card:text-brand-golden-yellow transition-colors">{coordinator.name}</div>
                         {coordinator.details && (
-                          <div className="text-brand-white/70 text-xs tracking-wider whitespace-pre-line">
+                          <div className="text-brand-white/70 text-sm tracking-wider whitespace-pre-line">
+                            {coordinator.details}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+                    {/* Section 6: Student Coordinators */}
+          {event.studentCoordinators && event.studentCoordinators.length > 0 && (
+            <section className="relative">
+              <div
+                className="bg-gradient-to-r from-brand-golden-yellow/40 to-brand-orange/40 p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_20px_rgba(255,184,0,0.15)] h-full"
+                style={{ clipPath: CARD_OUTER_CLIP }}
+              >
+                <div
+                  className="relative bg-brand-navy/90 backdrop-blur-md p-6 sm:p-8 space-y-5 h-full"
+                  style={{ clipPath: CARD_INNER_CLIP }}
+                >
+                  <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
+                    Student Coordinators
+                  </h2>
+                  <div className="grid grid-cols-1 gap-4">
+                    {event.studentCoordinators.map((coordinator, idx) => (
+                      <div
+                        key={idx}
+                        className="group/card flex flex-col gap-1 bg-brand-navy/60 border border-brand-golden-yellow/20 rounded-lg p-4 font-brand-body text-base transition-all hover:bg-brand-golden-yellow/10 hover:border-brand-golden-yellow/50"
+                      >
+                        <div className="text-brand-white font-bold group-hover/card:text-brand-golden-yellow transition-colors">{coordinator.name}</div>
+                        {coordinator.details && (
+                          <div className="text-brand-white/70 text-sm tracking-wider whitespace-pre-line">
                             {coordinator.details}
                           </div>
                         )}

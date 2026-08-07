@@ -537,16 +537,16 @@ export function LogoCategoryHub({
               {/* Outer Dual-Layer Cyber Pill Outer Frame */}
               <div
                 className={`p-[1.5px] transition-all duration-300 ${isActive
-                    ? "bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow drop-shadow-[0_0_12px_rgba(243,202,32,0.6)] scale-105"
-                    : "bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/20 to-brand-golden-yellow/30 hover:bg-brand-golden-yellow hover:drop-shadow-[0_0_10px_rgba(243,202,32,0.35)] hover:scale-105"
+                  ? "bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow drop-shadow-[0_0_12px_rgba(243,202,32,0.6)] scale-105"
+                  : "bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/20 to-brand-golden-yellow/30 hover:bg-brand-golden-yellow hover:drop-shadow-[0_0_10px_rgba(243,202,32,0.35)] hover:scale-105"
                   }`}
                 style={{ clipPath: PILL_OUTER_CLIP }}
               >
                 {/* Inner Pill Card Content */}
                 <div
                   className={`px-3 py-1.5 font-brand-heading text-[10px] font-bold uppercase tracking-wider whitespace-nowrap transition-colors duration-300 sm:px-3.5 sm:py-2 md:px-4 md:py-2 lg:px-5 lg:py-2.5 sm:text-xs md:text-sm lg:text-base ${isActive
-                      ? "bg-brand-golden-yellow text-brand-navy"
-                      : "bg-brand-navy/90 text-brand-white/80 backdrop-blur-md hover:text-brand-white"
+                    ? "bg-brand-golden-yellow text-brand-navy"
+                    : "bg-brand-navy/90 text-brand-white/80 backdrop-blur-md hover:text-brand-white"
                     }`}
                   style={{ clipPath: PILL_INNER_CLIP }}
                 >
