@@ -225,8 +225,8 @@ export default function SpeakersSection() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
             <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Faculty Lead" image="/amogh.jpeg" email="amogh.pairaiturkar@vvm.edu.in" phone="+91 9765856958" />
             <MemberCard ref={samuelRef} name="Samuel Godinho" role="Faculty Lead" image="/samuel.jpeg" email="samuel.godinho@vvm.edu.in" phone="+91 8975868065" />
-            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Simran.png" />
-            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/saniya.png" />
+            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/simran-1.png" />
+            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/saniya-1.png" />
           </div>
         </div>
 
@@ -235,10 +235,10 @@ export default function SpeakersSection() {
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
           <div className="grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
+            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/rafia-1.png" />
             <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Sumit.png" />
-            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/rafia.png" />
-            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath.png" />
-            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Suraj.png" />
+            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath-1.png" />
+            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/suraj-1.png" />
 
           </div>
         </div>
