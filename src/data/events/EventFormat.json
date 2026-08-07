@@ -1,16 +1,12 @@
 {
   "id": "unique-event-slug",
   "title": "Name of the Event",
-  
   "about": "<p>A detailed description of the event.</p>",
-  
   "type": "Technical / Cultural / Workshop",
   "participants": "Individual / Team of 2-4",
   "rounds": "3",
-  
   "rules": "<ul><li>Rule number one.</li></ul>",
   "judging": "<p><strong>Phase 1:</strong> Criteria.</p>",
-  
   "additionalSections": [
     {
       "title": "Prizes & Rewards",
@@ -21,7 +17,6 @@
       "content": "<p>Participants must bring their own laptops with VS Code installed.</p>"
     }
   ],
-  
   "studentCoordinators": [
     {
       "name": "Student Name",
