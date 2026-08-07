@@ -23,7 +23,7 @@ export default function Footer() {
             BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
           </h3>
           <p className="text-brand-white/80 font-brand-small text-xs uppercase tracking-widest">
-            A premium technology convergence.
+            Think : Create : Transform  
           </p>
         </div>
         
