@@ -52,46 +52,72 @@ const HubBadge = forwardRef<HTMLDivElement, { title: string; className?: string 
 );
 HubBadge.displayName = "HubBadge";
 
+const CARD_OUTER_CLIP = `polygon(
+  24px 0, calc(100% - 24px) 0,
+  100% 24px, 100% calc(100% - 24px),
+  calc(100% - 24px) 100%, 24px 100%,
+  0 calc(100% - 24px), 0 24px
+)`;
+
+const CARD_INNER_CLIP = `polygon(
+  23px 0, calc(100% - 23px) 0,
+  100% 23px, 100% calc(100% - 23px),
+  calc(100% - 23px) 100%, 23px 100%,
+  0 calc(100% - 23px), 0 23px
+)`;
+
 const MemberCard = forwardRef<HTMLDivElement, { name: string; role?: string; email?: string; phone?: string; image?: string; className?: string }>(
   ({ name, role, email, phone, image, className }, ref) => (
     <div
       ref={ref}
       className={cn(
-        "relative z-10 w-full aspect-[3/4] max-w-[240px] mx-auto flex flex-col justify-end p-0 rounded-xl border border-brand-golden-yellow/30 bg-brand-navy overflow-hidden shadow-sm transition-all duration-300 hover:border-brand-golden-yellow hover:shadow-brand-soft hover:-translate-y-1 group",
+        "relative z-10 w-full aspect-[3/4] max-w-[240px] mx-auto px-4 pb-4 group transition-transform duration-300 hover:-translate-y-2",
         className
       )}
     >
-      {/* Background Image Container */}
-      <div className="absolute inset-0 w-full h-full bg-brand-navy flex items-center justify-center">
-        {image ? (
-          <Image src={image} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="text-brand-golden-yellow/10 font-brand-heading text-6xl md:text-8xl font-bold select-none">
-            {name.charAt(0)}
+      {/* Outer Glow / Frame */}
+      <div
+        className="w-full h-full bg-gradient-to-br from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 drop-shadow-[0_0_10px_rgba(243,202,32,0.4)] group-hover:drop-shadow-[0_0_20px_rgba(243,202,32,0.8)]"
+        style={{ clipPath: CARD_OUTER_CLIP }}
+      >
+        {/* Inner Card */}
+        <div
+          className="relative w-full h-full bg-brand-navy overflow-hidden flex flex-col justify-end"
+          style={{ clipPath: CARD_INNER_CLIP }}
+        >
+          {/* Background Image Container */}
+          <div className="absolute inset-0 w-full h-full bg-brand-navy flex items-center justify-center">
+            {image ? (
+              <Image src={image} alt={name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+            ) : (
+              <div className="text-brand-golden-yellow/10 font-brand-heading text-6xl md:text-8xl font-bold select-none">
+                {name.charAt(0)}
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      {/* Details Container with gradient fade (Constrained to bottom 35%) */}
-      <div className="absolute bottom-0 left-0 w-full h-[50%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[45%]">
-        <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
-          {name}
-        </h3>
-        {role && (
-          <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
-            {role}
-          </p>
-        )}
-        {email && (
-          <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
-            {email}
-          </p>
-        )}
-        {phone && (
-          <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
-            {phone}
-          </p>
-        )}
+          {/* Details Container with gradient fade */}
+          <div className="absolute bottom-0 left-0 w-full h-[50%] p-2 sm:p-3 bg-gradient-to-t from-brand-navy/90 via-brand-navy to-transparent flex flex-col items-center justify-end z-10 transition-all duration-300 group-hover:h-[45%]">
+            <h3 className="w-full text-[9px] sm:text-xs md:text-sm font-bold font-brand-heading text-brand-white uppercase tracking-wide text-center truncate drop-shadow-md">
+              {name}
+            </h3>
+            {role && (
+              <p className="w-full text-brand-golden-yellow text-[9px] sm:text-[10px] md:text-[11px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+                {role}
+              </p>
+            )}
+            {email && (
+              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+                {email}
+              </p>
+            )}
+            {phone && (
+              <p className="w-full text-brand-white/90 text-[8px] sm:text-[9px] md:text-[10px] font-brand-small text-center mt-0.5 truncate drop-shadow-md">
+                {phone}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -197,10 +223,10 @@ export default function SpeakersSection() {
           <HubBadge ref={coreHubRef} title="CORE TEAM" />
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
-            <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Faculty Lead" />
-            <MemberCard ref={samuelRef} name="Samuel Godinho" role="Faculty Lead" />
-            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Co-Incharge" />
-            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Incharge" />
+            <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Faculty Lead" image="/amogh.jpeg" email="amogh.pairaiturkar@vvm.edu.in" phone="+91 9765856958"/>
+            <MemberCard ref={samuelRef} name="Samuel Godinho" role="Faculty Lead" image="/samuel.jpeg" email="samuel.godinho@vvm.edu.in" phone="+91 8975868065"/>
+            <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Simran.png"/>
+            <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/saniya.png" />
           </div>
         </div>
 
@@ -209,10 +235,10 @@ export default function SpeakersSection() {
           <HubBadge ref={designHubRef} title="DESIGNING TEAM" />
 
           <div className="grid grid-cols-2  sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-6 md:gap-6 w-full px-2">
-            <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" />
-            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" />
-            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" />
-            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath_don.jpeg" />
+            <MemberCard ref={sumitRef} name="Sumit Sawant" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Sumit.png"/>
+            <MemberCard ref={rafiaRef} name="Rafia Hinikeri" role="Graphic Designer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/rafia.png"/>
+            <MemberCard ref={meghnathRef} name="Meghnath Ghadi" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 7507519540" role="Web Developer" image="/meghnath.png" />
+            <MemberCard ref={surajRef} name="Suraj Maurya" role="Web Developer" email="2411011.meghnath.sdcce@vvm.edu.in" phone="+91 8767982870" image="/Suraj.png"/>
             
           </div>
         </div>
