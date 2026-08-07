@@ -258,7 +258,7 @@ export default function EventsSection() {
     <section
       ref={containerRef}
       id="events"
-      style={{ height: isMobile ? "90dvh" : trackHeight }}
+      style={{ height: isMobile ? "95dvh" : trackHeight }}
       className="relative w-full bg-brand-navy flex flex-col"
     >
       <div className="flex justify-center shrink-0">
@@ -619,7 +619,7 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             xl:[--wheel-pivot:clamp(-1150px,-50vw,-700px)_50%]"
         >
           <div className="group relative bg-brand-navy/95 backdrop-blur-md border border-brand-golden-yellow/30 hover:border-brand-golden-yellow transition-all duration-300 rounded-xl lg:rounded-2xl flex flex-col sm:flex-row shadow-2xl w-full overflow-hidden
-            h-auto sm:h-[260px] md:h-[300px] lg:h-[340px] xl:h-[380px] 2xl:h-[420px]">
+            h-auto sm:h-[250px] md:h-[265px] lg:h-[280px] xl:h-[295px] 2xl:h-[310px]">
             
 {/* MOBILE VIEW: Swipe Left Hint Animation (First two cards only) */}
 {index < 2 && (
@@ -687,50 +687,51 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
             {/* Subtle Glow Border */}
             <div className="absolute inset-0 border border-brand-golden-yellow/20 scale-95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10 rounded-xl lg:rounded-2xl" />
 
-            {/* Card Media Section — fixed 45% width on desktop */}
-            <div className="relative w-full sm:w-[45%] shrink-0 grow-0 h-[200px] sm:h-full border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black">
+            {/* Card Media Section — fixed 42% width on desktop, expanded height on mobile so image fits */}
+            <div className="relative w-full sm:w-[42%] shrink-0 grow-0 h-[195px] xs:h-[210px] sm:h-full border-b sm:border-b-0 sm:border-r border-brand-golden-yellow/30 overflow-hidden bg-black">
               <Image
                 src={event.image}
                 alt={event.title}
                 fill
                 draggable={false}
-                priority={index === 0}
-                loading={index < 3 ? "eager" : "lazy"}
+                priority={index < 4}
                 sizes="(max-width: 640px) 100vw, 45vw"
                 className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 select-none"
               />
             </div>
 
-            {/* Card Details Section — fixed 55% width, content pinned top/bottom */}
-            <div className="w-full sm:w-[55%] shrink-0 grow-0 p-3 sm:p-3 md:p-4 lg:p-5 xl:p-6 2xl:p-7
+            {/* Card Details Section — fixed 58% width, content pinned top/bottom */}
+            <div className="w-full sm:w-[58%] shrink-0 grow-0 p-3 sm:p-3 md:p-4
               flex flex-col justify-between
               bg-brand-navy relative z-20 overflow-hidden">
 
               {/* TOP: Event ID + Title + Badges */}
-              <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-2.5 overflow-hidden">
+              <div className="flex flex-col gap-1 sm:gap-1.5 overflow-hidden">
 
                 {/* Title row with ID pinned top-right */}
                 <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 overflow-hidden">
-                    <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                    <h3 className="font-brand-competition text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-brand-white tracking-wide leading-tight line-clamp-3 overflow-hidden">
+                  <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 overflow-hidden">
+                    <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full shrink-0 ${event.colorCls.bg}`} />
+                    <h3 className="font-brand-competition text-[11px] sm:text-sm md:text-base lg:text-lg font-bold text-brand-white tracking-wide leading-tight line-clamp-2 overflow-hidden">
                       {event.title}
                     </h3>
                   </div>
-                  <span className={`font-brand-heading font-bold text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl shrink-0 ${event.colorCls.text}`}>
+                  <span className={`font-brand-heading font-bold text-[11px] sm:text-sm md:text-base lg:text-lg shrink-0 ${event.colorCls.text}`}>
                     #{event.id}
                   </span>
                 </div>
 
-                {/* Category & Difficulty badges */}
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className={`font-brand-heading font-bold text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest px-2 py-0.5 sm:py-1 rounded border ${event.colorCls.border} ${event.colorCls.text} bg-transparent whitespace-nowrap`}>
+                {/* Category badge */}
+                <div className="flex flex-wrap items-center gap-1">
+                  <span className={`font-brand-heading font-bold text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-widest px-1.5 py-0.5 border ${event.colorCls.border} ${event.colorCls.text} bg-transparent whitespace-nowrap`}>
                     {event.category}
                   </span>
-                  <span className="font-brand-heading font-bold text-[9px] sm:text-[10px] md:text-xs uppercase tracking-widest px-2 py-0.5 sm:py-1 rounded border border-brand-white/20 text-brand-white/60 whitespace-nowrap">
-                    {event.difficulty}
-                  </span>
                 </div>
+
+                {/* Description teaser */}
+                <p className="hidden sm:block font-brand-body text-[10px] md:text-[11px] lg:text-xs text-brand-white/70 leading-snug line-clamp-2 md:line-clamp-3">
+                  Initiate protocol {event.id}. Prepare your systems for the {event.title} challenge within BitBuzz and prove your mastery.
+                </p>
               </div>
 
               {/* BOTTOM: View Details button — always pinned to bottom via mt-auto */}
@@ -738,12 +739,12 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
                 href={`/event/${event.slug}`}
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
-                className={`relative z-30 mt-auto block text-center w-full py-2 sm:py-2.5 md:py-3 lg:py-3.5
+                className={`relative z-30 mt-auto block text-center w-full py-1.5 sm:py-2 md:py-2.5
                   border ${event.colorCls.border} ${event.colorCls.text}
-                  font-brand-heading text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg
+                  font-brand-heading text-[9px] sm:text-[10px] md:text-xs lg:text-sm
                   font-bold tracking-wider uppercase whitespace-nowrap
                   ${event.colorCls.hoverBg} hover:text-brand-navy
-                  transition-colors rounded-md cursor-pointer`}
+                  transition-colors rounded-sm cursor-pointer`}
               >
                 [ View Details ]
               </Link>
