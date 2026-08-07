@@ -137,7 +137,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 font-brand-heading text-xs font-bold uppercase tracking-widest md:flex">
+            <div className="hidden items-center gap-8 font-brand-heading text-sm font-bold uppercase tracking-widest md:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -155,7 +155,7 @@ export default function Navbar() {
                 style={{ clipPath: BTN_OUTER_CLIP }}
               >
                 <div
-                  className="bg-brand-golden-yellow px-5 py-2 font-brand-heading text-xs font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
+                  className="bg-brand-golden-yellow px-5 py-2 font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                   style={{ clipPath: BTN_INNER_CLIP }}
                 >
                   Register
