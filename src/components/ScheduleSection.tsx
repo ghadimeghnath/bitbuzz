@@ -133,7 +133,7 @@ const scheduleRows = [
     title: "GAMING",
     icon: Gamepad2,
     items: [
-      { title: "BATTLE ARENA", location: "CLASSROOM", start: 3, span: 6, bg: "bg-[#9333ea]" },
+      { title: "BATTLE ARENA (FIFA & FREE FIRE)", location: "CLASSROOM", start: 3, span: 6, bg: "bg-[#9333ea]" },
     ],
   },
   {
@@ -175,7 +175,7 @@ const scheduleRows = [
     title: "RUBIKS CUBE",
     icon: Gamepad2,
     items: [
-      { title: "CUBE CRAZE", location: "CLASSROOM", start: 5, span: 4, bg: "bg-[#dc2626]" },
+      { title: "PICK-UP STICKS CHALLENGE", location: "CLASSROOM", start: 5, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
@@ -189,7 +189,7 @@ const scheduleRows = [
     title: "JENGA",
     icon: Users,
     items: [
-      { title: "TOWER TUMBLE", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
+      { title: "TANGRAM SHIFT", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
     ],
   },
   {
