@@ -227,7 +227,7 @@
     "title": "PICK-UP STICKS CHALLENGE",
     "category": "SPORTS",
     "difficulty": "Medium",
-    "image": "/cube_craze.png",
+    "image": "/pick_up_sticks.png",
     "colorCls": {
       "text": "text-brand-orange",
       "bg": "bg-brand-orange",
@@ -255,7 +255,7 @@
     "title": "TANGRAM SHIFT",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/tower_tumble.png",
+    "image": "/tangram_shift.png",
     "colorCls": {
       "text": "text-brand-lime-yellow",
       "bg": "bg-brand-lime-yellow",

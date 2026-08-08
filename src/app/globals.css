@@ -89,6 +89,46 @@
   }
 }
 
+/* ================================================================ */
+/*  Event Content — shared ordered-list counter across multiple <ol> */
+/* ================================================================ */
+.event-content {
+  counter-reset: ol-counter;
+}
+
+.event-content ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.event-content ol li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  counter-increment: ol-counter;
+  padding: 0.15em 0;
+}
+
+.event-content ol li::before {
+  content: counter(ol-counter) ".";
+  min-width: 1.5em;
+  font-weight: 700;
+  color: #F3CA20;
+  flex-shrink: 0;
+  line-height: inherit;
+}
+
+/* Ensure bullet list items inside event-content are properly indented */
+.event-content ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.event-content ul li {
+  padding: 0.25em 0 0.25em 0.5em;
+}
+
 @layer utilities {
   /* ================================================================ */
   /*  BitBuzz 8.0 — Master Poster Brand Utilities                     */
