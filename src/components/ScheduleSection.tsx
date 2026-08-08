@@ -34,12 +34,12 @@ const HEADER_BADGE_OUTER = `polygon(16px 0, calc(100% - 16px) 0, 100% 100%, 0 10
 const HEADER_BADGE_INNER = `polygon(15px 0, calc(100% - 15px) 0, 100% 100%, 0 100%)`;
 
 const timeHeaders = [
-  { label: "9:00 - 10:00 AM", span: 2 },
+  { label: "9:00 - 9:30 AM", span: 2 },
   { label: "10:00 - 11:00 AM", span: 2 },
   { label: "11:00 - 12:00 PM", span: 2 },
   { label: "12:00 - 1:00 PM", span: 2 },
   { label: "1:00 - 2:00 PM", span: 2 },
-  { label: "2:00 - 3:00 PM", span: 2 },
+  { label: "2:00 - 3:00 PM", span: 2 }, 
   { label: "3:00 - 4:00 PM", span: 2 },
   { label: "4:00 - 5:00 PM", span: 2 },
 ];
@@ -49,7 +49,7 @@ const scheduleRows = [
     title: "INAUGURAL",
     icon: Trophy,
     items: [
-      { title: "INAUGURAL FUNCTION", location: "HALL 1", start: 1, span: 1, bg: "bg-[#2ea043]" },
+      { title: "INAUGURAL FUNCTION", location: "HALL 1", start: 1, span: 2, bg: "bg-[#2ea043]" },
     ],
   },
   {
@@ -154,7 +154,7 @@ const scheduleRows = [
     title: "MEMORY MANIA",
     icon: BrainCircuit,
     items: [
-      { title: "MIND SYNC", location: "LAB 2", start: 5, span: 4, bg: "bg-[#9333ea]" },
+      { title: "MIND SYNC", location: "LAB 2", start: 5, span: 5, bg: "bg-[#9333ea]" },
     ],
   },
   {
