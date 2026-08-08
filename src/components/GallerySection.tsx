@@ -98,6 +98,7 @@ function Lightbox({
                 src={item.src}
                 alt={item.alt}
                 fill
+                quality={100}
                 className="object-cover"
                 sizes="(max-width: 896px) 100vw, 896px"
               />
@@ -246,8 +247,9 @@ export default function GallerySection() {
                     src={item.src}
                     alt={item.alt}
                     fill
+                    quality={100}
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    sizes="(max-width: 768px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 500px"
                   />
 
                   {/* Dark overlay on hover */}
