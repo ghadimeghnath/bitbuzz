@@ -186,10 +186,10 @@ const scheduleRows = [
     ],
   },
   {
-    title: "TANGRAM SHIFT",
+    title: "TANGRIX",
     icon: Users,
     items: [
-      { title: "TANGRAM SHIFT", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
+      { title: "TANGRIX", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
     ],
   },
   {
