@@ -1,0 +1,23 @@
+{
+  "id": "tangram-shift-19",
+  "title": "TANGRAM SHIFT",
+  "about": "",
+  "type": "Off Stage (Online + Offline)",
+  "participants": "1",
+  "rounds": "2",
+  "rules": "<ol><li><strong>General Rules:</strong><ul><li>Participants register individually.</li><li>All seven pieces must be used; may be rotated or flipped, but not overlapped.</li><li>Pieces must stay within the puzzle area, and the target must be matched accurately.</li><li>No external help, reference images, or AI tools allowed.</li><li>Judges' decision is final.</li></ul></li><li><strong>Tournament Format:</strong><ul><li>Online Qualifier (individual, timed) → Top 16 qualify → Quarter-finals (head-to-head) → Semi-finals (head-to-head) → Final (Best of 3 challenges).</li></ul></li><li><strong>Time Limits:</strong><ul><li>Online challenge &amp; offline knockout match: 3 minutes each. Final: Best of 3 challenges.</li></ul></li><li><strong>Tie-Breaker:</strong><ul><li>Identical scores/times are broken with an extra Tangram challenge – fastest correct completion advances.</li></ul></li><li><strong>Fair-Play Rule:</strong><ul><li>Offline targets are not disclosed in advance, so the round tests spatial reasoning rather than memorisation.</li></ul></li><li><strong>Round 1 - Online Qualifier:</strong><ul><li>Participants get a digital Tangram puzzle with a target figure shown.</li><li>Match the target using all seven digital pieces within 3 minutes.</li><li>Completion time is recorded only if solved correctly.</li><li>Best times qualify for the offline round; ties broken by an extra challenge.</li></ul></li><li><strong>Round 2 - Offline Challenge:</strong><ul><li>Each qualifier gets an identical physical Tangram set; target is revealed only at START.</li><li>First participant to correctly reproduce the target (verified by coordinator) wins the match.</li><li>If incorrect, the participant keeps trying until correct or time runs out.</li></ul></li></ol>",
+  "judging": "<ul><li>Round 1: Fastest correct completion ranks higher; top 16 qualify for offline round.</li><li>Round 2 (Quarter/Semi-finals): First to correctly reproduce the target (coordinator-verified) wins and advances.</li><li>Final: Best of 3 challenges – winner of 2 out of 3 is declared champion.</li><li>Ties broken by an extra challenge; outside help or AI tools leads disqualification.</li></ul>",
+  "additionalSections": [],
+  "studentCoordinators": [
+    {
+      "name": "Rafia hinikeri",
+      "details": "Email: 24110.16.rafia.sdcce@vvm.edu.in Phone: 7249007174"
+    }
+  ],
+  "staffCoordinators": [
+    {
+      "name": "Mr. Andre Pacheco",
+      "details": "Email: andre.pacheco@vvm.edu.in"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { SocialIcon } from 'react-social-icons';
 
 export default function Footer() {
   return (
@@ -22,14 +23,14 @@ export default function Footer() {
             BITBUZZ <span className="text-brand-golden-yellow">8.0</span>
           </h3>
           <p className="text-brand-white/80 font-brand-small text-xs uppercase tracking-widest">
-            A premium technology convergence.
+            Think : Create : Transform  
           </p>
         </div>
         
-        <div className="flex items-center gap-6 font-brand-small font-bold text-sm uppercase tracking-widest">
-          <a href="https://x.com/damodar_college" className="text-brand-golden-yellow hover:text-brand-white transition-all">Twitter</a>
-          <a href="https://www.facebook.com/p/VVMs-Shree-Damodar-College-100064036413651/" className="text-brand-golden-yellow hover:text-brand-white transition-all">Facebook</a>
-          <a href="https://www.instagram.com/damodar_college/" className="text-brand-golden-yellow hover:text-brand-white transition-all">Instagram</a>
+        <div className="flex items-center gap-2 md:gap-4 font-brand-small font-bold text-sm uppercase tracking-widest">
+          <SocialIcon url="https://x.com/damodar_college" bgColor="transparent" fgColor="#F3CA20" className="hover:scale-110 hover:brightness-125 transition-all" style={{ height: 40, width: 40 }} />
+          <SocialIcon url="https://www.facebook.com/p/VVMs-Shree-Damodar-College-100064036413651/" bgColor="transparent" fgColor="#F3CA20" className="hover:scale-110 hover:brightness-125 transition-all" style={{ height: 40, width: 40 }} />
+          <SocialIcon url="https://www.instagram.com/damodar_college/" bgColor="transparent" fgColor="#F3CA20" className="hover:scale-110 hover:brightness-125 transition-all" style={{ height: 40, width: 40 }} />
         </div>
       </div>
       

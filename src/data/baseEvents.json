@@ -224,10 +224,10 @@
     "slug": "grid-rush-tic-tac-toe-16"
   },
   {
-    "title": "CUBE CRAZE (RUBIKS CUBE)",
+    "title": "PICK-UP STICKS CHALLENGE",
     "category": "SPORTS",
     "difficulty": "Medium",
-    "image": "/cube_craze.png",
+    "image": "/pick_up_sticks.png",
     "colorCls": {
       "text": "text-brand-orange",
       "bg": "bg-brand-orange",
@@ -235,7 +235,7 @@
       "hoverBg": "hover:bg-brand-orange"
     },
     "id": "17",
-    "slug": "cube-craze-rubiks-cube-17"
+    "slug": "pick-up-sticks-challenge-17"
   },
   {
     "title": "ROLL ROYAL (LUDO)",
@@ -252,10 +252,10 @@
     "slug": "roll-royal-ludo-18"
   },
   {
-    "title": "TOWER TUMBLE (JENGA)",
+    "title": "TANGRAM SHIFT",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/tower_tumble.png",
+    "image": "/tangram_shift.png",
     "colorCls": {
       "text": "text-brand-lime-yellow",
       "bg": "bg-brand-lime-yellow",
@@ -263,6 +263,6 @@
       "hoverBg": "hover:bg-brand-lime-yellow"
     },
     "id": "19",
-    "slug": "tower-tumble-jenga-19"
+    "slug": "tangram-shift-19"
   }
 ]

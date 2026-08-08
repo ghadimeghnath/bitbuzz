@@ -128,7 +128,7 @@ export default function Navbar() {
                 priority
                 className="h-8 w-8 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10 md:h-12 md:w-12"
               />
-              <span className="font-brand-event-title text-lg tracking-widest text-brand-white sm:text-xl">
+              <span className="font-brand-event-title text-xl tracking-widest text-brand-white sm:text-2xl">
                 BITBUZZ{" "}
                 <span className="text-brand-golden-yellow drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]">
                   8.0
@@ -207,7 +207,7 @@ export default function Navbar() {
                   className="bg-brand-navy/95 p-6 backdrop-blur-lg"
                   style={{ clipPath: MOBILE_MENU_INNER }}
                 >
-                  <div className="flex flex-col gap-5 text-center font-brand-heading text-sm font-bold uppercase tracking-widest">
+                  <div className="flex flex-col gap-5 text-center font-brand-heading text-base font-bold uppercase tracking-widest">
                     {navLinks.map((link) => (
                       <a
                         key={link.name}
@@ -229,7 +229,7 @@ export default function Navbar() {
                       style={{ clipPath: BTN_OUTER_CLIP }}
                     >
                       <div
-                        className="w-full bg-brand-golden-yellow py-3 text-center font-brand-heading text-xs font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
+                        className="w-full bg-brand-golden-yellow py-3 text-center font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                         style={{ clipPath: BTN_INNER_CLIP }}
                       >
                         Register
@@ -273,11 +273,11 @@ export default function Navbar() {
                   </svg>
                 </div>
                 
-                <h3 className="mb-4 font-brand-heading text-xl font-bold uppercase tracking-wide text-brand-white">
+                <h3 className="mb-4 font-brand-heading text-2xl font-bold uppercase tracking-wide text-brand-white">
                   Important Note
                 </h3>
                 
-                <p className="mb-8 font-brand-body text-sm leading-relaxed text-brand-cream md:text-base">
+                <p className="mb-8 font-brand-body text-base leading-relaxed text-brand-cream md:text-lg">
                   After submitting this form, you will be given a link to download an Excel sheet. This sheet must be filled and emailed to <a href="mailto:amogh.pairaiturkar@vvm.edu.in" className="text-brand-golden-yellow font-semibold hover:underline hover:decoration-brand-golden-yellow/50 hover:underline-offset-4">amogh.pairaiturkar@vvm.edu.in</a> to complete your registration.
                 </p>
                 
