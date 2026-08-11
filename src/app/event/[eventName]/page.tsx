@@ -371,7 +371,7 @@ export default async function EventPage({ params }: PageProps) {
                   style={{ clipPath: CARD_INNER_CLIP }}
                 >
                   <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
-                    Staff Coordinators
+                    Faculty Coordinator
                   </h2>
                   <div className="grid grid-cols-1 gap-4">
                     {event.staffCoordinators.map((coordinator, idx) => (

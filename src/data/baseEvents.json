@@ -66,8 +66,8 @@
       "border": "border-brand-lime-yellow",
       "hoverBg": "hover:bg-brand-lime-yellow"
     },
-    "id": "05",
-    "slug": "decode-act-role-play-05"
+    "id": "05", 
+    "slug": "decode-solve-role-play-05"
   },
   {
     "title": "INNO PITCH (TECH STARTUP PITCH)",
@@ -224,7 +224,7 @@
     "slug": "grid-rush-tic-tac-toe-16"
   },
   {
-    "title": "PICK-UP STICKS CHALLENGE",
+    "title": "STICK QUEST ( PICK-UP STICKS )",
     "category": "SPORTS",
     "difficulty": "Medium",
     "image": "/pick_up_sticks.png",
@@ -235,7 +235,7 @@
       "hoverBg": "hover:bg-brand-orange"
     },
     "id": "17",
-    "slug": "pick-up-sticks-challenge-17"
+    "slug": "stick-quest-17"
   },
   {
     "title": "ROLL ROYAL (LUDO)",

@@ -41,7 +41,7 @@ const timeHeaders = [
   { label: "1:00 - 2:00 PM", span: 2 },
   { label: "2:00 - 3:00 PM", span: 2 }, 
   { label: "3:00 - 4:00 PM", span: 2 },
-  { label: "4:00 - 5:00 PM", span: 2 },
+  { label: "4:30 - 5:00 PM", span: 2 },
 ];
 
 const scheduleRows = [
@@ -53,45 +53,10 @@ const scheduleRows = [
     ],
   },
   {
-    title: "SURPRISE EVENT",
-    icon: Gift,
-    items: [
-      { title: "SURPRISE EVENT", location: "TBA", start: 3, span: 10, bg: "bg-[#f59e0b]" },
-    ],
-  },
-  {
     title: "QUIZ",
     icon: HelpCircle,
     items: [
       { title: "IQ BUSTER", location: "CLASSROOM", start: 3, span: 6, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "PAPER PRESENTATION",
-    icon: FileText,
-    items: [
-      { title: "TECHFLUENCE", location: "CLASSROOM", start: 5, span: 10, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "CRISIS CHALLENGE",
-    icon: ShieldCheck,
-    items: [
-      { title: "BIT RESCUE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "DEBATE",
-    icon: Mic2,
-    items: [
-      { title: "ARGUEMENT ARENA", location: "HALL 1", start: 3, span: 10, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "ROLE PLAY",
-    icon: Drama,
-    items: [
-      { title: "DECODE & ACT", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
     ],
   },
   {
@@ -102,17 +67,17 @@ const scheduleRows = [
     ],
   },
   {
-    title: "TECHNICAL SKIT",
-    icon: Clapperboard,
+    title: "DEBATE",
+    icon: Mic2,
     items: [
-      { title: "NAUTANKI", location: "HALL 2", start: 11, span: 4, bg: "bg-[#2563eb]" },
+      { title: "ARGUEMENT ARENA", location: "HALL 1", start: 3, span: 10, bg: "bg-[#2563eb]" },
     ],
   },
   {
-    title: "LUNCH BREAK",
-    icon: Users,
+    title: "PAPER PRESENTATION",
+    icon: FileText,
     items: [
-      { title: "LUNCH BREAK", location: "CLASSROOM", start: 9, span: 2, bg: "bg-[#2ea043]" },
+      { title: "TECHFLUENCE", location: "CLASSROOM", start: 5, span: 10, bg: "bg-[#2563eb]" },
     ],
   },
   {
@@ -137,13 +102,6 @@ const scheduleRows = [
     ],
   },
   {
-    title: "REEL MAKING",
-    icon: Clapperboard,
-    items: [
-      { title: "EUREKA", location: "CAMPUS", start: 3, span: 12, bg: "bg-[#9333ea]" },
-    ],
-  },
-  {
     title: "TREASURE HUNT",
     icon: Search,
     items: [
@@ -154,14 +112,56 @@ const scheduleRows = [
     title: "MEMORY MANIA",
     icon: BrainCircuit,
     items: [
-      { title: "MIND SYNC", location: "LAB 2", start: 5, span: 5, bg: "bg-[#9333ea]" },
+      { title: "MIND SYNC", location: "LAB 2", start: 5, span: 4, bg: "bg-[#9333ea]" },
+    ],
+  },
+  {
+    title: "REEL MAKING",
+    icon: Clapperboard,
+    items: [
+      { title: "EUREKA", location: "CAMPUS", start: 3, span: 6, bg: "bg-[#9333ea]" },
     ],
   },
   {
     title: "ESCAPE ROOM",
     icon: Lock,
     items: [
-      { title: "ENCRYPTED ESCAPE", location: "CLASSROOM", start: 11, span: 5, bg: "bg-[#9333ea]" },
+      { title: "ENCRYPTED ESCAPE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#9333ea]" },
+    ],
+  },
+  {
+    title: "SURPRISE EVENT",
+    icon: Gift,
+    items: [
+      { title: "SURPRISE EVENT", location: "TBA", start: 11, span: 3, bg: "bg-[#f59e0b]" },
+    ],
+  },
+  {
+    title: "CRISIS CHALLENGE",
+    icon: ShieldCheck,
+    items: [
+      { title: "BIT RESCUE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
+    ],
+  },
+  {
+    title: "DECODE & SOLVE",
+    icon: Drama,
+    items: [
+      { title: "DECODE & SOLVE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
+    ],
+  },
+  {
+    title: "TECHNICAL SKIT",
+    icon: Clapperboard,
+    items: [
+      { title: "NAUTANKI", location: "HALL 2", start: 11, span: 4, bg: "bg-[#2563eb]" },
+    ],
+  },
+  {
+    title: "LUNCH BREAK",
+    icon: Users,
+    items: [
+      { title: "LUNCH BREAK", location: "CLASSROOM", start: 9, span: 2, bg: "bg-[#2ea043]" },
     ],
   },
   {
@@ -172,24 +172,24 @@ const scheduleRows = [
     ],
   },
   {
-    title: "PICK-UP STICKS",
+    title: "STICK QUEST",
     icon: Gamepad2,
     items: [
-      { title: "PICK-UP STICKS", location: "CLASSROOM", start: 5, span: 4, bg: "bg-[#dc2626]" },
+      { title: "STICK QUEST", location: "CLASSROOM", start: 5, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
     title: "LUDO",
     icon: Users,
     items: [
-      { title: "ROLL ROYAL", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
+      { title: "ROLL ROYAL", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
     title: "TANGRIX",
     icon: Users,
     items: [
-      { title: "TANGRIX", location: "CLASSROOM", start: 11, span: 2, bg: "bg-[#dc2626]" },
+      { title: "TANGRIX", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
