@@ -255,7 +255,7 @@
     "title": "TANGRIX",
     "category": "SPORTS",
     "difficulty": "Easy",
-    "image": "/tangram_shift.png",
+    "image": "/tangrix.png",
     "colorCls": {
       "text": "text-brand-lime-yellow",
       "bg": "bg-brand-lime-yellow",
@@ -263,6 +263,6 @@
       "hoverBg": "hover:bg-brand-lime-yellow"
     },
     "id": "19",
-    "slug": "tangram-shift-19"
+    "slug": "tangrix-19"
   }
 ]
