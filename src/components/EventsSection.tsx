@@ -702,9 +702,9 @@ function WheelCard({ event, index, progress, totalCards }: WheelCardProps) {
               {/* Header: Title & Event ID */}
               <div>
                 <div className="flex items-start justify-between gap-2 mb-0.5 sm:mb-1 min-w-0">
-                  <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
-                    <div className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
-                    <h3 className="font-brand-competition text-xs  sm:text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-brand-white tracking-wider line-clamp-1">
+                  <div className="flex items-start gap-2 sm:gap-2.5 min-w-0">
+                    <div className={`mt-[0.2rem] sm:mt-2 lg:mt-3 w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full shrink-0 ${event.colorCls.bg}`} />
+                    <h3 className="font-brand-competition text-xs sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl font-bold text-brand-white tracking-wider line-clamp-1 md:line-clamp-none leading-tight sm:leading-tight">
                       {event.title}
                     </h3>
                   </div>
