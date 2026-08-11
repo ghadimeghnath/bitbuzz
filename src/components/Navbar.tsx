@@ -128,7 +128,7 @@ export default function Navbar() {
                 priority
                 className="h-8 w-8 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10 md:h-12 md:w-12"
               />
-              <span className="font-brand-event-title text-xl tracking-widest text-brand-white sm:text-2xl">
+              <span className="font-brand-event-title text-lg sm:text-xl md:text-2xl tracking-widest text-brand-white">
                 BITBUZZ{" "}
                 <span className="text-brand-golden-yellow drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]">
                   8.0
@@ -137,7 +137,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 font-brand-heading text-sm font-bold uppercase tracking-widest md:flex">
+            <div className="hidden items-center gap-4 lg:gap-8 font-brand-heading text-xs lg:text-sm font-bold uppercase tracking-widest md:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -149,18 +149,45 @@ export default function Navbar() {
               ))}
 
               {/* Cyber Desktop CTA Button */}
-              <button
+              <motion.button
                 onClick={() => setIsModalOpen(true)}
-                className="group relative inline-block bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_12px_rgba(243,202,32,0.6)]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  backgroundPosition: ["0% center", "200% center"],
+                  boxShadow: [
+                    "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                    "0px 0px 15px 4px rgba(243,202,32,0.8)",
+                    "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="group relative inline-block bg-gradient-to-r from-brand-golden-yellow via-[#fff] to-brand-golden-yellow bg-[length:200%_auto] p-[1px]"
                 style={{ clipPath: BTN_OUTER_CLIP }}
               >
-                <div
-                  className="bg-brand-golden-yellow px-5 py-2 font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
+                <motion.div
+                  animate={{
+                    textShadow: [
+                      "0px 0px 0px rgba(255,255,255,0)",
+                      "0px 0px 10px rgba(255,255,255,1)",
+                      "0px 0px 0px rgba(255,255,255,0)",
+                    ],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="bg-brand-golden-yellow px-4 lg:px-5 py-2 font-brand-heading text-xs lg:text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                   style={{ clipPath: BTN_INNER_CLIP }}
                 >
                   Register
-                </div>
-              </button>
+                </motion.div>
+              </motion.button>
             </div>
 
             {/* Hamburger Toggle Button (Mobile) */}
@@ -220,21 +247,47 @@ export default function Navbar() {
                     ))}
 
                     {/* Cyber Mobile CTA Button */}
-                    <button
+                    <motion.button
                       onClick={() => {
                         setIsOpen(false);
                         setIsModalOpen(true);
                       }}
-                      className="group relative mt-2 block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(243,202,32,0.6)]"
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        backgroundPosition: ["0% center", "200% center"],
+                        boxShadow: [
+                          "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                          "0px 0px 15px 4px rgba(243,202,32,0.8)",
+                          "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="group relative mt-2 block w-full bg-gradient-to-r from-brand-golden-yellow via-[#fff] to-brand-golden-yellow bg-[length:200%_auto] p-[1px]"
                       style={{ clipPath: BTN_OUTER_CLIP }}
                     >
-                      <div
+                      <motion.div
+                        animate={{
+                          textShadow: [
+                            "0px 0px 0px rgba(255,255,255,0)",
+                            "0px 0px 10px rgba(255,255,255,1)",
+                            "0px 0px 0px rgba(255,255,255,0)",
+                          ],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                         className="w-full bg-brand-golden-yellow py-3 text-center font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                         style={{ clipPath: BTN_INNER_CLIP }}
                       >
                         Register
-                      </div>
-                    </button>
+                      </motion.div>
+                    </motion.button>
                   </div>
                 </div>
               </div>
