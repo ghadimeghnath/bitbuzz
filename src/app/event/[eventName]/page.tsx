@@ -50,7 +50,6 @@ interface EventData {
   rounds: string;
   rules: string;
   judging: string;
-  photos?: string[];
   additionalSections: AdditionalSection[];
   studentCoordinators: Coordinator[];
   staffCoordinators: Coordinator[];
@@ -152,10 +151,10 @@ export default async function EventPage({ params }: PageProps) {
     [&_strong]:text-brand-golden-yellow [&_strong]:font-bold
     [&_em]:text-brand-golden-yellow/90 [&_em]:italic
     [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2.5 [&_ul]:my-5 [&_ul]:text-brand-white/85
-    [&_ol]:text-brand-white/85
+    [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2.5 [&_ol]:my-5 [&_ol]:text-brand-white/85
     [&_li]:pl-2 [&_li]:py-0.5
     [&_a]:text-brand-golden-yellow [&_a]:underline [&_a]:hover:text-brand-orange [&_a]:transition-colors
-    [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:block [&_table]:overflow-x-auto sm:[&_table]:table sm:[&_table]:overflow-visible
+    [&_table]:w-full [&_table]:border-collapse [&_table]:my-8 [&_table]:overflow-x-auto [&_table]:block sm:[&_table]:table
     [&_th]:border [&_th]:border-brand-golden-yellow/40 [&_th]:p-3.5 [&_th]:bg-brand-navy/90 [&_th]:text-brand-golden-yellow [&_th]:text-left [&_th]:font-bold
     [&_td]:border [&_td]:border-brand-golden-yellow/20 [&_td]:p-3.5 [&_td]:bg-brand-navy/50 [&_td]:text-brand-white/85
     [&_blockquote]:border-l-4 [&_blockquote]:border-brand-golden-yellow [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-brand-white/75
@@ -229,7 +228,7 @@ export default async function EventPage({ params }: PageProps) {
                   About This Event
                 </h2>
                 <div
-                  className={`event-content ${htmlContentStyles}`}
+                  className={htmlContentStyles}
                   dangerouslySetInnerHTML={{ __html: event.about }}
                 />
               </div>
@@ -290,7 +289,7 @@ export default async function EventPage({ params }: PageProps) {
                   Rules & Regulations
                 </h2>
                 <div
-                  className={`event-content ${htmlContentStyles}`}
+                  className={htmlContentStyles}
                   dangerouslySetInnerHTML={{ __html: event.rules }}
                 />
               </div>
@@ -315,7 +314,7 @@ export default async function EventPage({ params }: PageProps) {
                   Judging Criteria
                 </h2>
                 <div
-                  className={`event-content ${htmlContentStyles}`}
+                  className={htmlContentStyles}
                   dangerouslySetInnerHTML={{ __html: event.judging }}
                 />
               </div>
@@ -344,7 +343,7 @@ export default async function EventPage({ params }: PageProps) {
                         {section.title}
                       </h2>
                       <div
-                        className={`event-content ${htmlContentStyles}`}
+                        className={htmlContentStyles}
                         dangerouslySetInnerHTML={{ __html: section.content }}
                       />
                     </div>
@@ -353,44 +352,6 @@ export default async function EventPage({ params }: PageProps) {
               );
             })}
           </>
-        )}
-
-        {/* Section: Event Photos */}
-        {event.photos && event.photos.length > 0 && (
-          <section className="relative mt-10">
-            <div
-              className="bg-gradient-to-r from-brand-golden-yellow/40 via-brand-orange/30 to-brand-golden-yellow/40 p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_25px_rgba(255,184,0,0.2)]"
-              style={{ clipPath: CARD_OUTER_CLIP }}
-            >
-              <div
-                className="relative bg-brand-navy/90 backdrop-blur-md p-6 sm:p-8 space-y-5"
-                style={{ clipPath: CARD_INNER_CLIP }}
-              >
-                <div className="absolute top-6 left-0 w-1 h-8 bg-brand-golden-yellow shadow-[0_0_10px_rgba(255,184,0,0.8)]" />
-
-                <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider pl-2">
-                  Event Photos
-                </h2>
-
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {event.photos.map((src, idx) => (
-                    <div
-                      key={idx}
-                      className="relative overflow-hidden rounded-lg aspect-video bg-brand-navy/60 border border-brand-golden-yellow/20 hover:border-brand-golden-yellow/50 transition-all duration-300 group"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={src}
-                        alt={`Event photo ${idx + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
         )}
 
         {/* Coordinators Grid */}
