@@ -89,10 +89,11 @@ export default function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { name: "Events", href: "#events" },
-    { name: "Rules", href: "#rules" },
-    { name: "Schedule", href: "#schedule" },
-    { name: "Team", href: "#team" },
+    { name: "About", href: "/about" },
+    { name: "Events", href: "/#events" },
+    { name: "Rules", href: "/#rules" },
+    { name: "Schedule", href: "/#schedule" },
+    { name: "Team", href: "/#team" },
   ];
 
   return (
@@ -139,13 +140,13 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <div className="hidden items-center gap-4 lg:gap-8 font-brand-heading text-xs lg:text-sm font-bold uppercase tracking-widest md:flex">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-brand-cream transition-all hover:text-brand-golden-yellow hover:drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
 
               {/* Cyber Desktop CTA Button */}
@@ -236,14 +237,14 @@ export default function Navbar() {
                 >
                   <div className="flex flex-col gap-5 text-center font-brand-heading text-base font-bold uppercase tracking-widest">
                     {navLinks.map((link) => (
-                      <a
+                      <Link
                         key={link.name}
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className="py-1 text-brand-cream transition-all hover:text-brand-golden-yellow"
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     ))}
 
                     {/* Cyber Mobile CTA Button */}
