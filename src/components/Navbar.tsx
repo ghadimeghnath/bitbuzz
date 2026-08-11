@@ -55,8 +55,8 @@ const MOBILE_MENU_INNER = `polygon(
 )`;
 
 // Button Clips
-const BTN_OUTER_CLIP = `polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)`;
-const BTN_INNER_CLIP = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px)`;
+const BTN_OUTER_CLIP = `polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)`;
+const BTN_INNER_CLIP = `polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)`;
 
 /* -------------------------------------------------------------------------- */
 /*  Navbar Component                                                          */
@@ -155,39 +155,34 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{
-                  backgroundPosition: ["0% center", "200% center"],
+                  backgroundPosition: ["0% 50%", "200% 50%"],
                   boxShadow: [
-                    "0px 0px 5px 2px rgba(243,202,32,0.4)",
-                    "0px 0px 15px 4px rgba(243,202,32,0.8)",
-                    "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                    "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                    "0px 0px 18px 5px rgba(243,202,32,0.8)",
+                    "0px 0px 6px 2px rgba(243,202,32,0.4)",
                   ],
                 }}
                 transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="group relative inline-block bg-gradient-to-r from-brand-golden-yellow via-[#fff] to-brand-golden-yellow bg-[length:200%_auto] p-[1px]"
-                style={{ clipPath: BTN_OUTER_CLIP }}
-              >
-                <motion.div
-                  animate={{
-                    textShadow: [
-                      "0px 0px 0px rgba(255,255,255,0)",
-                      "0px 0px 10px rgba(255,255,255,1)",
-                      "0px 0px 0px rgba(255,255,255,0)",
-                    ],
-                  }}
-                  transition={{
+                  backgroundPosition: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  boxShadow: {
                     duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut",
-                  }}
+                  },
+                }}
+                className="group relative inline-block bg-[linear-gradient(90deg,#F3CA20,#FFFFFF,#FF8C00,#F3CA20)] bg-[length:300%_100%] p-[3px]"
+                style={{ clipPath: BTN_OUTER_CLIP }}
+              >
+                <div
                   className="bg-brand-golden-yellow px-4 lg:px-5 py-2 font-brand-heading text-xs lg:text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                   style={{ clipPath: BTN_INNER_CLIP }}
                 >
                   Register
-                </motion.div>
+                </div>
               </motion.button>
             </div>
 
@@ -255,39 +250,34 @@ export default function Navbar() {
                       }}
                       whileTap={{ scale: 0.95 }}
                       animate={{
-                        backgroundPosition: ["0% center", "200% center"],
+                        backgroundPosition: ["0% 50%", "200% 50%"],
                         boxShadow: [
-                          "0px 0px 5px 2px rgba(243,202,32,0.4)",
-                          "0px 0px 15px 4px rgba(243,202,32,0.8)",
-                          "0px 0px 5px 2px rgba(243,202,32,0.4)",
+                          "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                          "0px 0px 18px 5px rgba(243,202,32,0.8)",
+                          "0px 0px 6px 2px rgba(243,202,32,0.4)",
                         ],
                       }}
                       transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="group relative mt-2 block w-full bg-gradient-to-r from-brand-golden-yellow via-[#fff] to-brand-golden-yellow bg-[length:200%_auto] p-[1px]"
-                      style={{ clipPath: BTN_OUTER_CLIP }}
-                    >
-                      <motion.div
-                        animate={{
-                          textShadow: [
-                            "0px 0px 0px rgba(255,255,255,0)",
-                            "0px 0px 10px rgba(255,255,255,1)",
-                            "0px 0px 0px rgba(255,255,255,0)",
-                          ],
-                        }}
-                        transition={{
+                        backgroundPosition: {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        boxShadow: {
                           duration: 2,
                           repeat: Infinity,
                           ease: "easeInOut",
-                        }}
+                        },
+                      }}
+                      className="group relative mt-2 block w-full bg-[linear-gradient(90deg,#F3CA20,#FFFFFF,#FF8C00,#F3CA20)] bg-[length:300%_100%] p-[3px]"
+                      style={{ clipPath: BTN_OUTER_CLIP }}
+                    >
+                      <div
                         className="w-full bg-brand-golden-yellow py-3 text-center font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                         style={{ clipPath: BTN_INNER_CLIP }}
                       >
                         Register
-                      </motion.div>
+                      </div>
                     </motion.button>
                   </div>
                 </div>

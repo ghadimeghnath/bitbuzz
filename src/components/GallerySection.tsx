@@ -280,6 +280,19 @@ export default function GallerySection() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-12 flex flex-col items-center gap-8 text-center"
           >
+            <div
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-brand-golden-yellow/20 to-brand-orange/20 p-[1px]"
+              style={{ clipPath: BADGE_OUTER }}
+            >
+              <div
+                className="px-6 py-2.5 bg-brand-navy/90 backdrop-blur-sm"
+                style={{ clipPath: BADGE_INNER }}
+              >
+                <span className="font-brand-heading text-xs font-bold uppercase tracking-[0.25em] text-brand-white/60">
+                  Click any photo to view full-size
+                </span>
+              </div>
+            </div>
             <Link 
               href="/about" 
               className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow bg-[length:200%_auto] px-8 py-3.5 transition-all hover:bg-[100%_auto] hover:drop-shadow-[0_0_15px_rgba(243,202,32,0.6)]"
@@ -295,19 +308,6 @@ export default function GallerySection() {
               <ChevronRight className="h-5 w-5 text-brand-navy transition-transform group-hover:translate-x-1" />
             </Link>
 
-            <div
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-brand-golden-yellow/20 to-brand-orange/20 p-[1px]"
-              style={{ clipPath: BADGE_OUTER }}
-            >
-              <div
-                className="px-6 py-2.5 bg-brand-navy/90 backdrop-blur-sm"
-                style={{ clipPath: BADGE_INNER }}
-              >
-                <span className="font-brand-heading text-xs font-bold uppercase tracking-[0.25em] text-brand-white/60">
-                  Click any photo to view full-size
-                </span>
-              </div>
-            </div>
           </motion.div>
 
         </div>
