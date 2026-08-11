@@ -161,7 +161,7 @@ export default async function EventPage({ params }: PageProps) {
   `;
 
   return (
-    <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-hidden">
+    <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-clip">
       <ScrollToTop />
       <FloatingParticles />
 

@@ -133,7 +133,7 @@ const scheduleRows = [
     title: "SURPRISE EVENT",
     icon: Gift,
     items: [
-      { title: "SURPRISE EVENT", location: "TBA", start: 11, span: 3, bg: "bg-[#f59e0b]" },
+      { title: "SURPRISE EVENT", location: "CLASSROOM", start: 11, span: 3, bg: "bg-[#f59e0b]" },
     ],
   },
   {
