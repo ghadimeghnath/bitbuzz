@@ -223,8 +223,8 @@ export default function SpeakersSection() {
           <HubBadge ref={coreHubRef} title="CORE TEAM" />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 md:gap-6 w-full max-w-4xl px-2">
-            <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Faculty Lead" image="/amogh.jpeg" email="amogh.pairaiturkar@vvm.edu.in" phone="+91 9765856958" />
-            <MemberCard ref={samuelRef} name="Samuel Godinho" role="Faculty Lead" image="/samuel.jpeg" email="samuel.godinho@vvm.edu.in" phone="+91 8975868065" />
+            <MemberCard ref={amoghRef} name="Amogh Pai Raiturkar" role="Convenor, Assistant Professor" image="/amogh.jpeg" email="amogh.pairaiturkar@vvm.edu.in" phone="+91 9765856958" />
+            <MemberCard ref={samuelRef} name="Samuel Godinho" role="Co-Convenor, Assistant Professor" image="/samuel-1.jpeg" email="samuel.godinho@vvm.edu.in" phone="+91 8975868065" />
             <MemberCard ref={simranRef} name="Simran Ghadi" role="Student Incharge" email="2411020.simran.sdcce@vvm.edu.in" phone="+91 9270193714" image="/simran-1.png" />
             <MemberCard ref={saniyaRef} name="Saniya Idrisi" role="Student Co-Incharge" email="2508061.saniya.sdcce@vvm.edu.in" phone="+91 9634443009" image="/saniya-1.png" />
           </div>

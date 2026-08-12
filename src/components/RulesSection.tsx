@@ -2,26 +2,27 @@
 
 import * as React from "react";
 import {
-  GraduationCap,
-  UserCheck,
+  School,
   Users,
   CircleDollarSign,
-  School,
-  CalendarSync,
-  Briefcase,
+  Building,
+  ArrowRightLeft,
+  FileText,
   CalendarCheck,
-  MailCheck,
-  PhoneCall,
-  AlarmClock,
+  Megaphone,
+  UserCheck,
+  MapPin,
   IdCard,
+  Gamepad2,
   Trophy,
   Share2,
   Award,
   Medal,
   FileCheck,
-  ShieldAlert,
+  Ban,
   Utensils,
   Gavel,
+  Globe,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -114,11 +115,11 @@ function RuleItem({
 export function GeneralRulesPoster() {
   const generalRules = [
     {
-      icon: GraduationCap,
+      icon: School,
       color: "text-brand-orange",
       content: (
         <>
-          This competition is exclusively open to{" "}
+          This event is exclusively open to{" "}
           <span className="font-bold text-brand-golden-yellow">
             Higher Secondary School (HSS)
           </span>{" "}
@@ -127,19 +128,15 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: UserCheck,
+      icon: Users,
       color: "text-brand-light-green",
       content: (
         <>
-          Each{" "}
-          <span className="font-bold text-brand-golden-yellow">
-            Higher Secondary School
-          </span>{" "}
-          is permitted to register{" "}
+          Each Higher Secondary School is allowed to send{" "}
           <span className="font-bold text-brand-golden-yellow">
             only one team
           </span>{" "}
-          per competition.
+          for the event.
         </>
       ),
     },
@@ -148,9 +145,9 @@ export function GeneralRulesPoster() {
       color: "text-brand-golden-yellow",
       content: (
         <>
-          Each team may consist of a maximum of{" "}
+          Each team can consist of a{" "}
           <span className="font-bold text-brand-golden-yellow">
-            35 participants
+            maximum of 35 participants
           </span>
           .
         </>
@@ -161,53 +158,52 @@ export function GeneralRulesPoster() {
       color: "text-brand-orange",
       content: (
         <>
-          There are{" "}
           <span className="font-bold text-brand-golden-yellow">
-            no registration charges
+            Registration
           </span>{" "}
-          for participation.
+          of Team is{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            FREE
+          </span>{" "}
+          .
         </>
       ),
     },
     {
-      icon: School,
+      icon: Building,
       color: "text-brand-golden-yellow",
       content: (
         <>
-          The competition will be conducted on the{" "}
+          The event will be conducted{" "}
           <span className="font-bold text-brand-golden-yellow">
-            college campus
+            on our college campus
           </span>
           .
         </>
       ),
     },
     {
-      icon: CalendarSync,
+      icon: ArrowRightLeft,
       color: "text-brand-light-green",
       content: (
         <>
-          To avoid scheduling conflicts, Higher Secondary Schools are advised
-          to nominate{" "}
+          To avoid scheduling conflicts, Higher Secondary Schools are advised{" "}
           <span className="font-bold text-brand-golden-yellow">
-            different participants
-          </span>{" "}
-          for different events, as some events may be conducted
-          simultaneously.
+            to nominate different participants for different events, as some events may be conducted simultaneously.
+          </span>
         </>
       ),
     },
     {
-      icon: Briefcase,
+      icon: FileText,
       color: "text-brand-orange",
       content: (
         <>
-          The{" "}
-          <span className="font-bold text-brand-golden-yellow">
-            Teacher-in-Charge
-          </span>{" "}
-          is responsible for submitting the institution's registration along
-          with the names of participants for their respective events.
+          The {" "}
+           <span className="font-bold text-brand-golden-yellow">
+          Teacher-in-Charge
+           </span>{" "}
+           is responsible for submitting the institution's registration along with the names of participants for their respective events.
         </>
       ),
     },
@@ -216,7 +212,7 @@ export function GeneralRulesPoster() {
       color: "text-brand-orange",
       content: (
         <>
-          Kindly confirm your participation on or before{" "}
+          Kindly confirm your participation latest by{" "}
           <span className="font-bold text-brand-golden-yellow">
             4th September 2026
           </span>
@@ -225,43 +221,44 @@ export function GeneralRulesPoster() {
       ),
     },
     {
-      icon: MailCheck,
+      icon: Megaphone,
       color: "text-brand-golden-yellow",
       content: (
         <>
-          Important information and event-related updates will be communicated
-          via{" "}
+          Important information and event-related updates will be communicated via registered email ID of the{" "}
           <span className="font-bold text-brand-golden-yellow">
-            email
+            Teacher-in Charge
           </span>{" "}
-          to the registered Teacher-in-Charge and participants.
+          and{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Team Leader
+          </span>{" "}
+          Only.
         </>
       ),
     },
     {
-      icon: PhoneCall,
+      icon: UserCheck,
       color: "text-brand-light-green",
       content: (
         <>
-          For event-specific rules and further details, please contact the{" "}
+          For specific details about each event, please get in touch with the{" "}
           <span className="font-bold text-brand-golden-yellow">
             Student Coordinator
           </span>{" "}
-          of the respective event mentioned in the brochure.
+          of the respective event mentioned in the brochure below.
         </>
       ),
     },
     {
-      icon: AlarmClock,
+      icon: MapPin,
       color: "text-brand-orange",
       content: (
         <>
-          Participants are required to report to the venue on time. The
-          reporting time is{" "}
           <span className="font-bold text-brand-golden-yellow">
-            8:00 AM
-          </span>
-          .
+            The reporting time is 8:00 AM
+          </span>{" "}
+          on the day of the event.
         </>
       ),
     },
@@ -270,37 +267,44 @@ export function GeneralRulesPoster() {
       color: "text-brand-light-green",
       content: (
         <>
-          Participants must carry their valid{" "}
+          Participants must carry their{" "}
           <span className="font-bold text-brand-golden-yellow">
-            Higher Secondary School (HSS) ID Card
+            valid Higher Secondary School (HSS) ID card
           </span>{" "}
-          throughout the competition.
+          during the registration.
+        </>
+      ),
+    },
+    {
+      icon: Gamepad2,
+      color: "text-brand-golden-yellow",
+      content: (
+        <>
+          Participants will earn points based on their participation and final placement in the events.
         </>
       ),
     },
     {
       icon: Trophy,
-      color: "text-brand-golden-yellow",
+      color: "text-brand-orange",
       content: (
         <>
-          Points will be awarded based on participation and final placement in
-          each event.
-          <br />
+          The point distribution is as follows:
           <br />
           <span className="font-bold text-brand-golden-yellow">
             Winner (1st Place):
           </span>{" "}
-          50 Points
+          50 points
           <br />
           <span className="font-bold text-brand-golden-yellow">
             Runner-up (2nd Place):
           </span>{" "}
-          30 Points
+          30 points
           <br />
           <span className="font-bold text-brand-golden-yellow">
-            Participation:
+            Participation :
           </span>{" "}
-          10 Points
+          10 points
         </>
       ),
     },
@@ -309,11 +313,7 @@ export function GeneralRulesPoster() {
       color: "text-brand-orange",
       content: (
         <>
-          Winning entries may be featured on the{" "}
-          <span className="font-bold text-brand-golden-yellow">
-            College's official social media platforms
-          </span>
-          .
+          The organisers may post event interactions on social media, in newspapers, and through other media for the purpose of the reach of the event..
         </>
       ),
     },
@@ -322,15 +322,18 @@ export function GeneralRulesPoster() {
       color: "text-brand-light-green",
       content: (
         <>
-          Trophies and certificates will be awarded to the{" "}
+          <span className="font-bold text-brand-golden-yellow">
+            Trophies and certificates
+          </span>{" "}
+          will be awarded to the{" "}
           <span className="font-bold text-brand-golden-yellow">
             Overall Winner
           </span>{" "}
-          and{" "}
+          and Overall{" "}
           <span className="font-bold text-brand-golden-yellow">
-            Overall Runner-up
-          </span>{" "}
-          teams.
+            Runner-up teams
+          </span>
+          .
         </>
       ),
     },
@@ -339,15 +342,14 @@ export function GeneralRulesPoster() {
       color: "text-brand-golden-yellow",
       content: (
         <>
-          Individual trophies and certificates will be awarded to the{" "}
           <span className="font-bold text-brand-golden-yellow">
-            1st
+            Individual trophies and certificates
           </span>{" "}
-          and{" "}
+          will be awarded to the{" "}
           <span className="font-bold text-brand-golden-yellow">
-            2nd
+            1st and 2nd place winners
           </span>{" "}
-          place winners of each event.
+          of each event.
         </>
       ),
     },
@@ -358,23 +360,23 @@ export function GeneralRulesPoster() {
         <>
           All participants will receive an{" "}
           <span className="font-bold text-brand-golden-yellow">
-            e-certificate
-          </span>{" "}
-          of participation.
+            e-certificate for their participation in Bitbuzz 8.0
+          </span>
+          .
         </>
       ),
     },
     {
-      icon: ShieldAlert,
+      icon: Ban,
       color: "text-brand-orange",
       content: (
         <>
-          The use of cigarettes, alcohol, abusive language, or any form of
-          inappropriate or vulgar behaviour is{" "}
-          <span className="font-bold text-brand-golden-yellow">
-            strictly prohibited
-          </span>{" "}
-          and will result in immediate disqualification.
+          The use of prohibited substances or inappropriate behaviour ( {" "}
+            <span className="font-bold text-brand-golden-yellow"> 
+              such as cigarettes, alcohol, abusive language, or vulgar behaviour
+              </span>
+              {" "} ) is strictly prohibited on the college campus and will lead to disqualification of the team.
+        
         </>
       ),
     },
@@ -387,7 +389,7 @@ export function GeneralRulesPoster() {
           <span className="font-bold text-brand-golden-yellow">
             snacks and a working lunch
           </span>{" "}
-          to all registered participants and accompanying faculty members.
+          to all registered participants and accompanying Teacher in charges.
         </>
       ),
     },
@@ -396,14 +398,15 @@ export function GeneralRulesPoster() {
       color: "text-brand-golden-yellow",
       content: (
         <>
-          The decisions of the{" "}
+          The{" "}
           <span className="font-bold text-brand-golden-yellow">
-            organizers and judges
+            decision of the organizers and judges shall be final and binding
           </span>{" "}
-          shall be final and binding in all matters related to the competition.
+          in all matters related to the competition.
         </>
       ),
     },
+    
   ];
 
   return (
