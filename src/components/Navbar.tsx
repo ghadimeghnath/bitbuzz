@@ -55,8 +55,8 @@ const MOBILE_MENU_INNER = `polygon(
 )`;
 
 // Button Clips
-const BTN_OUTER_CLIP = `polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)`;
-const BTN_INNER_CLIP = `polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px)`;
+const BTN_OUTER_CLIP = `polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)`;
+const BTN_INNER_CLIP = `polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)`;
 
 /* -------------------------------------------------------------------------- */
 /*  Navbar Component                                                          */
@@ -89,10 +89,11 @@ export default function Navbar() {
   }, [isOpen]);
 
   const navLinks = [
-    { name: "Events", href: "#events" },
-    { name: "Rules", href: "#rules" },
-    { name: "Schedule", href: "#schedule" },
-    { name: "Team", href: "#team" },
+    { name: "About", href: "/about" },
+    { name: "Events", href: "/#events" },
+    { name: "Rules", href: "/#rules" },
+    { name: "Schedule", href: "/#schedule" },
+    { name: "Team", href: "/#team" },
   ];
 
   return (
@@ -128,7 +129,7 @@ export default function Navbar() {
                 priority
                 className="h-8 w-8 object-contain drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] transition-transform duration-300 group-hover:scale-105 sm:h-10 sm:w-10 md:h-12 md:w-12"
               />
-              <span className="font-brand-event-title text-xl tracking-widest text-brand-white sm:text-2xl">
+              <span className="font-brand-event-title text-lg sm:text-xl md:text-2xl tracking-widest text-brand-white">
                 BITBUZZ{" "}
                 <span className="text-brand-golden-yellow drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]">
                   8.0
@@ -137,30 +138,52 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden items-center gap-8 font-brand-heading text-sm font-bold uppercase tracking-widest md:flex">
+            <div className="hidden items-center gap-4 lg:gap-8 font-brand-heading text-xs lg:text-sm font-bold uppercase tracking-widest md:flex">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-brand-cream transition-all hover:text-brand-golden-yellow hover:drop-shadow-[0_0_6px_rgba(243,202,32,0.5)]"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
 
               {/* Cyber Desktop CTA Button */}
-              <button
+              <motion.button
                 onClick={() => setIsModalOpen(true)}
-                className="group relative inline-block bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_12px_rgba(243,202,32,0.6)]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  backgroundPosition: ["0% 50%", "200% 50%"],
+                  boxShadow: [
+                    "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                    "0px 0px 18px 5px rgba(243,202,32,0.8)",
+                    "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                  ],
+                }}
+                transition={{
+                  backgroundPosition: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                  boxShadow: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }}
+                className="group relative inline-block bg-[linear-gradient(90deg,#F3CA20,#FFFFFF,#FF8C00,#F3CA20)] bg-[length:300%_100%] p-[3px]"
                 style={{ clipPath: BTN_OUTER_CLIP }}
               >
                 <div
-                  className="bg-brand-golden-yellow px-5 py-2 font-brand-heading text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
+                  className="bg-brand-golden-yellow px-4 lg:px-5 py-2 font-brand-heading text-xs lg:text-sm font-black uppercase tracking-widest text-brand-navy transition-colors duration-300 group-hover:bg-brand-white"
                   style={{ clipPath: BTN_INNER_CLIP }}
                 >
                   Register
                 </div>
-              </button>
+              </motion.button>
             </div>
 
             {/* Hamburger Toggle Button (Mobile) */}
@@ -209,23 +232,44 @@ export default function Navbar() {
                 >
                   <div className="flex flex-col gap-5 text-center font-brand-heading text-base font-bold uppercase tracking-widest">
                     {navLinks.map((link) => (
-                      <a
+                      <Link
                         key={link.name}
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                         className="py-1 text-brand-cream transition-all hover:text-brand-golden-yellow"
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     ))}
 
                     {/* Cyber Mobile CTA Button */}
-                    <button
+                    <motion.button
                       onClick={() => {
                         setIsOpen(false);
                         setIsModalOpen(true);
                       }}
-                      className="group relative mt-2 block w-full bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow p-[1px] transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(243,202,32,0.6)]"
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        backgroundPosition: ["0% 50%", "200% 50%"],
+                        boxShadow: [
+                          "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                          "0px 0px 18px 5px rgba(243,202,32,0.8)",
+                          "0px 0px 6px 2px rgba(243,202,32,0.4)",
+                        ],
+                      }}
+                      transition={{
+                        backgroundPosition: {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        },
+                        boxShadow: {
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }}
+                      className="group relative mt-2 block w-full bg-[linear-gradient(90deg,#F3CA20,#FFFFFF,#FF8C00,#F3CA20)] bg-[length:300%_100%] p-[3px]"
                       style={{ clipPath: BTN_OUTER_CLIP }}
                     >
                       <div
@@ -234,7 +278,7 @@ export default function Navbar() {
                       >
                         Register
                       </div>
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </div>

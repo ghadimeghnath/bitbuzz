@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -279,7 +280,7 @@ export default function GallerySection() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 text-center"
+            className="mt-12 flex flex-col items-center gap-8 text-center"
           >
             <div
               className="inline-flex items-center gap-3 bg-gradient-to-r from-brand-golden-yellow/20 to-brand-orange/20 p-[1px]"
@@ -294,6 +295,21 @@ export default function GallerySection() {
                 </span>
               </div>
             </div>
+            <Link 
+              href="/about" 
+              className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-brand-golden-yellow via-brand-orange to-brand-golden-yellow bg-[length:200%_auto] px-8 py-3.5 transition-all hover:bg-[100%_auto] hover:drop-shadow-[0_0_15px_rgba(243,202,32,0.6)]"
+              style={{ clipPath: BADGE_OUTER, animation: "gradient-shift 3s linear infinite" }}
+            >
+              <div 
+                className="absolute inset-[2px] -z-10 bg-brand-golden-yellow transition-colors group-hover:bg-brand-white"
+                style={{ clipPath: BADGE_INNER }}
+              />
+              <span className="font-brand-heading text-sm font-bold uppercase tracking-widest text-brand-navy">
+                Know About Bitbuzz
+              </span>
+              <ChevronRight className="h-5 w-5 text-brand-navy transition-transform group-hover:translate-x-1" />
+            </Link>
+
           </motion.div>
 
         </div>

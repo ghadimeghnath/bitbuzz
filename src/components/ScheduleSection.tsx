@@ -126,42 +126,7 @@ const scheduleRows = [
     title: "ESCAPE ROOM",
     icon: Lock,
     items: [
-      { title: "ENCRYPTED ESCAPE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#9333ea]" },
-    ],
-  },
-  {
-    title: "SURPRISE EVENT",
-    icon: Gift,
-    items: [
-      { title: "SURPRISE EVENT", location: "TBA", start: 11, span: 3, bg: "bg-[#f59e0b]" },
-    ],
-  },
-  {
-    title: "CRISIS CHALLENGE",
-    icon: ShieldCheck,
-    items: [
-      { title: "BIT RESCUE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "DECODE & SOLVE",
-    icon: Drama,
-    items: [
-      { title: "DECODE & SOLVE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "TECHNICAL SKIT",
-    icon: Clapperboard,
-    items: [
-      { title: "NAUTANKI", location: "HALL 2", start: 11, span: 4, bg: "bg-[#2563eb]" },
-    ],
-  },
-  {
-    title: "LUNCH BREAK",
-    icon: Users,
-    items: [
-      { title: "LUNCH BREAK", location: "CLASSROOM", start: 9, span: 2, bg: "bg-[#2ea043]" },
+      { title: "ENCRYPTED ESCAPE", location: "CLASSROOM", start: 11, span: 5, bg: "bg-[#9333ea]" },
     ],
   },
   {

@@ -30,9 +30,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", montserrat.variable, "font-sans")}
+      className={cn("antialiased", montserrat.variable, "font-sans")}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden selection:bg-brand-golden-yellow selection:text-brand-navy">
+      <body className="min-h-screen flex flex-col bg-background text-foreground overflow-x-clip selection:bg-brand-golden-yellow selection:text-brand-navy">
         <NextTopLoader
           color="#FFB800"
           initialPosition={0.08}

@@ -161,7 +161,7 @@ export default async function EventPage({ params }: PageProps) {
   `;
 
   return (
-    <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-hidden">
+    <div className="min-h-screen bg-brand-grid relative bg-brand-navy font-brand-body text-brand-white selection:bg-brand-golden-yellow selection:text-brand-navy overflow-x-clip">
       <ScrollToTop />
       <FloatingParticles />
 
@@ -371,7 +371,11 @@ export default async function EventPage({ params }: PageProps) {
                   style={{ clipPath: CARD_INNER_CLIP }}
                 >
                   <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
+<<<<<<< HEAD
                     Faculty Coordinator
+=======
+                    {event.staffCoordinators.length > 1 ? "Faculty Co-ordinators" : "Faculty Co-ordinator"}
+>>>>>>> 669aaafab1206b1614e6c9c3e7a4f0bfc39aa7c0
                   </h2>
                   <div className="grid grid-cols-1 gap-4">
                     {event.staffCoordinators.map((coordinator, idx) => (
@@ -392,7 +396,7 @@ export default async function EventPage({ params }: PageProps) {
               </div>
             </section>
           )}
-                    {/* Section 6: Student Coordinators */}
+          {/* Section 6: Student Coordinators */}
           {event.studentCoordinators && event.studentCoordinators.length > 0 && (
             <section className="relative">
               <div
@@ -404,7 +408,7 @@ export default async function EventPage({ params }: PageProps) {
                   style={{ clipPath: CARD_INNER_CLIP }}
                 >
                   <h2 className="text-2xl sm:text-3xl font-brand-heading italic font-black uppercase text-brand-golden-yellow tracking-wider">
-                    Student Coordinators
+                    {event.studentCoordinators.length > 1 ? "Student Co-ordinators" : "Student Co-ordinator"}
                   </h2>
                   <div className="grid grid-cols-1 gap-4">
                     {event.studentCoordinators.map((coordinator, idx) => (
