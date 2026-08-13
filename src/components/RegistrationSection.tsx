@@ -132,7 +132,7 @@ export default function RegistrationSection() {
             <CyberButton
               variant="secondary"
               onClick={() => {
-                window.open("https://drive.google.com/uc?export=download&id=1-4DkuVG2OdReR4jwGt4ocLuViJNaKsN_", "_blank");
+                window.open("https://drive.google.com/uc?export=download&id=12AiWHQT6uwuELOrj2NqEvL7ClLealigr", "_blank");
               }}
               icon={
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
