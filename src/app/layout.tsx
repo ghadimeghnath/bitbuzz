@@ -4,6 +4,7 @@ import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import { cn } from "@/lib/utils";
 import BackToTop from "@/components/BackToTop";
+import LiveVisitorCount from "@/components/LiveVisitorCount";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
         <LenisProvider>
           {children}
           <BackToTop />
+          <LiveVisitorCount />
         </LenisProvider>
       </body>
     </html>
