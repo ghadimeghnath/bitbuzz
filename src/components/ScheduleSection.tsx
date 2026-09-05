@@ -56,7 +56,7 @@ const scheduleRows = [
     title: "QUIZ",
     icon: HelpCircle,
     items: [
-      { title: "IQ BUSTER", location: "CLASSROOM", start: 3, span: 6, bg: "bg-[#2563eb]" },
+      { title: "IQ BUSTER", location: "CLASS F-401", start: 3, span: 6, bg: "bg-[#2563eb]" },
     ],
   },
   {
@@ -77,28 +77,35 @@ const scheduleRows = [
     title: "PAPER PRESENTATION",
     icon: FileText,
     items: [
-      { title: "TECHFLUENCE", location: "CLASSROOM", start: 5, span: 10, bg: "bg-[#2563eb]" },
+      { title: "TECHFLUENCE", location: "CLASS F-406", start: 5, span: 10, bg: "bg-[#2563eb]" },
     ],
   },
   {
     title: "E-POSTER",
     icon: ImageIcon,
     items: [
-      { title: "ARTCLUSIVE", location: "LAB 1", start: 3, span: 3, bg: "bg-[#9333ea]" },
+      { title: "ARTCLUSIVE", location: "LAB 2", start: 3, span: 3, bg: "bg-[#9333ea]" },
     ],
   },
   {
     title: "SPEED TYPING",
     icon: Keyboard,
     items: [
-      { title: "TYPING TITANS", location: "LAB 4", start: 3, span: 3, bg: "bg-[#9333ea]" },
+      { title: "TYPING TITANS", location: "LAB 1", start: 3, span: 3, bg: "bg-[#9333ea]" },
     ],
   },
   {
     title: "GAMING",
     icon: Gamepad2,
     items: [
-      { title: "BATTLE ARENA (FIFA & FREE FIRE)", location: "CLASSROOM", start: 3, span: 6, bg: "bg-[#9333ea]" },
+      { title: "BATTLE ARENA ( FREE FIRE )", location: "CLASS F-404", start: 3, span: 6, bg: "bg-[#9333ea]" },
+    ],
+  },
+    {
+    title: "GAMING",
+    icon: Gamepad2,
+    items: [
+      { title: "BATTLE ARENA ( FIFA 19 )", location: "CLASS F-403", start: 3, span: 6, bg: "bg-[#9333ea]" },
     ],
   },
   {
@@ -112,7 +119,7 @@ const scheduleRows = [
     title: "MEMORY MANIA",
     icon: BrainCircuit,
     items: [
-      { title: "MIND SYNC", location: "LAB 2", start: 5, span: 4, bg: "bg-[#9333ea]" },
+      { title: "MIND SYNC", location: "LAB 4", start: 5, span: 4, bg: "bg-[#9333ea]" },
     ],
   },
   {
@@ -126,7 +133,7 @@ const scheduleRows = [
     title: "ESCAPE ROOM",
     icon: Lock,
     items: [
-      { title: "ENCRYPTED ESCAPE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#9333ea]" },
+      { title: "ENCRYPTED ESCAPE", location: "CLASS F-407", start: 11, span: 4, bg: "bg-[#9333ea]" },
     ],
   },
   {
@@ -140,14 +147,14 @@ const scheduleRows = [
     title: "CRISIS CHALLENGE",
     icon: ShieldCheck,
     items: [
-      { title: "BIT RESCUE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
+      { title: "BIT RESCUE", location: "CLASS F-404", start: 11, span: 4, bg: "bg-[#2563eb]" },
     ],
   },
   {
     title: "DECODE & SOLVE",
     icon: Drama,
     items: [
-      { title: "DECODE & SOLVE", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#2563eb]" },
+      { title: "DECODE & SOLVE", location: "CLASS F-402", start: 11, span: 4, bg: "bg-[#2563eb]" },
     ],
   },
   {
@@ -161,7 +168,7 @@ const scheduleRows = [
     title: "LUNCH BREAK",
     icon: Users,
     items: [
-      { title: "LUNCH BREAK", location: "CLASSROOM", start: 9, span: 2, bg: "bg-[#2ea043]" },
+      { title: "LUNCH BREAK", location: "CLASS F-405", start: 9, span: 2, bg: "bg-[#2ea043]" },
     ],
   },
   {
@@ -175,21 +182,21 @@ const scheduleRows = [
     title: "STICK QUEST",
     icon: Gamepad2,
     items: [
-      { title: "STICK QUEST", location: "CLASSROOM", start: 5, span: 4, bg: "bg-[#dc2626]" },
+      { title: "STICK QUEST", location: "CLASS F-402", start: 5, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
     title: "LUDO",
     icon: Users,
     items: [
-      { title: "ROLL ROYAL", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#dc2626]" },
+      { title: "ROLL ROYAL", location: "CLASS F-403", start: 11, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
     title: "TANGRIX",
     icon: Users,
     items: [
-      { title: "TANGRIX", location: "CLASSROOM", start: 11, span: 4, bg: "bg-[#dc2626]" },
+      { title: "TANGRIX", location: "CLASS F-401", start: 11, span: 4, bg: "bg-[#dc2626]" },
     ],
   },
   {
